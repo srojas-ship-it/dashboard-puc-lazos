@@ -195,6 +195,8 @@ body{
   background:var(--blue-50); color:var(--blue-700); white-space:nowrap;
 }
 .tag--orange{ background:var(--orange); color:var(--white); }
+.tag--yellow{ background:#F59E0B; color:#78350F; } /* Pruebas / próximo a liberar */
+.tag--green{ background:#16A34A; color:var(--white); } /* Liberado */
 .li-desc{ font-size:12.5px; color:var(--gray-700); line-height:1.35; }
 .li-meta{ font-size:11px; color:var(--gray-400); }
 
@@ -250,11 +252,12 @@ td.col-descripcion, td.col-problematica, td.col-solucion{ max-width:260px; }
   display:inline-block; font-size:11px; font-weight:700; padding:3px 9px; border-radius:999px;
   color:var(--white); white-space:nowrap;
 }
-.pill-status--liberado{ background:var(--blue-700); }
-.pill-status--pruebas{ background:var(--blue-500); }
-.pill-status--desarrollo{ background:var(--blue-300); color:var(--blue-900); }
-.pill-status--analisis{ background:var(--blue-100); color:var(--blue-900); }
-.pill-status--definicion{ background:var(--gray-400); color:var(--white); }
+/* Semáforo: Liberado=verde, Pruebas=amarillo, Desarrollo/Análisis/Definición=naranja */
+.pill-status--liberado{ background:#16A34A; }
+.pill-status--pruebas{ background:#F59E0B; color:#78350F; }
+.pill-status--desarrollo{ background:var(--orange); }
+.pill-status--analisis{ background:var(--orange); }
+.pill-status--definicion{ background:var(--orange); }
 .pill-status--completada{ background:var(--blue-700); }
 .pill-status--enproceso{ background:var(--blue-500); }
 .pill-status--envalidacion{ background:var(--blue-300); color:var(--blue-900); }

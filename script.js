@@ -59,9 +59,12 @@
     const el = $(containerId);
     if (!el || !labels.length) return;
     const max = Math.max(...data, 1);
-    // Filas compactas: equilibra la altura total con la tarjeta del doughnut de al lado.
-    const rowH = 16, gap = 7, labelW = 118, chartW = 176;
-    const width = labelW + chartW + 30;
+    // El viewBox se define en unidades cercanas al ancho real de la tarjeta (~560-650px)
+    // para que el navegador casi no tenga que reescalar el SVG al ajustarlo al contenedor.
+    // Si el viewBox es mucho más chico que el contenedor real, el navegador amplifica
+    // barras y texto proporcionalmente (por eso se veía desproporcionado antes).
+    const rowH = 18, gap = 6, labelW = 160, chartW = 360;
+    const width = labelW + chartW + 40;
     const height = labels.length * (rowH + gap) - gap;
     const bars = labels.map((label, i) => {
       const y = i * (rowH + gap);
@@ -182,6 +185,14 @@
     renderDoughnutChart("#chart-medio", medioLabels, medioData, palette);
   }
 
+  // Semáforo de estatus: Liberado=verde, Pruebas ("próximo a liberar")=amarillo,
+  // Análisis/Desarrollo/Definición de Negocio=naranja.
+  function estatusTagClass(estatus) {
+    if (estatus === "Liberado") return "tag--green";
+    if (estatus === "Pruebas") return "tag--yellow";
+    return "tag--orange";
+  }
+
   function renderPuntosRelevantes() {
     // Liberaciones relevantes: liberados más recientes (fecha de solución válida, orden desc)
     const liberados = HALLAZGOS
@@ -189,27 +200,45 @@
       .sort((a, b) => b.fechaSolucion.localeCompare(a.fechaSolucion))
       .slice(0, 5);
 
-    $("#lista-liberaciones").innerHTML = liberados.map(h => `
+    // Punto fijo: consolida los 3 hallazgos de error al solicitar entrega de TDD (ids 4, 5, 6),
+    // se muestra siempre primero aunque no esté entre los más recientes por fecha.
+    const liberacionesHtml = [`
+      <li>
+        <div class="li-top"><span class="tag">Entrega TDD</span></div>
+        <div class="li-desc">Corrección al momento de solicitar la entrega de TDD (3 hallazgos corregidos: errores "XFF4H", "DLL08" y "C0B4S").</div>
+        <div class="li-meta">Liberado el ${fmtDate("2026-07-10")} · Incidencia</div>
+      </li>`]
+      .concat(liberados.map(h => `
       <li>
         <div class="li-top"><span class="tag">${h.flujo}</span></div>
         <div class="li-desc">${h.descripcion}</div>
         <div class="li-meta">Liberado el ${fmtDate(h.fechaSolucion)} · ${h.clasificacion}</div>
-      </li>`).join("");
+      </li>`));
+    $("#lista-liberaciones").innerHTML = liberacionesHtml.join("");
 
-    // Focos de atención: bloqueantes no liberados + elementos próximos a liberar (en Pruebas)
-    const focos = HALLAZGOS
-      .filter(h => (h.criticidad === "Bloqueante" && h.estatus !== "Liberado") || h.estatus === "Pruebas")
+    // Focos de atención: bloqueantes no liberados + elementos próximos a liberar (en Pruebas).
+    // El hallazgo #20 se fija siempre primero: no es bloqueante, pero el volumen de casos
+    // afectados (100+) lo vuelve prioritario para Dirección.
+    const pinId = 20;
+    const pinned = HALLAZGOS.find(h => h.id === pinId);
+    const resto = HALLAZGOS
+      .filter(h => h.id !== pinId && ((h.criticidad === "Bloqueante" && h.estatus !== "Liberado") || h.estatus === "Pruebas"))
       .sort((a, b) => (a.estatus === "Pruebas" ? 1 : -1) - (b.estatus === "Pruebas" ? 1 : -1));
+    const focos = pinned ? [pinned, ...resto] : resto;
 
-    $("#lista-focos").innerHTML = focos.map(h => `
+    $("#lista-focos").innerHTML = focos.map(h => {
+      const casosTxt = (h.casos && h.casos !== "N/A") ? ` · ${h.casos} casos` : "";
+      const tagTexto = h.estatus === "Pruebas" ? "Próximo a liberar" : h.estatus;
+      return `
       <li>
         <div class="li-top">
-          <span class="tag tag--orange">${h.criticidad === "Bloqueante" ? "Bloqueante" : "Próximo a liberar"}</span>
+          <span class="tag ${estatusTagClass(h.estatus)}">${tagTexto}</span>
           <span class="tag">${h.flujo}</span>
         </div>
         <div class="li-desc">${h.descripcion}</div>
-        <div class="li-meta">${h.estatus} · estimado ${fmtDate(h.fechaSolucion)}</div>
-      </li>`).join("");
+        <div class="li-meta">${h.estatus} · estimado ${fmtDate(h.fechaSolucion)}${casosTxt}</div>
+      </li>`;
+    }).join("");
   }
 
   // ---------------------------------------------------------------------
