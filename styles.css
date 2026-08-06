@@ -164,6 +164,41 @@ body{
    --------------------------------------------------------------------- */
 .chart-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 
+/* Distribución: apilado en vez de 2 columnas forzadas — "Hallazgos por Flujo" es una
+   lista de detalle (más alta, variable) y "Hallazgos por Medio" un doughnut compacto;
+   forzarlos a la misma altura en columnas gemelas se leía como un error de diseño. */
+.distribucion-stack{ display:flex; flex-direction:column; gap:16px; }
+.chart-card--compact{ max-width:480px; }
+
+/* Hallazgos por Flujo — dos barras por flujo (Incidencias / Mejoras), cada una
+   segmentada por estatus con el semáforo del resto del dashboard. */
+.flujo-breakdown{ display:flex; flex-direction:column; }
+.flujo-legend{
+  display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  font-size:11.5px; color:var(--gray-500);
+  margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid var(--gray-100);
+}
+.flujo-legend-dot{
+  display:inline-block; width:9px; height:9px; border-radius:2px; margin-right:5px;
+}
+.flujo-row{ padding:12px 0; border-bottom:1px solid var(--gray-100); }
+.flujo-row:last-child{ border-bottom:none; padding-bottom:0; }
+.flujo-row:first-child{ padding-top:0; }
+.flujo-row-header{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:8px; }
+.flujo-name{ font-size:13.5px; font-weight:700; color:var(--gray-900); }
+.flujo-total{ font-size:14.5px; font-weight:700; color:var(--gray-900); }
+.flujo-subrow{ display:flex; align-items:center; gap:8px; }
+.flujo-subrow + .flujo-subrow{ margin-top:6px; }
+.flujo-sublabel{ flex:0 0 84px; font-size:11px; color:var(--gray-500); }
+.flujo-subbar-track{
+  flex:1; height:18px; border-radius:4px; overflow:hidden; background:var(--gray-100);
+}
+.flujo-subbar{ height:100%; display:flex; gap:1px; }
+.flujo-seg{
+  display:flex; align-items:center; justify-content:center;
+  font-size:10px; font-weight:700; white-space:nowrap;
+}
+
 /* Gráficos SVG nativos — sin dependencias externas / sin CDN */
 .svg-chart{ width:100%; }
 .svgc-bar{ width:100%; height:auto; }
@@ -304,4 +339,6 @@ td.col-descripcion, td.col-problematica, td.col-solucion{ max-width:260px; }
   .quote-grid{ grid-template-columns:1fr; }
   .filters-bar{ flex-direction:column; align-items:stretch; }
   .filter-field{ min-width:0; }
+  .flujo-sublabel{ flex-basis:70px; }
+  .flujo-legend{ gap:10px; }
 }

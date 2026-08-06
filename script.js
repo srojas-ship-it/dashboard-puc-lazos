@@ -55,27 +55,80 @@
   // Gráficos SVG nativos (sin librerías externas / sin CDN) — funcionan
   // sin conexión a internet, importante en redes corporativas restringidas.
   // ---------------------------------------------------------------------
-  function renderHBarChart(containerId, labels, data, color) {
+  // Semáforo de estatus (mismo criterio que Focos de Atención y la tabla):
+  // Liberado=verde, Pruebas=amarillo, Análisis/Desarrollo/Definición de Negocio=naranja.
+  function estatusDotColor(estatus) {
+    if (estatus === "Liberado") return "#16A34A";
+    if (estatus === "Pruebas") return "#F59E0B";
+    return "#F97316";
+  }
+
+  // Hallazgos por Flujo: dos barras por flujo (Incidencias / Mejoras), cada una
+  // segmentada por estatus con el semáforo (verde/amarillo/naranja). El color comunica
+  // el estatus al instante y el número dentro de cada segmento conserva la precisión
+  // que necesita Dirección. Diseño acordado con Dirección tras evaluar alternativas.
+  function renderFlujoBreakdown(containerId) {
     const el = $(containerId);
-    if (!el || !labels.length) return;
-    const max = Math.max(...data, 1);
-    // El viewBox se define en unidades cercanas al ancho real de la tarjeta (~560-650px)
-    // para que el navegador casi no tenga que reescalar el SVG al ajustarlo al contenedor.
-    // Si el viewBox es mucho más chico que el contenedor real, el navegador amplifica
-    // barras y texto proporcionalmente (por eso se veía desproporcionado antes).
-    const rowH = 18, gap = 6, labelW = 160, chartW = 360;
-    const width = labelW + chartW + 40;
-    const height = labels.length * (rowH + gap) - gap;
-    const bars = labels.map((label, i) => {
-      const y = i * (rowH + gap);
-      const w = Math.max((data[i] / max) * chartW, 2);
+    if (!el) return;
+
+    const porFlujo = {};
+    HALLAZGOS.forEach(h => {
+      if (!porFlujo[h.flujo]) porFlujo[h.flujo] = { total: 0, inc: { total: 0, byEstatus: {} }, mej: { total: 0, byEstatus: {} } };
+      const f = porFlujo[h.flujo];
+      f.total++;
+      const bucket = h.clasificacion === "Incidencia" ? f.inc : f.mej;
+      bucket.total++;
+      bucket.byEstatus[h.estatus] = (bucket.byEstatus[h.estatus] || 0) + 1;
+    });
+
+    const entradas = Object.entries(porFlujo).sort((a, b) => b[1].total - a[1].total);
+
+    // El ancho de cada barra debe representar su magnitud real, no solo repartir el
+    // 100% del espacio disponible (eso hacía que un total de 1 se viera igual de largo
+    // que uno de 6). Se escala contra el mayor bucket Incidencias/Mejoras del gráfico.
+    let maxBucket = 1;
+    entradas.forEach(([, f]) => { maxBucket = Math.max(maxBucket, f.inc.total, f.mej.total); });
+
+    function segmentos(bucket) {
+      return CATALOGOS.estatus.filter(st => bucket.byEstatus[st]).map(st => {
+        const n = bucket.byEstatus[st];
+        const pct = (n / bucket.total) * 100;
+        const color = estatusDotColor(st);
+        const textColor = st === "Pruebas" ? "#78350F" : "#FFFFFF";
+        return `<div class="flujo-seg" style="width:${pct}%; background:${color}; color:${textColor};" title="${st}: ${n}">${n}</div>`;
+      }).join("");
+    }
+
+    function subBar(bucket, etiqueta) {
+      if (!bucket.total) return "";
+      const anchoPct = (bucket.total / maxBucket) * 100;
       return `
-        <text x="0" y="${y + rowH / 2 + 3.5}" class="svgc-label">${escapeHtml(label)}</text>
-        <rect x="${labelW}" y="${y + 2}" width="${chartW}" height="${rowH - 4}" rx="3" class="svgc-track"></rect>
-        <rect x="${labelW}" y="${y + 2}" width="${w}" height="${rowH - 4}" rx="3" fill="${color}"></rect>
-        <text x="${labelW + chartW + 8}" y="${y + rowH / 2 + 3.5}" class="svgc-value">${data[i]}</text>`;
-    }).join("");
-    el.innerHTML = `<svg viewBox="0 0 ${width} ${height}" class="svgc-bar" role="img" aria-label="Gráfico de barras">${bars}</svg>`;
+        <div class="flujo-subrow">
+          <span class="flujo-sublabel">${etiqueta} ${bucket.total}</span>
+          <div class="flujo-subbar-track">
+            <div class="flujo-subbar" style="width:${anchoPct}%">${segmentos(bucket)}</div>
+          </div>
+        </div>`;
+    }
+
+    const legend = `
+      <div class="flujo-legend">
+        <span><span class="flujo-legend-dot" style="background:#16A34A"></span>Liberado</span>
+        <span><span class="flujo-legend-dot" style="background:#F59E0B"></span>Pruebas</span>
+        <span><span class="flujo-legend-dot" style="background:#F97316"></span>Análisis / Desarrollo / Definición</span>
+      </div>`;
+
+    const filas = entradas.map(([flujo, f]) => `
+      <div class="flujo-row">
+        <div class="flujo-row-header">
+          <span class="flujo-name">${escapeHtml(flujo)}</span>
+          <span class="flujo-total">${f.total}</span>
+        </div>
+        ${subBar(f.inc, "Incidencias")}
+        ${subBar(f.mej, "Mejoras")}
+      </div>`).join("");
+
+    el.innerHTML = legend + filas;
   }
 
   function renderDoughnutChart(containerId, labels, data, colors) {
@@ -177,8 +230,7 @@
   }
 
   function renderDistribucionCharts() {
-    const [flujoLabels, flujoData] = sortCountsDesc(countBy(HALLAZGOS, "flujo"));
-    renderHBarChart("#chart-flujo", flujoLabels, flujoData, "#3D6BB3");
+    renderFlujoBreakdown("#flujo-breakdown");
 
     const [medioLabels, medioData] = sortCountsDesc(countBy(HALLAZGOS, "medio"));
     const palette = ["#1B3A6B","#3D6BB3","#6D96D1","#A9C2E8","#F97316","#9CA3AF"];
@@ -200,20 +252,21 @@
       .sort((a, b) => b.fechaSolucion.localeCompare(a.fechaSolucion))
       .slice(0, 5);
 
-    // Punto fijo: consolida los 3 hallazgos de error al solicitar entrega de TDD (ids 4, 5, 6),
-    // se muestra siempre primero aunque no esté entre los más recientes por fecha.
-    const liberacionesHtml = [`
-      <li>
-        <div class="li-top"><span class="tag">Entrega TDD</span></div>
-        <div class="li-desc">Corrección al momento de solicitar la entrega de TDD (3 hallazgos corregidos: errores "XFF4H", "DLL08" y "C0B4S").</div>
-        <div class="li-meta">Liberado el ${fmtDate("2026-07-10")} · Incidencia</div>
-      </li>`]
-      .concat(liberados.map(h => `
+    // Punto fijo: consolida los 3 hallazgos de error al solicitar entrega de TDD (ids 4, 5, 6).
+    // Va al final de la lista (no pineado arriba): por fecha (10 jul) es el más antiguo del
+    // grupo, así que ese es justo su lugar natural en un orden de más reciente a más antiguo.
+    const liberacionesHtml = liberados.map(h => `
       <li>
         <div class="li-top"><span class="tag">${h.flujo}</span></div>
         <div class="li-desc">${h.descripcion}</div>
         <div class="li-meta">Liberado el ${fmtDate(h.fechaSolucion)} · ${h.clasificacion}</div>
-      </li>`));
+      </li>`)
+      .concat([`
+      <li>
+        <div class="li-top"><span class="tag">Entrega TDD</span></div>
+        <div class="li-desc">Corrección al momento de solicitar la entrega de TDD (3 hallazgos corregidos: errores "XFF4H", "DLL08" y "C0B4S").</div>
+        <div class="li-meta">Liberado el ${fmtDate("2026-07-10")} · Incidencia</div>
+      </li>`]);
     $("#lista-liberaciones").innerHTML = liberacionesHtml.join("");
 
     // Focos de atención: bloqueantes no liberados + elementos próximos a liberar (en Pruebas).
