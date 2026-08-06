@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programa Lazos · Dashboard de Estabilidad Operativa PUC</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============================================================
+     ENCABEZADO — compacto, poca altura vertical, identidad fija
+     ============================================================ -->
+<header class="app-header">
+  <div class="header-brand">
+    <div class="brand-mark">PL</div>
+    <div class="brand-text">
+      <span class="brand-name">Programa Lazos</span>
+      <h1 class="dashboard-title">Dashboard de Estabilidad Operativa PUC</h1>
+      <p class="dashboard-subtitle">Seguimiento de incidencias, mejoras y estabilidad de la Plataforma Única de Clientes</p>
+    </div>
+  </div>
+  <div class="header-meta">
+    <span class="meta-pill" id="meta-fecha">Actualizado: 05 ago 2026</span>
+    <span class="meta-pill meta-pill--accent" id="meta-version">PUC v4.0.1</span>
+  </div>
+</header>
+
+<!-- ============================================================
+     NAVEGACIÓN — únicamente dos pestañas superiores
+     ============================================================ -->
+<nav class="tabs" role="tablist" aria-label="Vistas del dashboard">
+  <button class="tab-btn is-active" role="tab" aria-selected="true" data-tab="vista-general">Vista General</button>
+  <button class="tab-btn" role="tab" aria-selected="false" data-tab="encuesta-fv">Encuesta Fuerza de Ventas</button>
+</nav>
+
+<main class="app-main">
+
+<!-- ============================================================
+     VISTA GENERAL
+     ============================================================ -->
+<section id="vista-general" class="tab-panel is-active">
+
+  <!-- 1. Resumen Ejecutivo -->
+  <section class="block" aria-labelledby="h-resumen">
+    <h2 id="h-resumen" class="block-title">Resumen Ejecutivo</h2>
+    <div class="kpi-row" id="kpi-resumen"><!-- generado por script.js --></div>
+  </section>
+
+  <!-- 2. Estado de Hallazgos -->
+  <section class="block" aria-labelledby="h-estado">
+    <h2 id="h-estado" class="block-title">Estado de Hallazgos</h2>
+    <div class="status-row" id="status-cards"><!-- generado por script.js --></div>
+  </section>
+
+  <!-- 3. Distribución -->
+  <section class="block" aria-labelledby="h-distribucion">
+    <h2 id="h-distribucion" class="block-title">Distribución</h2>
+    <div class="chart-grid">
+      <div class="card chart-card">
+        <h3 class="card-title">Hallazgos por Flujo</h3>
+        <canvas id="chart-flujo" height="220"></canvas>
+      </div>
+      <div class="card chart-card">
+        <h3 class="card-title">Hallazgos por Medio de Reporte</h3>
+        <canvas id="chart-medio" height="220"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Puntos Relevantes -->
+  <section class="block" aria-labelledby="h-relevantes">
+    <h2 id="h-relevantes" class="block-title">Puntos Relevantes</h2>
+    <div class="relevantes-grid">
+      <div class="card">
+        <h3 class="card-title">Liberaciones Relevantes</h3>
+        <ul class="list-clean" id="lista-liberaciones"><!-- generado por script.js --></ul>
+      </div>
+      <div class="card card--alert">
+        <h3 class="card-title">Focos de Atención</h3>
+        <ul class="list-clean" id="lista-focos"><!-- generado por script.js --></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Filtros -->
+  <section class="block" aria-labelledby="h-filtros">
+    <h2 id="h-filtros" class="sr-only">Filtros</h2>
+    <div class="filters-bar">
+      <div class="filter-field">
+        <label for="f-clasificacion">Clasificación</label>
+        <select id="f-clasificacion"><option value="">Todas</option></select>
+      </div>
+      <div class="filter-field">
+        <label for="f-flujo">Flujo</label>
+        <select id="f-flujo"><option value="">Todos</option></select>
+      </div>
+      <div class="filter-field">
+        <label for="f-estatus">Estatus</label>
+        <select id="f-estatus"><option value="">Todos</option></select>
+      </div>
+      <div class="filter-field">
+        <label for="f-responsable">Responsable</label>
+        <select id="f-responsable"><option value="">Todos</option></select>
+      </div>
+      <div class="filter-field">
+        <label for="f-criticidad">Criticidad</label>
+        <select id="f-criticidad"><option value="">Todas</option></select>
+      </div>
+      <div class="filter-field filter-field--search">
+        <label for="f-buscar">Buscar</label>
+        <input type="search" id="f-buscar" placeholder="ID, descripción, responsable…">
+      </div>
+      <button class="btn-clear" id="btn-clear-filters" type="button">Limpiar filtros</button>
+    </div>
+  </section>
+
+  <!-- 6. Tabla -->
+  <section class="block block--table" aria-labelledby="h-tabla">
+    <div class="table-header-row">
+      <h2 id="h-tabla" class="block-title">Detalle de Hallazgos</h2>
+      <span class="table-count" id="table-count">23 registros</span>
+    </div>
+    <div class="table-scroll">
+      <table id="tabla-hallazgos">
+        <thead>
+          <tr>
+            <th data-key="id">ID</th>
+            <th data-key="flujo">Flujo</th>
+            <th data-key="clasificacion">Clasificación</th>
+            <th data-key="criticidad">Criticidad</th>
+            <th data-key="descripcion">Descripción</th>
+            <th data-key="casos">Casos</th>
+            <th data-key="medio">Medio de reporte</th>
+            <th data-key="responsable">Responsable</th>
+            <th data-key="estatus">Estatus</th>
+            <th data-key="fechaReporte">Reporte</th>
+            <th data-key="fechaSolucion">Solución</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-hallazgos-body"><!-- generado por script.js --></tbody>
+      </table>
+    </div>
+  </section>
+
+</section>
+
+<!-- ============================================================
+     ENCUESTA FUERZA DE VENTAS
+     ============================================================ -->
+<section id="encuesta-fv" class="tab-panel">
+
+  <section class="block" aria-labelledby="h-enc-kpi">
+    <h2 id="h-enc-kpi" class="block-title">Indicadores Principales</h2>
+    <div class="kpi-row" id="kpi-encuesta"><!-- generado por script.js --></div>
+  </section>
+
+  <section class="block" aria-labelledby="h-enc-dist">
+    <h2 id="h-enc-dist" class="block-title">Resultados Generales</h2>
+    <div class="chart-grid">
+      <div class="card chart-card">
+        <h3 class="card-title">Observaciones por Eje Habilitador</h3>
+        <canvas id="chart-eje" height="220"></canvas>
+      </div>
+      <div class="card chart-card">
+        <h3 class="card-title">Temas más Recurrentes</h3>
+        <ul class="rank-list" id="lista-temas"><!-- generado por script.js --></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-enc-comentarios">
+    <h2 id="h-enc-comentarios" class="block-title">Comentarios Destacados</h2>
+    <div class="quote-grid" id="quote-grid"><!-- generado por script.js --></div>
+  </section>
+
+  <section class="block block--table" aria-labelledby="h-enc-tabla">
+    <div class="table-header-row">
+      <h2 id="h-enc-tabla" class="block-title">Principales Observaciones</h2>
+      <span class="table-count" id="table-count-enc">22 registros</span>
+    </div>
+    <div class="table-scroll">
+      <table id="tabla-encuesta">
+        <thead>
+          <tr>
+            <th data-key="no">No.</th>
+            <th data-key="rubro">Rubro</th>
+            <th data-key="problematica">Problemática</th>
+            <th data-key="eje">Eje habilitador</th>
+            <th data-key="estatus">Estatus</th>
+            <th data-key="solucion">Solución</th>
+          </tr>
+        </thead>
+        <tbody id="tabla-encuesta-body"><!-- generado por script.js --></tbody>
+      </table>
+    </div>
+  </section>
+
+</section>
+
+</main>
+
+<script src="data.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
