@@ -13,7 +13,11 @@
      ============================================================ -->
 <header class="app-header">
   <div class="header-brand">
-    <div class="brand-mark">PL</div>
+    <div class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="2 12 7 12 9.5 6 13.5 18 16 12 22 12"></polyline>
+      </svg>
+    </div>
     <div class="brand-text">
       <span class="brand-name">Programa Lazos</span>
       <h1 class="dashboard-title">Dashboard de Estabilidad Operativa PUC</h1>
@@ -59,11 +63,11 @@
     <div class="chart-grid">
       <div class="card chart-card">
         <h3 class="card-title">Hallazgos por Flujo</h3>
-        <canvas id="chart-flujo" height="220"></canvas>
+        <div id="chart-flujo" class="svg-chart"></div>
       </div>
       <div class="card chart-card">
         <h3 class="card-title">Hallazgos por Medio de Reporte</h3>
-        <canvas id="chart-medio" height="220"></canvas>
+        <div id="chart-medio" class="svg-chart"></div>
       </div>
     </div>
   </section>
@@ -160,7 +164,7 @@
     <div class="chart-grid">
       <div class="card chart-card">
         <h3 class="card-title">Observaciones por Eje Habilitador</h3>
-        <canvas id="chart-eje" height="220"></canvas>
+        <div id="chart-eje" class="svg-chart"></div>
       </div>
       <div class="card chart-card">
         <h3 class="card-title">Temas más Recurrentes</h3>
@@ -201,7 +205,6 @@
 </main>
 
 <script src="data.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>

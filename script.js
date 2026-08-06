@@ -47,6 +47,63 @@
     return out;
   }
 
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+  }
+
+  // ---------------------------------------------------------------------
+  // Gráficos SVG nativos (sin librerías externas / sin CDN) — funcionan
+  // sin conexión a internet, importante en redes corporativas restringidas.
+  // ---------------------------------------------------------------------
+  function renderHBarChart(containerId, labels, data, color) {
+    const el = $(containerId);
+    if (!el || !labels.length) return;
+    const max = Math.max(...data, 1);
+    // Filas compactas: equilibra la altura total con la tarjeta del doughnut de al lado.
+    const rowH = 16, gap = 7, labelW = 118, chartW = 176;
+    const width = labelW + chartW + 30;
+    const height = labels.length * (rowH + gap) - gap;
+    const bars = labels.map((label, i) => {
+      const y = i * (rowH + gap);
+      const w = Math.max((data[i] / max) * chartW, 2);
+      return `
+        <text x="0" y="${y + rowH / 2 + 3.5}" class="svgc-label">${escapeHtml(label)}</text>
+        <rect x="${labelW}" y="${y + 2}" width="${chartW}" height="${rowH - 4}" rx="3" class="svgc-track"></rect>
+        <rect x="${labelW}" y="${y + 2}" width="${w}" height="${rowH - 4}" rx="3" fill="${color}"></rect>
+        <text x="${labelW + chartW + 8}" y="${y + rowH / 2 + 3.5}" class="svgc-value">${data[i]}</text>`;
+    }).join("");
+    el.innerHTML = `<svg viewBox="0 0 ${width} ${height}" class="svgc-bar" role="img" aria-label="Gráfico de barras">${bars}</svg>`;
+  }
+
+  function renderDoughnutChart(containerId, labels, data, colors) {
+    const el = $(containerId);
+    if (!el || !labels.length) return;
+    const total = data.reduce((a, b) => a + b, 0) || 1;
+    const r = 40, cx = 50, cy = 50, sw = 16;
+    const circumference = 2 * Math.PI * r;
+    let offset = 0;
+    const segments = labels.map((label, i) => {
+      const frac = data[i] / total;
+      const dash = frac * circumference;
+      const seg = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${colors[i % colors.length]}"
+        stroke-width="${sw}" stroke-dasharray="${dash} ${circumference - dash}"
+        stroke-dashoffset="${-offset}" transform="rotate(-90 ${cx} ${cy})"></circle>`;
+      offset += dash;
+      return seg;
+    }).join("");
+    const bg = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#F1F3F6" stroke-width="${sw}"></circle>`;
+    const legend = labels.map((label, i) => `
+      <div class="svgc-legend-item">
+        <span class="svgc-swatch" style="background:${colors[i % colors.length]}"></span>
+        ${escapeHtml(label)}<b>${data[i]}</b>
+      </div>`).join("");
+    el.innerHTML = `
+      <div class="svgc-donut-wrap">
+        <svg viewBox="0 0 100 100" class="svgc-donut" role="img" aria-label="Gráfico de dona">${bg}${segments}</svg>
+        <div class="svgc-legend">${legend}</div>
+      </div>`;
+  }
+
   // ---------------------------------------------------------------------
   // Tabs
   // ---------------------------------------------------------------------
@@ -89,58 +146,40 @@
   function renderStatusCards() {
     const total = HALLAZGOS.length;
     const counts = countBy(HALLAZGOS, "estatus");
-    const orderedStatus = CATALOGOS.estatus; // Definición → Análisis → Desarrollo → Pruebas → Liberado
+    const orderedStatus = CATALOGOS.estatus; // Liberado → Pruebas → Desarrollo → Análisis → Definición
     $("#status-cards").innerHTML = orderedStatus.map(st => {
       const n = counts[st] || 0;
       const pct = total ? Math.round(n/total*100) : 0;
+      const enEstado = HALLAZGOS.filter(h => h.estatus === st);
+      const incidencias = enEstado.filter(h => h.clasificacion === "Incidencia").length;
+      const mejoras = enEstado.filter(h => h.clasificacion === "Mejora").length;
+      const partes = [];
+      if (incidencias) partes.push(`${incidencias} incidencia${incidencias === 1 ? "" : "s"}`);
+      if (mejoras) partes.push(`${mejoras} mejora${mejoras === 1 ? "" : "s"}`);
+      const desglose = partes.join(" · ");
       return `
         <div class="status-card" data-status="${st}">
           <div class="status-value">${n}</div>
           <div class="status-label">${st}</div>
+          ${desglose ? `<div class="status-breakdown">${desglose}</div>` : ""}
           <div class="status-pct">${pct}% del total</div>
         </div>`;
     }).join("");
   }
 
+  // Ordena un conteo {etiqueta: total} de mayor a menor y separa labels/valores.
+  function sortCountsDesc(counts) {
+    const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    return [entries.map(e => e[0]), entries.map(e => e[1])];
+  }
+
   function renderDistribucionCharts() {
-    const porFlujo = countBy(HALLAZGOS, "flujo");
-    const flujoLabels = Object.keys(porFlujo);
-    const flujoData = flujoLabels.map(l => porFlujo[l]);
+    const [flujoLabels, flujoData] = sortCountsDesc(countBy(HALLAZGOS, "flujo"));
+    renderHBarChart("#chart-flujo", flujoLabels, flujoData, "#3D6BB3");
 
-    new Chart($("#chart-flujo"), {
-      type: "bar",
-      data: {
-        labels: flujoLabels,
-        datasets: [{ data: flujoData, backgroundColor: "#3D6BB3", borderRadius: 4, maxBarThickness: 18 }]
-      },
-      options: {
-        indexAxis: "y",
-        responsive: true,
-        plugins: { legend: { display: false } },
-        scales: {
-          x: { beginAtZero: true, ticks: { precision: 0 }, grid: { color: "#F1F3F6" } },
-          y: { grid: { display: false } }
-        }
-      }
-    });
-
-    const porMedio = countBy(HALLAZGOS, "medio");
-    const medioLabels = Object.keys(porMedio);
-    const medioData = medioLabels.map(l => porMedio[l]);
+    const [medioLabels, medioData] = sortCountsDesc(countBy(HALLAZGOS, "medio"));
     const palette = ["#1B3A6B","#3D6BB3","#6D96D1","#A9C2E8","#F97316","#9CA3AF"];
-
-    new Chart($("#chart-medio"), {
-      type: "doughnut",
-      data: {
-        labels: medioLabels,
-        datasets: [{ data: medioData, backgroundColor: palette, borderColor: "#fff", borderWidth: 2 }]
-      },
-      options: {
-        responsive: true,
-        cutout: "62%",
-        plugins: { legend: { position: "bottom", labels: { boxWidth: 10, font: { size: 11 } } } }
-      }
-    });
+    renderDoughnutChart("#chart-medio", medioLabels, medioData, palette);
   }
 
   function renderPuntosRelevantes() {
@@ -301,14 +340,7 @@
     const labels = ENCUESTA.porEje.map(e => e.eje);
     const data = ENCUESTA.porEje.map(e => e.total);
     const palette = ["#1B3A6B","#3D6BB3","#6D96D1","#A9C2E8","#F97316"];
-    new Chart($("#chart-eje"), {
-      type: "doughnut",
-      data: { labels, datasets: [{ data, backgroundColor: palette, borderColor: "#fff", borderWidth: 2 }] },
-      options: {
-        responsive: true, cutout: "62%",
-        plugins: { legend: { position: "bottom", labels: { boxWidth: 10, font: { size: 10.5 } } } }
-      }
-    });
+    renderDoughnutChart("#chart-eje", labels, data, palette);
   }
 
   function renderTemasRecurrentes() {
@@ -325,10 +357,11 @@
 
   function renderComentariosDestacados() {
     // Selección editorial: una observación representativa por eje con mayor volumen
+    // (no. según numeración vigente en DASHBOARD-PROGRAMA LAZOS V2.xlsx)
     const destacados = [
-      ENCUESTA.observaciones.find(o => o.no === 8),
-      ENCUESTA.observaciones.find(o => o.no === 2),
-      ENCUESTA.observaciones.find(o => o.no === 19)
+      ENCUESTA.observaciones.find(o => o.no === 3),  // PUC / Apertura N4 y Estabilidad PUC
+      ENCUESTA.observaciones.find(o => o.no === 16), // Transferencias / SPEI
+      ENCUESTA.observaciones.find(o => o.no === 13)  // Atención a Clientes / Servicio al Cliente
     ].filter(Boolean);
     $("#quote-grid").innerHTML = destacados.map(o => `
       <div class="quote-card">
@@ -356,23 +389,29 @@
   // ---------------------------------------------------------------------
   // Init
   // ---------------------------------------------------------------------
+  // Ejecuta cada bloque de forma aislada: si uno falla, no arrastra al resto
+  // de la página (defensivo — evita que un solo error deje el dashboard en blanco).
+  function safe(label, fn) {
+    try { fn(); } catch (err) { console.error(`[Dashboard PUC] Error en "${label}":`, err); }
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
-    initTabs();
+    safe("tabs", initTabs);
 
-    renderResumenKPI();
-    renderStatusCards();
-    renderDistribucionCharts();
-    renderPuntosRelevantes();
-    populateFilters();
-    renderTabla();
-    initSortableHeaders("#tabla-hallazgos", renderTabla);
+    safe("resumen KPI", renderResumenKPI);
+    safe("status cards", renderStatusCards);
+    safe("distribución (charts)", renderDistribucionCharts);
+    safe("puntos relevantes", renderPuntosRelevantes);
+    safe("filtros", populateFilters);
+    safe("tabla hallazgos", renderTabla);
+    safe("orden tabla hallazgos", () => initSortableHeaders("#tabla-hallazgos", renderTabla));
 
-    renderEncuestaKPI();
-    renderEjeChart();
-    renderTemasRecurrentes();
-    renderComentariosDestacados();
-    renderTablaEncuesta();
-    initSortableHeaders("#tabla-encuesta", () => {
+    safe("encuesta KPI", renderEncuestaKPI);
+    safe("encuesta chart eje", renderEjeChart);
+    safe("temas recurrentes", renderTemasRecurrentes);
+    safe("comentarios destacados", renderComentariosDestacados);
+    safe("tabla encuesta", renderTablaEncuesta);
+    safe("orden tabla encuesta", () => initSortableHeaders("#tabla-encuesta", () => {
       const data = sortData(ENCUESTA.observaciones);
       $("#tabla-encuesta-body").innerHTML = data.map(o => `
         <tr>
@@ -383,6 +422,6 @@
           <td><span class="pill-status ${statusPillClass(o.estatus)}">${o.estatus}</span></td>
           <td class="col-solucion">${o.solucion}</td>
         </tr>`).join("");
-    });
+    }));
   });
 })();

@@ -7,7 +7,7 @@
 
 :root{
   /* Azules institucionales — escala secuencial usada para progreso/estatus */
-  --blue-900:#0F2A4D;
+  --blue-900:#213257; /* azul institucional Consubanco (extraído del logo) */
   --blue-700:#1B3A6B;   /* azul institucional principal */
   --blue-500:#3D6BB3;
   --blue-300:#6D96D1;
@@ -58,33 +58,33 @@ body{
   display:flex; align-items:center; justify-content:space-between;
   gap:16px;
   padding:12px 28px;
-  background:var(--white);
-  border-bottom:1px solid var(--gray-300);
+  background:var(--blue-900);
+  border-bottom:1px solid var(--blue-900);
 }
 .header-brand{ display:flex; align-items:center; gap:12px; min-width:0; }
 .brand-mark{
   flex:0 0 auto; width:38px; height:38px; border-radius:10px;
-  background:linear-gradient(135deg, var(--blue-700), var(--blue-500));
-  color:var(--white); font-weight:700; font-size:13px;
+  background:rgba(255,255,255,.12);
+  color:var(--white);
   display:flex; align-items:center; justify-content:center;
 }
 .brand-text{ min-width:0; }
 .brand-name{
   display:block; font-size:11px; font-weight:700; letter-spacing:.04em;
-  text-transform:uppercase; color:var(--blue-700); margin-bottom:1px;
+  text-transform:uppercase; color:var(--orange); margin-bottom:1px;
 }
 .dashboard-title{
-  margin:0; font-size:17px; line-height:1.25; font-weight:700; color:var(--gray-900);
+  margin:0; font-size:17px; line-height:1.25; font-weight:700; color:var(--white);
 }
 .dashboard-subtitle{
-  margin:1px 0 0; font-size:12.5px; color:var(--gray-500); line-height:1.3;
+  margin:1px 0 0; font-size:12.5px; color:rgba(255,255,255,.72); line-height:1.3;
 }
 .header-meta{ display:flex; gap:8px; flex:0 0 auto; }
 .meta-pill{
   font-size:12px; font-weight:600; padding:6px 12px; border-radius:999px;
-  background:var(--gray-100); color:var(--gray-700); white-space:nowrap;
+  background:rgba(255,255,255,.12); color:var(--white); white-space:nowrap;
 }
-.meta-pill--accent{ background:var(--blue-50); color:var(--blue-700); }
+.meta-pill--accent{ background:var(--orange); color:var(--white); }
 
 /* ---------------------------------------------------------------------
    Navegación por pestañas — únicamente dos tabs, sin menú lateral
@@ -151,7 +151,8 @@ body{
 }
 .status-card .status-value{ font-size:24px; font-weight:800; color:var(--gray-900); }
 .status-card .status-label{ font-size:12px; font-weight:600; color:var(--gray-600, var(--gray-700)); margin-top:2px; }
-.status-card .status-pct{ font-size:11px; color:var(--gray-400); margin-top:4px; }
+.status-card .status-breakdown{ font-size:11.5px; color:var(--gray-500); margin-top:5px; }
+.status-card .status-pct{ font-size:11px; color:var(--gray-400); margin-top:3px; }
 .status-card[data-status="Definición de Negocio"]{ border-top-color:var(--gray-400); }
 .status-card[data-status="Análisis"]{ border-top-color:var(--blue-100); }
 .status-card[data-status="Desarrollo"]{ border-top-color:var(--blue-300); }
@@ -162,7 +163,19 @@ body{
    3. Distribución — charts
    --------------------------------------------------------------------- */
 .chart-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-.chart-card canvas{ max-height:240px; }
+
+/* Gráficos SVG nativos — sin dependencias externas / sin CDN */
+.svg-chart{ width:100%; }
+.svgc-bar{ width:100%; height:auto; }
+.svgc-label{ font-size:9.5px; fill:var(--gray-700); font-family:var(--font); }
+.svgc-value{ font-size:10px; font-weight:700; fill:var(--gray-900); font-family:var(--font); }
+.svgc-track{ fill:var(--gray-100); }
+.svgc-donut-wrap{ display:flex; align-items:center; gap:18px; flex-wrap:wrap; }
+.svgc-donut{ width:150px; height:150px; flex:0 0 150px; }
+.svgc-legend{ display:flex; flex-direction:column; gap:7px; flex:1; min-width:140px; }
+.svgc-legend-item{ display:flex; align-items:center; gap:7px; font-size:12px; color:var(--gray-700); }
+.svgc-legend-item b{ margin-left:auto; color:var(--gray-900); }
+.svgc-swatch{ width:10px; height:10px; border-radius:3px; flex:0 0 auto; }
 
 /* ---------------------------------------------------------------------
    4. Puntos Relevantes
