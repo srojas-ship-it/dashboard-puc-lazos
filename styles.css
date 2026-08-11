@@ -143,7 +143,7 @@ body{
 /* ---------------------------------------------------------------------
    2. Estado de Hallazgos — escala secuencial azul→gris (pipeline)
    --------------------------------------------------------------------- */
-.status-row{ display:grid; grid-template-columns:repeat(5, 1fr); gap:14px; }
+.status-row{ display:grid; grid-template-columns:repeat(6, 1fr); gap:14px; }
 .status-card{
   background:var(--white); border:1px solid var(--gray-300); border-radius:var(--radius-md);
   padding:14px 16px; box-shadow:var(--shadow-sm);
@@ -155,6 +155,7 @@ body{
 .status-card .status-pct{ font-size:11px; color:var(--gray-400); margin-top:3px; }
 .status-card[data-status="Definición de Negocio"]{ border-top-color:var(--gray-400); }
 .status-card[data-status="Análisis"]{ border-top-color:var(--blue-100); }
+.status-card[data-status="Backlog"]{ border-top-color:var(--gray-300); }
 .status-card[data-status="Desarrollo"]{ border-top-color:var(--blue-300); }
 .status-card[data-status="Pruebas"]{ border-top-color:var(--blue-500); }
 .status-card[data-status="Liberado"]{ border-top-color:var(--blue-700); }
@@ -169,6 +170,29 @@ body{
    forzarlos a la misma altura en columnas gemelas se leía como un error de diseño. */
 .distribucion-stack{ display:flex; flex-direction:column; gap:16px; }
 .chart-card--compact{ max-width:480px; }
+
+/* Fila de dos tarjetas compactas: Hallazgos por Medio de Reporte + Bloqueantes
+   de lo Liberado. Dentro de la fila, cada tarjeta llena su columna (se anula
+   el max-width pensado para cuando la tarjeta está sola en el stack). */
+.distribucion-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.distribucion-row .chart-card--compact{ max-width:none; }
+
+/* Bloqueantes de lo Liberado — responde directo a "de lo liberado, ¿cuántos
+   son bloqueantes?" con un titular, y da el desglose de soporte debajo. */
+.bloq-headline{
+  display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;
+  padding-bottom:12px; margin-bottom:12px; border-bottom:1px solid var(--gray-100);
+}
+.bloq-headline-value{ font-size:22px; font-weight:800; color:var(--orange-dark); line-height:1.1; }
+.bloq-headline-text{ font-size:12.5px; color:var(--gray-700); line-height:1.35; }
+.bloq-breakdown{ display:flex; flex-direction:column; gap:10px; }
+.bloq-row-top{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:4px; }
+.bloq-row-label{ font-size:11.5px; font-weight:600; color:var(--gray-700); }
+.bloq-row-value{ font-size:11px; color:var(--gray-400); }
+.bloq-row-track{ height:6px; border-radius:999px; background:var(--gray-100); overflow:hidden; }
+.bloq-row-fill{ height:100%; border-radius:999px; }
+.bloq-fill--bloqueante{ background:var(--orange); }
+.bloq-fill--nobloqueante{ background:var(--blue-300); }
 
 /* Hallazgos por Flujo — dos barras por flujo (Incidencias / Mejoras), cada una
    segmentada por estatus con el semáforo del resto del dashboard. */
@@ -232,6 +256,7 @@ body{
 .tag--orange{ background:var(--orange); color:var(--white); }
 .tag--yellow{ background:#F59E0B; color:#78350F; } /* Pruebas / próximo a liberar */
 .tag--green{ background:#16A34A; color:var(--white); } /* Liberado */
+.tag--nueva{ background:var(--blue-700); color:var(--white); } /* Nueva Liberación desde el corte anterior */
 .li-desc{ font-size:12.5px; color:var(--gray-700); line-height:1.35; }
 .li-meta{ font-size:11px; color:var(--gray-400); }
 
@@ -263,8 +288,9 @@ body{
    6. Tabla — scroll únicamente en la tabla
    --------------------------------------------------------------------- */
 .block--table{ margin-bottom:8px; }
-.table-header-row{ display:flex; align-items:baseline; justify-content:space-between; margin-bottom:10px; }
-.table-count{ font-size:12px; color:var(--gray-400); font-weight:600; }
+.table-header-row{ display:flex; align-items:baseline; gap:14px; margin-bottom:10px; }
+.table-hint{ font-size:11.5px; color:var(--gray-400); }
+.table-count{ font-size:12px; color:var(--gray-400); font-weight:600; margin-left:auto; }
 .table-scroll{
   background:var(--white); border:1px solid var(--gray-300); border-radius:var(--radius-lg);
   overflow:auto; max-height:420px; box-shadow:var(--shadow-sm);
@@ -283,14 +309,19 @@ tbody td{ padding:9px 12px; border-bottom:1px solid var(--gray-100); color:var(-
 tbody tr:hover{ background:var(--blue-50); }
 td.col-descripcion, td.col-problematica, td.col-solucion{ max-width:260px; }
 
+/* Filas de "Detalle de Hallazgos" abren el panel de detalle al hacer clic */
+#tabla-hallazgos-body tr{ cursor:pointer; }
+#tabla-hallazgos-body tr:focus-visible{ outline:2px solid var(--blue-500); outline-offset:-2px; }
+
 .pill-status{
   display:inline-block; font-size:11px; font-weight:700; padding:3px 9px; border-radius:999px;
   color:var(--white); white-space:nowrap;
 }
-/* Semáforo: Liberado=verde, Pruebas=amarillo, Desarrollo/Análisis/Definición=naranja */
+/* Semáforo: Liberado=verde, Pruebas=amarillo, Desarrollo/Backlog/Análisis/Definición=naranja */
 .pill-status--liberado{ background:#16A34A; }
 .pill-status--pruebas{ background:#F59E0B; color:#78350F; }
 .pill-status--desarrollo{ background:var(--orange); }
+.pill-status--backlog{ background:var(--orange); }
 .pill-status--analisis{ background:var(--orange); }
 .pill-status--definicion{ background:var(--orange); }
 .pill-status--completada{ background:var(--blue-700); }
@@ -324,21 +355,97 @@ td.col-descripcion, td.col-problematica, td.col-solucion{ max-width:260px; }
 .quote-rubro{ font-size:11px; font-weight:700; color:var(--blue-700); }
 
 /* ---------------------------------------------------------------------
+   Laboratorios
+   --------------------------------------------------------------------- */
+.kpi-row--lab{ grid-template-columns:repeat(6, 1fr); }
+.badge-patron{
+  display:inline-block; font-size:10.5px; font-weight:700; padding:2px 8px; border-radius:5px;
+}
+.badge-patron--alta{ background:var(--orange-pale); color:var(--orange-dark); border:1px solid #FCD9B8; }
+.badge-patron--media{ background:var(--gray-100); color:var(--gray-500); }
+
+/* ---------------------------------------------------------------------
+   Panel de detalle — slide-over con Descripción completa y Observaciones
+   --------------------------------------------------------------------- */
+.detail-overlay{
+  position:fixed; inset:0; z-index:30;
+  background:rgba(33,50,87,.32);
+  opacity:0; transition:opacity .2s ease;
+}
+.detail-overlay.is-visible{ opacity:1; }
+.detail-panel{
+  position:fixed; top:0; right:0; bottom:0; z-index:31;
+  width:min(440px, 100vw);
+  background:var(--white);
+  box-shadow:-8px 0 24px rgba(15,42,77,.14);
+  display:flex; flex-direction:column;
+  transform:translateX(100%); transition:transform .22s ease;
+}
+.detail-panel.is-visible{ transform:translateX(0); }
+/* El atributo hidden debe ganar siempre sobre el display:flex de abajo,
+   si no, el panel queda fuera de pantalla (transform) pero sigue "visible"
+   para lectores de pantalla y foco de teclado. */
+.detail-panel[hidden]{ display:none; }
+body.detail-open{ overflow:hidden; }
+.detail-panel-header{
+  display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+  padding:18px 20px; border-bottom:1px solid var(--gray-300); flex:0 0 auto;
+}
+.detail-panel-id{ display:block; font-size:11px; font-weight:700; color:var(--blue-700); letter-spacing:.03em; text-transform:uppercase; margin-bottom:3px; }
+.detail-panel-title{ margin:0; font-size:15px; font-weight:700; color:var(--gray-900); line-height:1.35; }
+.detail-panel-close{
+  appearance:none; border:none; background:var(--gray-100); color:var(--gray-500);
+  width:28px; height:28px; border-radius:999px; flex:0 0 auto; cursor:pointer;
+  font-size:13px; line-height:1;
+}
+.detail-panel-close:hover{ background:var(--gray-300); color:var(--gray-900); }
+.detail-panel-body{ padding:20px; overflow-y:auto; flex:1 1 auto; }
+.detail-tags{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px; }
+.detail-section{ margin-bottom:22px; }
+.detail-section:last-child{ margin-bottom:0; }
+.detail-section-title{
+  margin:0 0 8px; font-size:11px; font-weight:700; color:var(--gray-500);
+  text-transform:uppercase; letter-spacing:.03em;
+}
+.detail-text{ margin:0; font-size:13px; color:var(--gray-700); line-height:1.5; }
+.detail-text--intro{ margin-bottom:10px; font-style:italic; color:var(--gray-500); }
+.detail-empty{ margin:0; font-size:12.5px; color:var(--gray-400); font-style:italic; }
+.obs-timeline{ list-style:none; margin:0; padding:0; }
+.obs-timeline li{
+  position:relative; padding:0 0 12px 18px; margin-bottom:0;
+  font-size:12.5px; color:var(--gray-700); line-height:1.45;
+  border-left:2px solid var(--gray-100);
+}
+.obs-timeline li::before{
+  content:""; position:absolute; left:-5px; top:3px;
+  width:8px; height:8px; border-radius:999px; background:var(--blue-500); border:2px solid var(--white);
+}
+.obs-timeline li:last-child{ padding-bottom:0; border-left-color:transparent; }
+.detail-meta-grid{ margin:0; display:grid; grid-template-columns:auto 1fr; gap:8px 14px; }
+.detail-meta-grid dt{ font-size:11.5px; color:var(--gray-400); font-weight:600; }
+.detail-meta-grid dd{ margin:0; font-size:12.5px; color:var(--gray-900); }
+
+/* ---------------------------------------------------------------------
    Responsive — laptop, monitor 24", tablet
    --------------------------------------------------------------------- */
 @media (max-width:1180px){
   .status-row{ grid-template-columns:repeat(3, 1fr); }
-  .chart-grid, .relevantes-grid{ grid-template-columns:1fr; }
+  .chart-grid, .relevantes-grid, .distribucion-row{ grid-template-columns:1fr; }
   .quote-grid{ grid-template-columns:repeat(2, 1fr); }
+  .kpi-row--lab{ grid-template-columns:repeat(3, 1fr); }
 }
 @media (max-width:820px){
   .app-header{ flex-direction:column; align-items:flex-start; gap:8px; }
   .tabs{ top:auto; }
   .kpi-row{ grid-template-columns:1fr; }
+  .kpi-row--lab{ grid-template-columns:repeat(2, 1fr); }
   .status-row{ grid-template-columns:repeat(2, 1fr); }
   .quote-grid{ grid-template-columns:1fr; }
   .filters-bar{ flex-direction:column; align-items:stretch; }
   .filter-field{ min-width:0; }
   .flujo-sublabel{ flex-basis:70px; }
   .flujo-legend{ gap:10px; }
+  .detail-panel{ width:100vw; }
+  .table-header-row{ flex-wrap:wrap; }
+  .table-count{ margin-left:0; }
 }

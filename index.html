@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<!-- Reintento de despliegue GitHub Pages 07-08-2026 -->
+
 <!-- ============================================================
      ENCABEZADO — compacto, poca altura vertical, identidad fija
      ============================================================ -->
@@ -25,17 +25,18 @@
     </div>
   </div>
   <div class="header-meta">
-    <span class="meta-pill" id="meta-fecha">Actualizado: 05 ago 2026</span>
-    <span class="meta-pill meta-pill--accent" id="meta-version">PUC v4.0.0</span>
+    <span class="meta-pill" id="meta-fecha">Actualizado: 10 ago 2026</span>
+    <span class="meta-pill meta-pill--accent" id="meta-version">PUC v4.1.0</span>
   </div>
 </header>
 
 <!-- ============================================================
-     NAVEGACIÓN — únicamente dos pestañas superiores
+     NAVEGACIÓN — únicamente tres pestañas superiores
      ============================================================ -->
 <nav class="tabs" role="tablist" aria-label="Vistas del dashboard">
   <button class="tab-btn is-active" role="tab" aria-selected="true" data-tab="vista-general">Vista General</button>
   <button class="tab-btn" role="tab" aria-selected="false" data-tab="encuesta-fv">Encuesta Fuerza de Ventas</button>
+  <button class="tab-btn" role="tab" aria-selected="false" data-tab="laboratorios">Laboratorios</button>
 </nav>
 
 <main class="app-main">
@@ -65,9 +66,15 @@
         <h3 class="card-title">Hallazgos por Flujo</h3>
         <div id="flujo-breakdown" class="flujo-breakdown"></div>
       </div>
-      <div class="card chart-card chart-card--compact">
-        <h3 class="card-title">Hallazgos por Medio de Reporte</h3>
-        <div id="chart-medio" class="svg-chart"></div>
+      <div class="distribucion-row">
+        <div class="card chart-card chart-card--compact">
+          <h3 class="card-title">Hallazgos por Medio de Reporte</h3>
+          <div id="chart-medio" class="svg-chart"></div>
+        </div>
+        <div class="card chart-card chart-card--compact">
+          <h3 class="card-title">Criticidad</h3>
+          <div id="bloqueantes-liberado" class="bloqueantes-card"><!-- generado por script.js --></div>
+        </div>
       </div>
     </div>
   </section>
@@ -123,7 +130,8 @@
   <section class="block block--table" aria-labelledby="h-tabla">
     <div class="table-header-row">
       <h2 id="h-tabla" class="block-title">Detalle de Hallazgos</h2>
-      <span class="table-count" id="table-count">23 registros</span>
+      <span class="table-hint">Clic en una fila para ver el detalle completo</span>
+      <span class="table-count" id="table-count">25 registros</span>
     </div>
     <div class="table-scroll">
       <table id="tabla-hallazgos">
@@ -202,7 +210,41 @@
 
 </section>
 
+<!-- ============================================================
+     LABORATORIOS
+     ============================================================ -->
+<section id="laboratorios" class="tab-panel">
+
+  <section class="block" aria-labelledby="h-lab-resumen">
+    <h2 id="h-lab-resumen" class="block-title">Resumen de Laboratorios</h2>
+    <div class="kpi-row kpi-row--lab" id="kpi-laboratorios"><!-- generado por script.js --></div>
+  </section>
+
+  <section class="block" aria-labelledby="h-lab-patrones">
+    <h2 id="h-lab-patrones" class="block-title">Patrones Repetitivos Detectados</h2>
+    <div class="card">
+      <ul class="list-clean" id="lista-patrones"><!-- generado por script.js --></ul>
+    </div>
+  </section>
+
+</section>
+
 </main>
+
+<!-- ============================================================
+     PANEL DE DETALLE — hallazgo individual (Descripción y Observaciones)
+     ============================================================ -->
+<div class="detail-overlay" id="detail-overlay" hidden></div>
+<aside class="detail-panel" id="detail-panel" role="dialog" aria-modal="true" aria-labelledby="detail-panel-title" hidden>
+  <div class="detail-panel-header">
+    <div>
+      <span class="detail-panel-id" id="detail-panel-id"></span>
+      <h2 class="detail-panel-title" id="detail-panel-title"></h2>
+    </div>
+    <button class="detail-panel-close" id="detail-panel-close" type="button" aria-label="Cerrar detalle">✕</button>
+  </div>
+  <div class="detail-panel-body" id="detail-panel-body"><!-- generado por script.js --></div>
+</aside>
 
 <script src="data.js"></script>
 <script src="script.js"></script>

@@ -29,7 +29,8 @@
   function statusPillClass(estatus) {
     const map = {
       "Liberado":"pill-status--liberado", "Pruebas":"pill-status--pruebas",
-      "Desarrollo":"pill-status--desarrollo", "Análisis":"pill-status--analisis",
+      "Desarrollo":"pill-status--desarrollo", "Backlog":"pill-status--backlog",
+      "Análisis":"pill-status--analisis",
       "Definición de Negocio":"pill-status--definicion",
       "Completada":"pill-status--completada", "En proceso":"pill-status--enproceso",
       "En validación":"pill-status--envalidacion"
@@ -161,6 +162,17 @@
   }
 
   // ---------------------------------------------------------------------
+  // Encabezado — versión y fecha de actualización desde META (data.js)
+  // ---------------------------------------------------------------------
+  function renderHeaderMeta() {
+    if (typeof META === "undefined") return;
+    const elFecha = $("#meta-fecha");
+    const elVersion = $("#meta-version");
+    if (elFecha && META.fechaActualizacion) elFecha.textContent = `Actualizado: ${fmtDate(META.fechaActualizacion)}`;
+    if (elVersion && META.version) elVersion.textContent = META.version;
+  }
+
+  // ---------------------------------------------------------------------
   // Tabs
   // ---------------------------------------------------------------------
   function initTabs() {
@@ -235,6 +247,52 @@
     const [medioLabels, medioData] = sortCountsDesc(countBy(HALLAZGOS, "medio"));
     const palette = ["#1B3A6B","#3D6BB3","#6D96D1","#A9C2E8","#F97316","#9CA3AF"];
     renderDoughnutChart("#chart-medio", medioLabels, medioData, palette);
+
+    renderBloqueantesLiberado();
+  }
+
+  // "Criticidad": panorama de bloqueante/no bloqueante sobre el total de hallazgos
+  // (no solo lo liberado — el titular "X de Y liberados" prestaba a confusión con
+  // el total real de 25). El desglose por fila conserva el avance de liberación
+  // por categoría. "Mejoras Bloqueantes" no existe como combinación de negocio:
+  // si algo bloquea, por definición es Incidencia, no Mejora — no se muestra esa fila.
+  function renderBloqueantesLiberado() {
+    const el = $("#bloqueantes-liberado");
+    if (!el) return;
+
+    const totalHallazgos = HALLAZGOS.length;
+    const totalBloqueantes = HALLAZGOS.filter(h => h.criticidad === "Bloqueante").length;
+    const pct = totalHallazgos ? Math.round((totalBloqueantes / totalHallazgos) * 100) : 0;
+
+    const combos = [
+      { label: "Incidencias Bloqueantes", clasificacion: "Incidencia", criticidad: "Bloqueante" },
+      { label: "Incidencias No Bloqueantes", clasificacion: "Incidencia", criticidad: "No Bloqueante" },
+      { label: "Mejoras No Bloqueantes", clasificacion: "Mejora", criticidad: "No Bloqueante" }
+    ].map(c => {
+      const grupo = HALLAZGOS.filter(h => h.clasificacion === c.clasificacion && h.criticidad === c.criticidad);
+      const liberadosGrupo = grupo.filter(h => h.estatus === "Liberado").length;
+      return { ...c, total: grupo.length, liberados: liberadosGrupo };
+    });
+
+    const filas = combos.map(c => {
+      const anchoPct = c.total ? Math.round((c.liberados / c.total) * 100) : 0;
+      const colorClass = c.criticidad === "Bloqueante" ? "bloq-fill--bloqueante" : "bloq-fill--nobloqueante";
+      return `
+        <div class="bloq-row">
+          <div class="bloq-row-top">
+            <span class="bloq-row-label">${c.label}</span>
+            <span class="bloq-row-value">${c.liberados} de ${c.total} liberadas</span>
+          </div>
+          <div class="bloq-row-track"><div class="bloq-row-fill ${colorClass}" style="width:${anchoPct}%"></div></div>
+        </div>`;
+    }).join("");
+
+    el.innerHTML = `
+      <div class="bloq-headline">
+        <span class="bloq-headline-value">${totalBloqueantes} de ${totalHallazgos}</span>
+        <span class="bloq-headline-text">hallazgos son <b>bloqueantes</b> (${pct}%)</span>
+      </div>
+      <div class="bloq-breakdown">${filas}</div>`;
   }
 
   // Semáforo de estatus: Liberado=verde, Pruebas ("próximo a liberar")=amarillo,
@@ -246,41 +304,51 @@
   }
 
   function renderPuntosRelevantes() {
-    // Liberaciones relevantes: liberados más recientes (fecha de solución válida, orden desc)
+    // Liberaciones relevantes: liberados más recientes (fecha de solución válida, orden desc).
+    // "Nueva Liberación": cualquier liberado posterior a META.fechaCorteAnterior (Mesa Operativa
+    // anterior) se marca automáticamente — distingue lo nuevo de este corte de lo ya reportado.
+    const fechaCorte = (typeof META !== "undefined" && META.fechaCorteAnterior) || null;
     const liberados = HALLAZGOS
       .filter(h => h.estatus === "Liberado" && /^\d{4}-\d{2}-\d{2}$/.test(h.fechaSolucion))
       .sort((a, b) => b.fechaSolucion.localeCompare(a.fechaSolucion))
       .slice(0, 5);
 
-    // Punto fijo: consolida los 3 hallazgos de error al solicitar entrega de TDD (ids 4, 5, 6).
-    // Va al final de la lista (no pineado arriba): por fecha (10 jul) es el más antiguo del
-    // grupo, así que ese es justo su lugar natural en un orden de más reciente a más antiguo.
-    const liberacionesHtml = liberados.map(h => `
+    const liberacionesHtml = liberados.map(h => {
+      const esNueva = fechaCorte && h.fechaSolucion > fechaCorte;
+      return `
       <li>
-        <div class="li-top"><span class="tag">${h.flujo}</span></div>
+        <div class="li-top">
+          ${esNueva ? `<span class="tag tag--nueva">Nueva Liberación</span>` : ""}
+          <span class="tag">${h.flujo}</span>
+        </div>
         <div class="li-desc">${h.descripcion}</div>
         <div class="li-meta">Liberado el ${fmtDate(h.fechaSolucion)} · ${h.clasificacion}</div>
-      </li>`)
-      .concat([`
-      <li>
-        <div class="li-top"><span class="tag">Entrega TDD</span></div>
-        <div class="li-desc">Corrección al momento de solicitar la entrega de TDD (3 hallazgos corregidos: errores "XFF4H", "DLL08" y "C0B4S").</div>
-        <div class="li-meta">Liberado el ${fmtDate("2026-07-10")} · Incidencia</div>
-      </li>`]);
+      </li>`;
+    });
     $("#lista-liberaciones").innerHTML = liberacionesHtml.join("");
 
-    // Focos de atención: bloqueantes no liberados + elementos próximos a liberar (en Pruebas).
-    // El hallazgo #20 se fija siempre primero: no es bloqueante, pero el volumen de casos
-    // afectados (100+) lo vuelve prioritario para Dirección.
-    const pinId = 20;
-    const pinned = HALLAZGOS.find(h => h.id === pinId);
-    const resto = HALLAZGOS
-      .filter(h => h.id !== pinId && ((h.criticidad === "Bloqueante" && h.estatus !== "Liberado") || h.estatus === "Pruebas"))
-      .sort((a, b) => (a.estatus === "Pruebas" ? 1 : -1) - (b.estatus === "Pruebas" ? 1 : -1));
-    const focos = pinned ? [pinned, ...resto] : resto;
+    // Focos de atención: bloqueantes no liberados + todo lo que está en Desarrollo
+    // (con o sin criticidad bloqueante) + elementos próximos a liberar (en Pruebas).
+    // Orden: bloqueantes pendientes primero (más urgente), luego el resto de Desarrollo,
+    // y "Pruebas" al final (más cerca de resolverse). Dentro de cada grupo, prioriza por
+    // número de casos afectados (impacto) cuando es un valor numérico.
+    function focoTier(h) {
+      if (h.criticidad === "Bloqueante" && h.estatus !== "Liberado") return 0;
+      if (h.estatus === "Pruebas") return 2;
+      return 1; // Desarrollo no bloqueante
+    }
+    const focos = HALLAZGOS
+      .filter(h => (h.criticidad === "Bloqueante" && h.estatus !== "Liberado") || h.estatus === "Pruebas" || h.estatus === "Desarrollo")
+      .sort((a, b) => {
+        const ta = focoTier(a), tb = focoTier(b);
+        if (ta !== tb) return ta - tb;
+        const aCasos = typeof a.casos === "number" ? a.casos : -1;
+        const bCasos = typeof b.casos === "number" ? b.casos : -1;
+        return bCasos - aCasos;
+      });
 
     $("#lista-focos").innerHTML = focos.map(h => {
-      const casosTxt = (h.casos && h.casos !== "N/A") ? ` · ${h.casos} casos` : "";
+      const casosTxt = (h.casos && h.casos !== "N/A") ? ` · ${h.casos} caso${h.casos === 1 ? "" : "s"}` : "";
       const tagTexto = h.estatus === "Pruebas" ? "Próximo a liberar" : h.estatus;
       return `
       <li>
@@ -361,7 +429,7 @@
     const data = sortData(getFilteredData());
     $("#table-count").textContent = `${data.length} registro${data.length === 1 ? "" : "s"}`;
     $("#tabla-hallazgos-body").innerHTML = data.map(h => `
-      <tr>
+      <tr data-id="${h.id}" tabindex="0">
         <td>${h.id}</td>
         <td>${h.flujo}</td>
         <td>${h.clasificacion}</td>
@@ -374,6 +442,111 @@
         <td>${fmtDate(h.fechaReporte)}</td>
         <td>${fmtDate(h.fechaSolucion)}</td>
       </tr>`).join("");
+  }
+
+  // ---------------------------------------------------------------------
+  // Panel de detalle — Descripción completa y bitácora de Observaciones
+  // ---------------------------------------------------------------------
+  // Las Observaciones del Excel llegan como texto con entradas fechadas,
+  // cada una en su propia línea iniciando con "*" (ej. "* 9/Jul se..."). Se
+  // parsean como una bitácora; el texto sin viñeta (si existe) se muestra
+  // como nota introductoria.
+  function parseObservaciones(texto) {
+    if (!texto) return { intro: "", entradas: [] };
+    const lineas = String(texto).split("\n").map(l => l.trim()).filter(Boolean);
+    const introLineas = [];
+    const entradas = [];
+    lineas.forEach(linea => {
+      const m = linea.match(/^[*•]\s*(.+)$/);
+      if (m) {
+        entradas.push(m[1]);
+      } else if (!entradas.length) {
+        introLineas.push(linea);
+      } else {
+        // Continuación de la última entrada (línea sin viñeta tras una bitácora)
+        entradas[entradas.length - 1] += " " + linea;
+      }
+    });
+    return { intro: introLineas.join(" "), entradas };
+  }
+
+  function openDetailPanel(id) {
+    const h = HALLAZGOS.find(x => x.id === Number(id));
+    if (!h) return;
+    const overlay = $("#detail-overlay");
+    const panel = $("#detail-panel");
+
+    $("#detail-panel-id").textContent = `Hallazgo #${h.id}`;
+    $("#detail-panel-title").textContent = h.descripcion;
+
+    const { intro, entradas } = parseObservaciones(h.observaciones);
+    const bitacoraHtml = entradas.length
+      ? `<ul class="obs-timeline">${entradas.map(e => `<li>${escapeHtml(e)}</li>`).join("")}</ul>`
+      : `<p class="detail-empty">Sin observaciones registradas.</p>`;
+
+    $("#detail-panel-body").innerHTML = `
+      <div class="detail-tags">
+        <span class="tag">${h.flujo}</span>
+        <span class="tag">${h.clasificacion}</span>
+        <span class="badge-crit ${critBadgeClass(h.criticidad)}">${h.criticidad}</span>
+        <span class="pill-status ${statusPillClass(h.estatus)}">${h.estatus}</span>
+      </div>
+
+      <div class="detail-section">
+        <h3 class="detail-section-title">Descripción</h3>
+        <p class="detail-text">${escapeHtml(h.descripcionCompleta || h.descripcion)}</p>
+      </div>
+
+      <div class="detail-section">
+        <h3 class="detail-section-title">Observaciones</h3>
+        ${intro ? `<p class="detail-text detail-text--intro">${escapeHtml(intro)}</p>` : ""}
+        ${bitacoraHtml}
+      </div>
+
+      <div class="detail-section">
+        <h3 class="detail-section-title">Ficha</h3>
+        <dl class="detail-meta-grid">
+          <dt>Responsable</dt><dd>${escapeHtml(h.responsable)}</dd>
+          <dt>Medio de reporte</dt><dd>${escapeHtml(h.medio)}</dd>
+          <dt>Casos</dt><dd>${escapeHtml(String(h.casos))}</dd>
+          <dt>Fecha de reporte</dt><dd>${fmtDate(h.fechaReporte)}</dd>
+          <dt>Fecha de solución</dt><dd>${fmtDate(h.fechaSolucion)}</dd>
+        </dl>
+      </div>`;
+
+    overlay.hidden = false;
+    panel.hidden = false;
+    requestAnimationFrame(() => {
+      overlay.classList.add("is-visible");
+      panel.classList.add("is-visible");
+    });
+    document.body.classList.add("detail-open");
+  }
+
+  function closeDetailPanel() {
+    const overlay = $("#detail-overlay");
+    const panel = $("#detail-panel");
+    overlay.classList.remove("is-visible");
+    panel.classList.remove("is-visible");
+    document.body.classList.remove("detail-open");
+    setTimeout(() => { overlay.hidden = true; panel.hidden = true; }, 200);
+  }
+
+  function initDetailPanel() {
+    $("#tabla-hallazgos-body").addEventListener("click", e => {
+      const tr = e.target.closest("tr[data-id]");
+      if (tr) openDetailPanel(tr.dataset.id);
+    });
+    $("#tabla-hallazgos-body").addEventListener("keydown", e => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      const tr = e.target.closest("tr[data-id]");
+      if (tr) { e.preventDefault(); openDetailPanel(tr.dataset.id); }
+    });
+    $("#detail-panel-close").addEventListener("click", closeDetailPanel);
+    $("#detail-overlay").addEventListener("click", closeDetailPanel);
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") closeDetailPanel();
+    });
   }
 
   function initSortableHeaders(tableSel, onSort) {
@@ -390,6 +563,61 @@
         onSort();
       });
     });
+  }
+
+  // =======================================================================
+  // LABORATORIOS
+  // =======================================================================
+  // Resumen ejecutivo de la hoja "Laboratorios": no incluye el detalle de
+  // participantes (nombre, CURP, teléfono, etc.) por contener datos personales.
+  function renderLaboratorios() {
+    if (typeof LABORATORIOS === "undefined") return;
+    const L = LABORATORIOS;
+
+    const pctApertura = Math.round((L.completaronApertura.n / L.completaronApertura.base) * 100);
+    const pctIncidencia = Math.round((L.usuariosConIncidencia.n / L.usuariosConIncidencia.base) * 100);
+
+    $("#kpi-laboratorios").innerHTML = `
+      <div class="kpi-card kpi-card--primary">
+        <span class="kpi-label">Participantes Totales</span>
+        <span class="kpi-value">${L.participantesTotales}</span>
+        <span class="kpi-sub">En laboratorios de prueba</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">Laboratorios Realizados</span>
+        <span class="kpi-value">${L.jornadas}</span>
+        <span class="kpi-sub">Jornadas de prueba</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">Usuarios que Completaron la Prueba</span>
+        <span class="kpi-value">${L.usuariosPrueba}</span>
+        <span class="kpi-sub">De ${L.participantesTotales} participantes</span>
+      </div>
+      <div class="kpi-card kpi-card--mejora">
+        <span class="kpi-label">Tasa de Apertura Completada</span>
+        <span class="kpi-value">${pctApertura}%</span>
+        <span class="kpi-sub">${L.completaronApertura.n} de ${L.completaronApertura.base} usuarios</span>
+      </div>
+      <div class="kpi-card kpi-card--incidencia">
+        <span class="kpi-label">Usuarios con Incidencia</span>
+        <span class="kpi-value">${pctIncidencia}%</span>
+        <span class="kpi-sub">${L.usuariosConIncidencia.n} de ${L.usuariosConIncidencia.base} usuarios</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-label">Tickets Generados</span>
+        <span class="kpi-value">${L.ticketsGenerados}</span>
+        <span class="kpi-sub">Durante los laboratorios</span>
+      </div>`;
+
+    $("#lista-patrones").innerHTML = L.patronesRecurrentes.map(p => `
+      <li>
+        <div class="li-top">
+          <span class="badge-patron ${p.criticidad === "Alta" ? "badge-patron--alta" : "badge-patron--media"}">${p.criticidad}</span>
+          <span class="tag">${p.modulo}</span>
+        </div>
+        <div class="li-desc">${escapeHtml(p.patron)}</div>
+        <div class="li-meta">${p.ocurrencias} ocurrencia${p.ocurrencias === 1 ? "" : "s"}</div>
+      </li>`).join("");
   }
 
   // =======================================================================
@@ -479,6 +707,7 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     safe("tabs", initTabs);
+    safe("encabezado (meta)", renderHeaderMeta);
 
     safe("resumen KPI", renderResumenKPI);
     safe("status cards", renderStatusCards);
@@ -487,6 +716,9 @@
     safe("filtros", populateFilters);
     safe("tabla hallazgos", renderTabla);
     safe("orden tabla hallazgos", () => initSortableHeaders("#tabla-hallazgos", renderTabla));
+    safe("panel de detalle", initDetailPanel);
+
+    safe("laboratorios", renderLaboratorios);
 
     safe("encuesta KPI", renderEncuestaKPI);
     safe("encuesta chart eje", renderEjeChart);
