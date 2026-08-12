@@ -273,13 +273,13 @@ const HALLAZGOS = [
     "casos": 3,
     "clasificacion": "Incidencia",
     "criticidad": "Bloqueante",
-    "descripcion": "Al momento de crear contraseña no logra avanzar el cliente (8DX0Q)",
-    "descripcionCompleta": "Al momento de crear contraseña no logra avanzar el cliente (8DX0Q)",
-    "observaciones": "",
+    "descripcion": "Al momento de realizar enrolamiento no logra registrarse el cliente (8DX0Q, C4FON, 5VXBU)",
+    "descripcionCompleta": "Al momento de realizar enrolamiento no logra registrarse el cliente (8DX0Q, C4FON, 5VXBU)\nEstos casos derivan de que los clientes no tienen número de cliente.",
+    "observaciones": "*12 de agosto confirma Bertha Haydee Sanchez Aguilarse presentan por empleados que se convierten en clientes. se realizará ajuste masivo de clientes existentes y ajustes en el programa",
     "responsable": "Juan David Agudelo",
     "estatus": "Análisis",
     "fechaReporte": "2026-08-10",
-    "fechaSolucion": "03/08/2026 al 21/08/2026"
+    "fechaSolucion": "2026-08-14"
   },
   {
     "id": 17,
@@ -290,14 +290,29 @@ const HALLAZGOS = [
     "criticidad": "Bloqueante",
     "descripcion": "Apertura de cuenta - clientes no logran avanzar en confirmación de datos",
     "descripcionCompleta": "Apertura de cuenta - clientes no logran avanzar en confirmación de datos",
-    "observaciones": "",
+    "observaciones": "*11 de agosto, se notifica por Juan David Agudelo que fue un error de irntemitencia en la comunicación de servicios y se realizo un reinicio en la aplicación y se recobra la comunicación.",
     "responsable": "Juan David Agudelo",
-    "estatus": "Análisis",
+    "estatus": "Liberado",
     "fechaReporte": "2026-08-10",
-    "fechaSolucion": "03/08/2026 al 21/08/2026"
+    "fechaSolucion": "2026-08-11"
   },
   {
     "id": 18,
+    "medio": "Reunión Líderes",
+    "flujo": "Transferencias",
+    "casos": "N/A",
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Al realizar transferencias se detona código de error (ITXPJ) - Cambio de razon social en NU",
+    "descripcionCompleta": "Al realizar transferencias se detona código de error (ITXPJ) - Cambio de razon social en NU",
+    "observaciones": "*12 de agosto se confirma que el error se debe al cambio de razón social de cuenta NU. Es necesario verificar con todos los involucrados las acciones a seguir",
+    "responsable": "Juan David Agudelo Bertha Haydee Sanchez Aguilar Nelly Guadalupe Trejo Salinas",
+    "estatus": "Análisis",
+    "fechaReporte": "2026-08-11",
+    "fechaSolucion": "03/08/2026 al 21/08/2026"
+  },
+  {
+    "id": 19,
     "medio": "Reunión Líderes",
     "flujo": "Notificaciones",
     "casos": "N/A",
@@ -312,7 +327,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-07-21"
   },
   {
-    "id": 19,
+    "id": 20,
     "medio": "Correo",
     "flujo": "Inversión Digital",
     "casos": "N/A",
@@ -327,7 +342,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-03"
   },
   {
-    "id": 20,
+    "id": 21,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -342,7 +357,7 @@ const HALLAZGOS = [
     "fechaSolucion": "No aplica"
   },
   {
-    "id": 21,
+    "id": 22,
     "medio": "Correo",
     "flujo": "Inversiones",
     "casos": "N/A",
@@ -357,7 +372,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 22,
+    "id": 23,
     "medio": "Reunión Líderes",
     "flujo": "Inversiones",
     "casos": "N/A",
@@ -372,7 +387,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 23,
+    "id": 24,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "100+",
@@ -387,7 +402,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 24,
+    "id": 25,
     "medio": "Reunión Líderes",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -402,7 +417,7 @@ const HALLAZGOS = [
     "fechaSolucion": "03/08/2026 al 21/08/2026"
   },
   {
-    "id": 25,
+    "id": 26,
     "medio": "Correo",
     "flujo": "Inversión Digital",
     "casos": "N/A",
@@ -410,14 +425,14 @@ const HALLAZGOS = [
     "criticidad": "No Bloqueante",
     "descripcion": "Actualización de ISR en productos de inversión digital para todos los productos.",
     "descripcionCompleta": "Actualización de ISR en productos de inversión digital para todos los productos. \n1) Se identifica la necesidad por banca patrimonial de actualizar el ISR aplicable a todos los productos de inversión digital",
-    "observaciones": "*04 de agosto el equipo de banca patrimonial confirma tasas de ISR mediante correo. \n*07 de agosto se confirma la actualización en el Core Bancario y el equipo de desarrollo de PUC realiza ajuste de cotizadores. Se sigue validando en ambiente de calidad derivado a que no se refleja en simuladores.",
+    "observaciones": "*04 de agosto el equipo de banca patrimonial confirma tasas de ISR mediante correo. \n*07 de agosto se confirma la actualización en el Core Bancario y el equipo de desarrollo de PUC realiza ajuste de cotizadores. Se sigue validando en ambiente de calidad derivado a que no se refleja en simuladores. \n*10 de agosto se tiene sesión con banca patrimonial para programar liberación a producción",
     "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
     "estatus": "Desarrollo",
     "fechaReporte": "2026-08-04",
-    "fechaSolucion": "2026-08-12"
+    "fechaSolucion": "2026-08-13"
   },
   {
-    "id": 26,
+    "id": 27,
     "medio": "Correo",
     "flujo": "Entrega TDD",
     "casos": 1,
@@ -432,7 +447,7 @@ const HALLAZGOS = [
     "fechaSolucion": "03/08/2026 al 21/08/2026"
   },
   {
-    "id": 27,
+    "id": 28,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -447,7 +462,7 @@ const HALLAZGOS = [
     "fechaSolucion": "24/08/2926 al 11/09/2026"
   },
   {
-    "id": 28,
+    "id": 29,
     "medio": "Reunión Líderes",
     "flujo": "Visualización productos",
     "casos": "N/A",
