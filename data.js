@@ -53,8 +53,8 @@ const HALLAZGOS = [
     "observaciones": "Dependencia\n* 9/Jul en espera de evidencias del proveedor de la entrega al carrier\n* 9/Jul se escalan pod a 3 réplicas",
     "responsable": "Juan David Agudelo",
     "estatus": "Liberado",
-    "fechaReporte": "08/07/2026",
-    "fechaSolucion": "09/07/2026"
+    "fechaReporte": "2026-07-08",
+    "fechaSolucion": "2026-07-09"
   },
   {
     "id": 2,
@@ -68,8 +68,8 @@ const HALLAZGOS = [
     "observaciones": "* 9/Jul se anexa en la HU, la evidencia de los problemas de conexión del dispositivo (red del dispositivo) y no se ha localizado los eventos de amplitud del intento fallido por RFC. Para este último KAREN DE JESUS RAMIREZ USCANGA que tienes más experiencia en amplitud nos puedes apoyar por favor\n* En la sesión se llega un acuerdo que si se presenta en otros laboratorios poder retomar el caso.",
     "responsable": "Juan David Agudelo",
     "estatus": "Liberado",
-    "fechaReporte": "08/07/2026",
-    "fechaSolucion": "09/07/2026"
+    "fechaReporte": "2026-07-08",
+    "fechaSolucion": "2026-07-09"
   },
   {
     "id": 3,
@@ -83,8 +83,8 @@ const HALLAZGOS = [
     "observaciones": "* 10/Jul se libera a PROD\n* 9/Jul al cierre del día se entra a funcionales",
     "responsable": "Cristian Rodríguez Hernández",
     "estatus": "Liberado",
-    "fechaReporte": "05/07/2026",
-    "fechaSolucion": "10/07/2026"
+    "fechaReporte": "2026-07-05",
+    "fechaSolucion": "2026-07-10"
   },
   {
     "id": 4,
@@ -98,8 +98,8 @@ const HALLAZGOS = [
     "observaciones": "* 10/Jul se libera a PROD\n* 09/Jul resuelto y está en pruebas actuales de la N4",
     "responsable": "Juan David Agudelo",
     "estatus": "Liberado",
-    "fechaReporte": "07/07/2026",
-    "fechaSolucion": "10/07/2026"
+    "fechaReporte": "2026-07-07",
+    "fechaSolucion": "2026-07-10"
   },
   {
     "id": 5,
@@ -113,8 +113,8 @@ const HALLAZGOS = [
     "observaciones": "* 10/Jul se libera a PROD\n* 9/Jul ese encuentra en pruebas funcionales actualmente para la N4",
     "responsable": "Juan David Agudelo",
     "estatus": "Liberado",
-    "fechaReporte": "08/07/2026",
-    "fechaSolucion": "10/07/2026"
+    "fechaReporte": "2026-07-08",
+    "fechaSolucion": "2026-07-10"
   },
   {
     "id": 6,
@@ -128,8 +128,8 @@ const HALLAZGOS = [
     "observaciones": "* 10/Jul se libera a PROD\n* 9/Jul ese encuentra en pruebas funcionales actualmente para la N4",
     "responsable": "Juan David Agudelo",
     "estatus": "Liberado",
-    "fechaReporte": "08/07/2026",
-    "fechaSolucion": "10/07/2026"
+    "fechaReporte": "2026-07-08",
+    "fechaSolucion": "2026-07-10"
   },
   {
     "id": 7,
@@ -144,7 +144,7 @@ const HALLAZGOS = [
     "responsable": "Juan David Agudelo",
     "estatus": "Liberado",
     "fechaReporte": "Primer reporte:\n07/07/2026\nReincidencia: \n15/07/2026",
-    "fechaSolucion": "17/07/2026"
+    "fechaSolucion": "2026-07-17"
   },
   {
     "id": 8,
@@ -158,8 +158,8 @@ const HALLAZGOS = [
     "observaciones": "Dependencia\n* 08/Jul karalundi reporta que no ve problemas, sin embargo, se puede cerrar este issue y se encuentra en proceso de pruebas el proveedor Incode \nSe levanta hallazgo 07 jul a las 19:40\n*CH indica que el colaborador realizara proceso desde otro dispositivo, en espera de resultado",
     "responsable": "Juan David Agudelo",
     "estatus": "Liberado",
-    "fechaReporte": "06/07/2026",
-    "fechaSolucion": "10/07/2026"
+    "fechaReporte": "2026-07-06",
+    "fechaSolucion": "2026-07-10"
   },
   {
     "id": 9,
@@ -173,8 +173,8 @@ const HALLAZGOS = [
     "observaciones": "*14/Jul para la curp AOQA950528HDFCNR02 se escalo el caso con el proveedor.\n*15/Jul de acuerdo al proveedor no se encontraron flujos de trabajo para los cuatro casos fallidos reportados y se escalaron de nuevo al proveedor.\n*15/Jul para la curp MACJ970920HSLRLN03 se relizaron pruebas cuando el cliente captura la INE (pantalla se pone en blanco), temas de wifi a datos mobiles,\n*16/Jul Se validaron los casos de biometrico no exitosos con proveedor, nos indican que los flujo fueron abiertos y no se encontro interaccion al cargar el workflow. estamos en análisis para controlar el caso\n*17/Jul De acuerdo a definicion tecnica, se implementara un control para gestionar los casos en los que el workflow no cargan correctamente, fecha de entraga a QA miercoles 22\n*22/Jul El dia de hoy se va a estar entregando en ambiente de QA para realizar pruebas\n*Se libera con la nueva versión el 03 de agosto para no impactar proyecto en curso NPS",
     "responsable": "Juan David Agudelo",
     "estatus": "Liberado",
-    "fechaReporte": "09/07/2026",
-    "fechaSolucion": "03/08/2026"
+    "fechaReporte": "2026-07-09",
+    "fechaSolucion": "2026-08-03"
   },
   {
     "id": 10,
@@ -188,8 +188,8 @@ const HALLAZGOS = [
     "observaciones": "*Al momento de actualizar el cliente en CRM se identifica que el rfc ya esta asociado a otro numero de cliente, se esta definiedo la solucion que sera implementada para controlar el escenario.\n*Se confirma que el día 16 de julio al finalizar el día quedaría solventado en espera de pruebas validadores funcionales.\n*16/Jul Por parte del equipo se libero el ajuste en QA y relizaron las pruebas, actualmente se encuentra en pruebas funcionales.\n*22/Jul Se encuentra en ambiente de pruebas y se integraria en la proxima liberacion \n*Se libera con la nueva versión el 03 de agosto para no impactar proyecto en curso NPS\n*29/Jul Diana Torres Rodriguez se lleva el seguimiento con el CAI con el fin de validar protocolo para estos casos",
     "responsable": "Juan David Agudelo",
     "estatus": "Liberado",
-    "fechaReporte": "09/07/2026",
-    "fechaSolucion": "03/08/2026"
+    "fechaReporte": "2026-07-09",
+    "fechaSolucion": "2026-08-03"
   },
   {
     "id": 11,
@@ -203,8 +203,8 @@ const HALLAZGOS = [
     "observaciones": "* 9/Jul se escala con el proveedor karalundi, sin embargo, ya se encuentra en pruebas la implementación con Incode y se les sugiere repetir ese escenario con letra grande en el dispositivo samsung\n* 14/Jul karalundi reporta que está en revisión y el proveedor esta trabajando en una solucion para solucionar el tamaño de la fuente.\n*  16/Jul Se tuvo una reunion con el proveedor, tiene la corrección lista el día 17/06/2026, En cuanto el proveedor lo comunique se realizan pruebas. \n* 17/Jul Se realizaron las pruebas, aparece el boton pero ahora el texto se superpone, se escalo de nuevo al proveedor.\n* 22/Jul El proveedor nos compartio una solucion para implementar desde la aplicacion, ya se realizo la implementacion y se tiene en ambiente de pruebas \n*Se libera con la nueva versión el 03 de agosto para no impactar proyecto en curso NPS\n*29/Jul: Se tendrá solución en BETA el día 03 de agosto pero estan pendientes pruebas de validadores funcionales en BETA producción y aprobación en tiendas.\n*07 Agosto: Continua versión 4.1.0 en revisión por parte de tiendas de IOS. \n*10 Agosto: Se confirma liberación y masificación en tiendas (PlayStore y AppStore).",
     "responsable": "Juan David Agudelo",
     "estatus": "Liberado",
-    "fechaReporte": "08/07/2026",
-    "fechaSolucion": "10/08/2026"
+    "fechaReporte": "2026-07-08",
+    "fechaSolucion": "2026-08-10"
   },
   {
     "id": 12,
@@ -218,8 +218,8 @@ const HALLAZGOS = [
     "observaciones": "*29/Jul: Se tendrá solución en BETA el día 03 de agosto pero estan pendientes pruebas de validadores funcionales en BETA producción y aprobación en tiendas.\n*07 Agosto: Continua versión 4.1.0 en revisión por parte de tiendas de IOS. \n*10 Agosto: Se confirma liberación y masificación en tiendas (PlayStore y AppStore).",
     "responsable": "Cristian Rodríguez Hernández",
     "estatus": "Liberado",
-    "fechaReporte": "28/07/2026",
-    "fechaSolucion": "10/08/2026"
+    "fechaReporte": "2026-07-28",
+    "fechaSolucion": "2026-08-10"
   },
   {
     "id": 13,
@@ -233,8 +233,8 @@ const HALLAZGOS = [
     "observaciones": "*03 de agosto se confirma que el equipo de CRM esta realizando 2 monitoreos diarios. \n*03 de agosto se confirma que la liberación se hace en la semana del 03 - 07 de agosto \n*07 de agosto se confirma liberación del caso",
     "responsable": "Juan Antonio García Herrera",
     "estatus": "Liberado",
-    "fechaReporte": "15/07/2026",
-    "fechaSolucion": "06 de agosto"
+    "fechaReporte": "2026-07-15",
+    "fechaSolucion": "2026-08-06"
   },
   {
     "id": 14,
@@ -248,8 +248,8 @@ const HALLAZGOS = [
     "observaciones": "*03 de agosto se confirma con Haydee que el equipo detecto mejoras y se atenderán dentro del sprint en curso (03 - 21 de agosto)\n*Se revisan mejoras para generar el token en el momento de la transacción y se encuentra en desarrollo.",
     "responsable": "Juan David Agudelo",
     "estatus": "Desarrollo",
-    "fechaReporte": "30/07/2026",
-    "fechaSolucion": "SPR 2 (03 - 21 de agosto)"
+    "fechaReporte": "2026-07-30",
+    "fechaSolucion": "03/08/2026 al 21/08/2026"
   },
   {
     "id": 15,
@@ -263,8 +263,8 @@ const HALLAZGOS = [
     "observaciones": "",
     "responsable": "Juan David Agudelo",
     "estatus": "Análisis",
-    "fechaReporte": "11/08/2026",
-    "fechaSolucion": "SPR 2 (03 - 21 de agosto)"
+    "fechaReporte": "2026-08-11",
+    "fechaSolucion": "03/08/2026 al 21/08/2026"
   },
   {
     "id": 16,
@@ -278,8 +278,8 @@ const HALLAZGOS = [
     "observaciones": "",
     "responsable": "Juan David Agudelo",
     "estatus": "Análisis",
-    "fechaReporte": "10/08/2026",
-    "fechaSolucion": "SPR 2 (03 - 21 de agosto)"
+    "fechaReporte": "2026-08-10",
+    "fechaSolucion": "03/08/2026 al 21/08/2026"
   },
   {
     "id": 17,
@@ -293,11 +293,11 @@ const HALLAZGOS = [
     "observaciones": "",
     "responsable": "Juan David Agudelo",
     "estatus": "Análisis",
-    "fechaReporte": "10/08/2026",
-    "fechaSolucion": "SPR 2 (03 - 21 de agosto)"
+    "fechaReporte": "2026-08-10",
+    "fechaSolucion": "03/08/2026 al 21/08/2026"
   },
   {
-    "id": 16,
+    "id": 18,
     "medio": "Reunión Líderes",
     "flujo": "Notificaciones",
     "casos": "N/A",
@@ -308,11 +308,11 @@ const HALLAZGOS = [
     "observaciones": "*21/Jul: Se realizan ajustes en producción",
     "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
     "estatus": "Liberado",
-    "fechaReporte": "15/07/2026",
-    "fechaSolucion": "21/07/2026"
+    "fechaReporte": "2026-07-15",
+    "fechaSolucion": "2026-07-21"
   },
   {
-    "id": 17,
+    "id": 19,
     "medio": "Correo",
     "flujo": "Inversión Digital",
     "casos": "N/A",
@@ -324,10 +324,10 @@ const HALLAZGOS = [
     "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
     "estatus": "Liberado",
     "fechaReporte": "06/0//2026",
-    "fechaSolucion": "03/08/2026"
+    "fechaSolucion": "2026-08-03"
   },
   {
-    "id": 18,
+    "id": 20,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -342,7 +342,7 @@ const HALLAZGOS = [
     "fechaSolucion": "No aplica"
   },
   {
-    "id": 19,
+    "id": 21,
     "medio": "Correo",
     "flujo": "Inversiones",
     "casos": "N/A",
@@ -353,11 +353,11 @@ const HALLAZGOS = [
     "observaciones": "*29/Jul: Se tendrá solución en BETA el día 03 de agosto pero estan pendientes pruebas de validadores funcionales en BETA producción y aprobación en tiendas.\n*07 Agosto: Continua versión 4.1.0 en revisión por parte de tiendas de IOS. \n*10 Agosto: Se confirma liberación y masificación en tiendas (PlayStore y AppStore).",
     "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
     "estatus": "Liberado",
-    "fechaReporte": "10/07/2026",
-    "fechaSolucion": "10/08/2026"
+    "fechaReporte": "2026-07-10",
+    "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 20,
+    "id": 22,
     "medio": "Reunión Líderes",
     "flujo": "Inversiones",
     "casos": "N/A",
@@ -368,11 +368,11 @@ const HALLAZGOS = [
     "observaciones": "*29/Jul: Se tendrá solución en BETA el día 03 de agosto pero estan pendientes pruebas de validadores funcionales en BETA producción y aprobación en tiendas.\n*07 Agosto: Continua versión 4.1.0 en revisión por parte de tiendas de IOS. \n*10 Agosto: Se confirma liberación y masificación en tiendas (PlayStore y AppStore).",
     "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
     "estatus": "Liberado",
-    "fechaReporte": "24/07/2026",
-    "fechaSolucion": "10/08/2026"
+    "fechaReporte": "2026-07-24",
+    "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 21,
+    "id": 23,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "100+",
@@ -384,10 +384,10 @@ const HALLAZGOS = [
     "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
     "estatus": "Liberado",
     "fechaReporte": "06/0//2026",
-    "fechaSolucion": "10/08/2026"
+    "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 22,
+    "id": 24,
     "medio": "Reunión Líderes",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -398,11 +398,11 @@ const HALLAZGOS = [
     "observaciones": "*29 jul: Se integra mejora para evitar que los casos sucedan en producción",
     "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
     "estatus": "Desarrollo",
-    "fechaReporte": "22/07/2026",
-    "fechaSolucion": "SPR 2 - Q3 (03 - 21 de agosto)"
+    "fechaReporte": "2026-07-22",
+    "fechaSolucion": "03/08/2026 al 21/08/2026"
   },
   {
-    "id": 23,
+    "id": 25,
     "medio": "Correo",
     "flujo": "Inversión Digital",
     "casos": "N/A",
@@ -413,11 +413,11 @@ const HALLAZGOS = [
     "observaciones": "*04 de agosto el equipo de banca patrimonial confirma tasas de ISR mediante correo. \n*07 de agosto se confirma la actualización en el Core Bancario y el equipo de desarrollo de PUC realiza ajuste de cotizadores. Se sigue validando en ambiente de calidad derivado a que no se refleja en simuladores.",
     "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
     "estatus": "Desarrollo",
-    "fechaReporte": "04/08/2026",
-    "fechaSolucion": "12/08/2026"
+    "fechaReporte": "2026-08-04",
+    "fechaSolucion": "2026-08-12"
   },
   {
-    "id": 24,
+    "id": 26,
     "medio": "Correo",
     "flujo": "Entrega TDD",
     "casos": 1,
@@ -428,11 +428,11 @@ const HALLAZGOS = [
     "observaciones": "*06 de agosto se integra historia de usuario y validación por el equipo. \n*07 de agosto se solicita confirmación al Core Bancario de la fecha de atención en calidad.",
     "responsable": "Jessica Isai Juarez Gomez\nCristian Antonio Rodriguez Hernandez",
     "estatus": "Desarrollo",
-    "fechaReporte": "06/08/2026",
-    "fechaSolucion": "SPR 2 - Q3 (03 - 21 de agosto)"
+    "fechaReporte": "2026-08-06",
+    "fechaSolucion": "03/08/2026 al 21/08/2026"
   },
   {
-    "id": 25,
+    "id": 27,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -444,10 +444,10 @@ const HALLAZGOS = [
     "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
     "estatus": "Backlog",
     "fechaReporte": "06/0//2026",
-    "fechaSolucion": "SPR 3 - Q3 (24 agosto - 11 de septiembre)"
+    "fechaSolucion": "24/08/2926 al 11/09/2026"
   },
   {
-    "id": 26,
+    "id": 28,
     "medio": "Reunión Líderes",
     "flujo": "Visualización productos",
     "casos": "N/A",
@@ -458,8 +458,8 @@ const HALLAZGOS = [
     "observaciones": "* Sesión de revisión con Aura (20/07/2026)\n*Pendiente información Banca Patrimonial, para crear mejora. \n*29 Jul: Banca patrimonial comparte estatus para poder a comenzar a revisar la mejora a implementar\nLeslie Chavez Santana Se lleva el seguimiento con los clientes que actualmente presentan este escenario",
     "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
     "estatus": "Definición Negocio",
-    "fechaReporte": "14/07/2026",
-    "fechaSolucion": "SPR 2 - Q3 (03 - 21 de agosto)"
+    "fechaReporte": "2026-07-14",
+    "fechaSolucion": "03/08/2026 al 21/08/2026"
   }
 ];
 
