@@ -18,7 +18,7 @@
 
 // ---- Metadatos del encabezado / configuración del reporte ----
 const META = {
-  fechaActualizacion: "2026-08-12",   // se refleja en el encabezado ("Actualizado: ...")
+  fechaActualizacion: "2026-08-13",   // se refleja en el encabezado ("Actualizado: ...")
   version: "PUC v4.1.0",              // se refleja en el encabezado
   // Fecha de la Mesa Operativa anterior: cualquier hallazgo Liberado con
   // fechaSolucion posterior a esta fecha se marca automáticamente como
@@ -239,32 +239,32 @@ const HALLAZGOS = [
   {
     "id": 14,
     "medio": "Slack",
-    "flujo": "Transferencias",
-    "casos": 2,
-    "clasificacion": "Incidencia",
-    "criticidad": "Bloqueante",
-    "descripcion": "Al momento de transferir muestra código de error (40KXP):",
-    "descripcionCompleta": "Al momento de transferir muestra código de error (40KXP):\nSe identifica que es un tema relacionado a la generación de token de VU",
-    "observaciones": "*03 de agosto se confirma con Haydee que el equipo detecto mejoras y se atenderán dentro del sprint en curso (03 - 21 de agosto)\n*Se revisan mejoras para generar el token en el momento de la transacción y se encuentra en desarrollo.",
-    "responsable": "Juan David Agudelo",
-    "estatus": "Desarrollo",
-    "fechaReporte": "2026-07-30",
-    "fechaSolucion": "03/08/2026 al 21/08/2026"
-  },
-  {
-    "id": 15,
-    "medio": "Slack",
     "flujo": "Enrolamiento",
     "casos": 107,
     "clasificacion": "Incidencia",
     "criticidad": "Bloqueante",
     "descripcion": "Se detectan nuevos códigos de error a partir de la liberación de la versión 4.1.0:",
-    "descripcionCompleta": "Se detectan nuevos códigos de error a partir de la liberación de la versión 4.1.0: \nS8SBS , NOOSP , 1BTBT, D7OLI",
-    "observaciones": "*12 de agosto\nS8SBS: Se presenta por clientes que están enrolandose despúes de mucho tiempo y no existen en el directorio activo. Se liberá próxima versión. \nNOOSP y D7OLI: Se presentaron el día lunes 10 de agosto y se solventaron\n1BTBT: Se parametrizo modal y quedo solventado 13 de agosto",
+    "descripcionCompleta": "Se detectan nuevos códigos de error a partir de la liberación de la versión 4.1.0: \nNOOSP , 1BTBT, D7OLI",
+    "observaciones": "*12 de agosto: \nNOOSP y D7OLI: Se presentaron el día lunes 10 de agosto y se solventaron\n1BTBT: El cliente esta intentando enrolarse en un dispositivo que ya se encuentra registrado por otro usuario. Se parametrizo modal y quedo solventado 13 de agosto. Este es derivado",
     "responsable": "Juan David Agudelo",
-    "estatus": "Análisis",
+    "estatus": "Liberado",
     "fechaReporte": "2026-08-11",
-    "fechaSolucion": "03/08/2026 al 21/08/2026"
+    "fechaSolucion": "2026-08-12"
+  },
+  {
+    "id": 15,
+    "medio": "Slack",
+    "flujo": "Apertura de Cuenta",
+    "casos": 3,
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Apertura de cuenta - clientes no logran avanzar en confirmación de datos",
+    "descripcionCompleta": "Apertura de cuenta - clientes no logran avanzar en confirmación de datos",
+    "observaciones": "*11 de agosto, se notifica por Juan David Agudelo que fue un error de irntemitencia en la comunicación de servicios y se realizo un reinicio en la aplicación y se recobra la comunicación.",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Liberado",
+    "fechaReporte": "2026-08-10",
+    "fechaSolucion": "2026-08-11"
   },
   {
     "id": 16,
@@ -283,36 +283,66 @@ const HALLAZGOS = [
   },
   {
     "id": 17,
-    "medio": "Slack",
-    "flujo": "Apertura de Cuenta",
-    "casos": 3,
-    "clasificacion": "Incidencia",
-    "criticidad": "Bloqueante",
-    "descripcion": "Apertura de cuenta - clientes no logran avanzar en confirmación de datos",
-    "descripcionCompleta": "Apertura de cuenta - clientes no logran avanzar en confirmación de datos",
-    "observaciones": "*11 de agosto, se notifica por Juan David Agudelo que fue un error de irntemitencia en la comunicación de servicios y se realizo un reinicio en la aplicación y se recobra la comunicación.",
-    "responsable": "Juan David Agudelo",
-    "estatus": "Liberado",
-    "fechaReporte": "2026-08-10",
-    "fechaSolucion": "2026-08-11"
-  },
-  {
-    "id": 18,
     "medio": "Reunión Líderes",
     "flujo": "Transferencias",
-    "casos": "N/A",
+    "casos": 20,
     "clasificacion": "Incidencia",
     "criticidad": "Bloqueante",
     "descripcion": "Al realizar transferencias se detona código de error (ITXPJ) - Cambio de razon social en NU",
     "descripcionCompleta": "Al realizar transferencias se detona código de error (ITXPJ) - Cambio de razon social en NU",
-    "observaciones": "*12 de agosto se confirma que el error se debe al cambio de razón social de cuenta NU. Es necesario verificar con todos los involucrados las acciones a seguir\n* Con el ajuste confirma Bertha Haydee Sanchez Aguilar no se pierde historial transaccional y el impacto de cambiar el prefijo aplica para plataforma única de clientes y banca por internet. \n* Leslie Chavez Santana realizará la prueba con un colaborador con el fin que llegue el ticket.",
+    "observaciones": "*12 de agosto se confirma que el error se debe al cambio de razón social de cuenta NU. Es necesario verificar con todos los involucrados las acciones a seguir\n* Con el ajuste confirma Bertha Haydee Sanchez Aguilar no se pierde historial transaccional y el impacto de cambiar el prefijo aplica para plataforma única de clientes y banca por internet. \n* Leslie Chavez Santana realizará la prueba con un colaborador con el fin que llegue el ticket. \n* 13 de agosto Leslie Chavez Santana KAREN DE JESUS RAMIREZ USCANGA confirman prueba exitosa y se envía correo con vobo con todos los participantes. Se procede a realizar el ajuste por tecnología.",
     "responsable": "Juan David Agudelo Bertha Haydee Sanchez Aguilar Nelly Guadalupe Trejo Salinas",
-    "estatus": "Análisis",
+    "estatus": "Liberado",
     "fechaReporte": "2026-08-11",
+    "fechaSolucion": "2026-08-13"
+  },
+  {
+    "id": 18,
+    "medio": "Slack",
+    "flujo": "Transferencias",
+    "casos": 2,
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Al momento de transferir muestra código de error (40KXP):",
+    "descripcionCompleta": "Al momento de transferir muestra código de error (40KXP):\nSe identifica que es un tema relacionado a la generación de token de VU",
+    "observaciones": "*03 de agosto se confirma con Haydee que el equipo detecto mejoras y se atenderán dentro del sprint en curso (03 - 21 de agosto)\n*Se revisan mejoras para generar el token en el momento de la transacción y se encuentra en desarrollo.",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Desarrollo",
+    "fechaReporte": "2026-07-30",
     "fechaSolucion": "03/08/2026 al 21/08/2026"
   },
   {
     "id": 19,
+    "medio": "Reunión Líderes",
+    "flujo": "Enrolamiento",
+    "casos": 51,
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Cliente que no se encuentran en directorio activo y no muestran modal para realizar nuevamente su proceso de enrolami...",
+    "descripcionCompleta": "Cliente que no se encuentran en directorio activo y no muestran modal para realizar nuevamente su proceso de enrolamiento (S8SBS).",
+    "observaciones": "*12 de agosto\nS8SBS: Se presenta por clientes que están enrolandose despúes de mucho tiempo y no existen en el directorio activo. Se liberá próxima versión.",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Desarrollo",
+    "fechaReporte": "2026-08-11",
+    "fechaSolucion": "03/08/2026 al 21/08/2026"
+  },
+  {
+    "id": 20,
+    "medio": "Reunión Líderes",
+    "flujo": "Enrolamiento",
+    "casos": 38,
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Al momento de iniciar sesión se muestran los siguientes códigos de eror: PU5VO y OC6I6",
+    "descripcionCompleta": "Al momento de iniciar sesión se muestran los siguientes códigos de eror: PU5VO y OC6I6",
+    "observaciones": "",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Análisis",
+    "fechaReporte": "2026-08-13",
+    "fechaSolucion": "03/08/2026 al 21/08/2026"
+  },
+  {
+    "id": 21,
     "medio": "Reunión Líderes",
     "flujo": "Notificaciones",
     "casos": "N/A",
@@ -327,7 +357,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-07-21"
   },
   {
-    "id": 20,
+    "id": 22,
     "medio": "Correo",
     "flujo": "Inversión Digital",
     "casos": "N/A",
@@ -342,7 +372,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-03"
   },
   {
-    "id": 21,
+    "id": 23,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -357,7 +387,7 @@ const HALLAZGOS = [
     "fechaSolucion": "No aplica"
   },
   {
-    "id": 22,
+    "id": 24,
     "medio": "Correo",
     "flujo": "Inversiones",
     "casos": "N/A",
@@ -372,7 +402,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 23,
+    "id": 25,
     "medio": "Reunión Líderes",
     "flujo": "Inversiones",
     "casos": "N/A",
@@ -387,7 +417,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 24,
+    "id": 26,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "100+",
@@ -402,7 +432,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 25,
+    "id": 27,
     "medio": "Reunión Líderes",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -417,7 +447,7 @@ const HALLAZGOS = [
     "fechaSolucion": "03/08/2026 al 21/08/2026"
   },
   {
-    "id": 26,
+    "id": 28,
     "medio": "Correo",
     "flujo": "Inversión Digital",
     "casos": "N/A",
@@ -432,7 +462,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-13"
   },
   {
-    "id": 27,
+    "id": 29,
     "medio": "Correo",
     "flujo": "Entrega TDD",
     "casos": 1,
@@ -447,7 +477,7 @@ const HALLAZGOS = [
     "fechaSolucion": "03/08/2026 al 21/08/2026"
   },
   {
-    "id": 28,
+    "id": 30,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -462,7 +492,7 @@ const HALLAZGOS = [
     "fechaSolucion": "24/08/2026 al 11/09/2026"
   },
   {
-    "id": 29,
+    "id": 31,
     "medio": "Reunión Líderes",
     "flujo": "Visualización productos",
     "casos": "N/A",
