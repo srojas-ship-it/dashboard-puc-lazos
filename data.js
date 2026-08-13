@@ -143,7 +143,7 @@ const HALLAZGOS = [
     "observaciones": "* 9/Jul se liberó un ajuste que impedía generar el núcleo cliente y ajuste masivo de los que no tienen\n*15/jul se reporta nuevos tickets de soporte: SOPOR_CAV25_718, SOPOR_CAV25_719, SOPOR_CAV25_720\n*15Jul Se identica que siguen llegando consulta de cliente desde CRM sin nucelo del cliente, el equipo de CRM esta trabajando en conjunto con Integraciones para dar una solucion,\n*16Jul CRM Se confirma fecha de solución por TI 20/07/2026\n*17 jul Se confirma liberación del caso por CRM.",
     "responsable": "Juan David Agudelo",
     "estatus": "Liberado",
-    "fechaReporte": "Primer reporte:\n07/07/2026\nReincidencia: \n15/07/2026",
+    "fechaReporte": "07/07/2026\n15/07/2026",
     "fechaSolucion": "2026-07-17"
   },
   {
@@ -230,7 +230,7 @@ const HALLAZGOS = [
     "criticidad": "Bloqueante",
     "descripcion": "Al momento de ingresar a la aplicación detona código de error (5VXBU).",
     "descripcionCompleta": "Al momento de ingresar a la aplicación detona código de error (5VXBU).\nSe reporta código código de error 5VXBU por atención a clientes para algunos clientes al ingresar en la aplicación.\nSe detecta que son clientes que en CRM no tienen número de cliente. Esto deriva de las cargas masivas que son de promotores que se convierten a su vez a clientes",
-    "observaciones": "*03 de agosto se confirma que el equipo de CRM esta realizando 2 monitoreos diarios. \n*03 de agosto se confirma que la liberación se hace en la semana del 03 - 07 de agosto \n*07 de agosto se confirma liberación del caso",
+    "observaciones": "*03 de agosto se confirma que el equipo de CRM esta realizando 2 monitoreos diarios. \n*03 de agosto se confirma que la liberación se hace en la semana del 03 - 07 de agosto \n*07 de agosto se confirma liberación del caso\n*12 de agosto se identico que los que estan presentando este problema son empleados que luego pasan a ser clientes, se reviso con CRM la correccion pendiente validar la fecha de liberacion",
     "responsable": "Juan Antonio García Herrera",
     "estatus": "Liberado",
     "fechaReporte": "2026-07-15",
@@ -260,7 +260,7 @@ const HALLAZGOS = [
     "criticidad": "Bloqueante",
     "descripcion": "Se detectan nuevos códigos de error a partir de la liberación de la versión 4.1.0:",
     "descripcionCompleta": "Se detectan nuevos códigos de error a partir de la liberación de la versión 4.1.0: \nS8SBS , NOOSP , 1BTBT, D7OLI",
-    "observaciones": "",
+    "observaciones": "*12 de agosto\nS8SBS: Se presenta por clientes que están enrolandose despúes de mucho tiempo y no existen en el directorio activo. Se liberá próxima versión. \nNOOSP y D7OLI: Se presentaron el día lunes 10 de agosto y se solventaron\n1BTBT: Se parametrizo modal y quedo solventado 13 de agosto",
     "responsable": "Juan David Agudelo",
     "estatus": "Análisis",
     "fechaReporte": "2026-08-11",
@@ -277,7 +277,7 @@ const HALLAZGOS = [
     "descripcionCompleta": "Al momento de realizar enrolamiento no logra registrarse el cliente (8DX0Q, C4FON, 5VXBU)\nEstos casos derivan de que los clientes no tienen número de cliente.",
     "observaciones": "*12 de agosto confirma Bertha Haydee Sanchez Aguilarse presentan por empleados que se convierten en clientes. se realizará ajuste masivo de clientes existentes y ajustes en el programa",
     "responsable": "Juan David Agudelo",
-    "estatus": "Análisis",
+    "estatus": "Pruebas",
     "fechaReporte": "2026-08-10",
     "fechaSolucion": "2026-08-14"
   },
@@ -305,7 +305,7 @@ const HALLAZGOS = [
     "criticidad": "Bloqueante",
     "descripcion": "Al realizar transferencias se detona código de error (ITXPJ) - Cambio de razon social en NU",
     "descripcionCompleta": "Al realizar transferencias se detona código de error (ITXPJ) - Cambio de razon social en NU",
-    "observaciones": "*12 de agosto se confirma que el error se debe al cambio de razón social de cuenta NU. Es necesario verificar con todos los involucrados las acciones a seguir",
+    "observaciones": "*12 de agosto se confirma que el error se debe al cambio de razón social de cuenta NU. Es necesario verificar con todos los involucrados las acciones a seguir\n* Con el ajuste confirma Bertha Haydee Sanchez Aguilar no se pierde historial transaccional y el impacto de cambiar el prefijo aplica para plataforma única de clientes y banca por internet. \n* Leslie Chavez Santana realizará la prueba con un colaborador con el fin que llegue el ticket.",
     "responsable": "Juan David Agudelo Bertha Haydee Sanchez Aguilar Nelly Guadalupe Trejo Salinas",
     "estatus": "Análisis",
     "fechaReporte": "2026-08-11",
@@ -338,7 +338,7 @@ const HALLAZGOS = [
     "observaciones": "*29/Jul: Se tendrá solución en BETA el día 03 de agosto pero estan pendientes pruebas de validadores funcionales en BETA producción y aprobación en tiendas.\n*Adicionalmente se notifica a Aura Mirell Marron Arteaga que es necesario dar de alta en crm el producto 652",
     "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
     "estatus": "Liberado",
-    "fechaReporte": "06/0//2026",
+    "fechaReporte": "2026-07-06",
     "fechaSolucion": "2026-08-03"
   },
   {
@@ -353,7 +353,7 @@ const HALLAZGOS = [
     "observaciones": "Conforme el análisis realizado se identifica que realizar el ajuste solicitado no es el mas recomendable, derivado a que el usuario esta realizando su proceso en una web embebida en el APP (pwa). \n\nPor temas de seguridad esto implicaría mantener una sesión activa durante 10 - 50 minutos que es lo que se puede tardar el flujo de apertura dependiendo el caso del cliente. \n\nEsto adicional a las pruebas de laboratorio revisamos y no es un tema que impacte realmente la experiencia, ya que el usuario solo debe iniciar sesión de nuevo para ver sus producto aperturado.",
     "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
     "estatus": "Liberado",
-    "fechaReporte": "06/0//2026",
+    "fechaReporte": "2026-07-06",
     "fechaSolucion": "No aplica"
   },
   {
@@ -398,7 +398,7 @@ const HALLAZGOS = [
     "observaciones": "*29/Jul: Se tendrá solución en BETA el día 03 de agosto pero estan pendientes pruebas de validadores funcionales en BETA producción y aprobación en tiendas.\n*07 Agosto: Continua versión 4.1.0 en revisión por parte de tiendas de IOS. \n*10 Agosto: Se confirma liberación y masificación en tiendas (PlayStore y AppStore).",
     "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
     "estatus": "Liberado",
-    "fechaReporte": "06/0//2026",
+    "fechaReporte": "2026-07-06",
     "fechaSolucion": "2026-08-10"
   },
   {
@@ -458,7 +458,7 @@ const HALLAZGOS = [
     "observaciones": "*06 de agosto se genera HU con el equipo técnico considerando las mejoras en latencia. Se atiende próximo sprint por la atención de incidencias prioritarias y temas de performance en la aplicación.",
     "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
     "estatus": "Backlog",
-    "fechaReporte": "06/0//2026",
+    "fechaReporte": "2026-07-06",
     "fechaSolucion": "24/08/2926 al 11/09/2026"
   },
   {
@@ -472,7 +472,7 @@ const HALLAZGOS = [
     "descripcionCompleta": "Clientes no visualizan sus cuentas que tienen un estatus \"Bloqueada\"\n1) Se levanto un ticket en slack derivado a que el cliente no visualizaba su cuenta: SOPOR_CAV25_717",
     "observaciones": "* Sesión de revisión con Aura (20/07/2026)\n*Pendiente información Banca Patrimonial, para crear mejora. \n*29 Jul: Banca patrimonial comparte estatus para poder a comenzar a revisar la mejora a implementar\nLeslie Chavez Santana Se lleva el seguimiento con los clientes que actualmente presentan este escenario",
     "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
-    "estatus": "Definición Negocio",
+    "estatus": "Definición de Negocio",
     "fechaReporte": "2026-07-14",
     "fechaSolucion": "03/08/2026 al 21/08/2026"
   }
