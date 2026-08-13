@@ -18,7 +18,7 @@
 
 // ---- Metadatos del encabezado / configuración del reporte ----
 const META = {
-  fechaActualizacion: "2026-08-10",   // se refleja en el encabezado ("Actualizado: ...")
+  fechaActualizacion: "2026-08-12",   // se refleja en el encabezado ("Actualizado: ...")
   version: "PUC v4.1.0",              // se refleja en el encabezado
   // Fecha de la Mesa Operativa anterior: cualquier hallazgo Liberado con
   // fechaSolucion posterior a esta fecha se marca automáticamente como
@@ -459,7 +459,7 @@ const HALLAZGOS = [
     "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
     "estatus": "Backlog",
     "fechaReporte": "2026-07-06",
-    "fechaSolucion": "24/08/2926 al 11/09/2026"
+    "fechaSolucion": "24/08/2026 al 11/09/2026"
   },
   {
     "id": 29,
