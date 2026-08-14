@@ -18,7 +18,7 @@
 
 // ---- Metadatos del encabezado / configuración del reporte ----
 const META = {
-  fechaActualizacion: "2026-08-13",   // se refleja en el encabezado ("Actualizado: ...")
+  fechaActualizacion: "2026-08-14",   // se refleja en el encabezado ("Actualizado: ...")
   version: "PUC v4.1.0",              // se refleja en el encabezado
   // Fecha de la Mesa Operativa anterior: cualquier hallazgo Liberado con
   // fechaSolucion posterior a esta fecha se marca automáticamente como
@@ -343,6 +343,21 @@ const HALLAZGOS = [
   },
   {
     "id": 21,
+    "medio": "Slack",
+    "flujo": "Enrolamiento",
+    "casos": 54,
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Al momento de iniciar sesión la pantalla se quedaba en blanco y posteriormente mostraba error (HK456)",
+    "descripcionCompleta": "Al momento de iniciar sesión la pantalla se quedaba en blanco y posteriormente mostraba error (HK456)",
+    "observaciones": "",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Análisis",
+    "fechaReporte": "2026-08-13",
+    "fechaSolucion": "03/08/2026 al 21/08/2026"
+  },
+  {
+    "id": 22,
     "medio": "Reunión Líderes",
     "flujo": "Notificaciones",
     "casos": "N/A",
@@ -357,7 +372,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-07-21"
   },
   {
-    "id": 22,
+    "id": 23,
     "medio": "Correo",
     "flujo": "Inversión Digital",
     "casos": "N/A",
@@ -372,7 +387,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-03"
   },
   {
-    "id": 23,
+    "id": 24,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -387,7 +402,7 @@ const HALLAZGOS = [
     "fechaSolucion": "No aplica"
   },
   {
-    "id": 24,
+    "id": 25,
     "medio": "Correo",
     "flujo": "Inversiones",
     "casos": "N/A",
@@ -402,7 +417,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 25,
+    "id": 26,
     "medio": "Reunión Líderes",
     "flujo": "Inversiones",
     "casos": "N/A",
@@ -417,7 +432,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 26,
+    "id": 27,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "100+",
@@ -432,7 +447,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 27,
+    "id": 28,
     "medio": "Reunión Líderes",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -447,7 +462,7 @@ const HALLAZGOS = [
     "fechaSolucion": "03/08/2026 al 21/08/2026"
   },
   {
-    "id": 28,
+    "id": 29,
     "medio": "Correo",
     "flujo": "Inversión Digital",
     "casos": "N/A",
@@ -457,12 +472,12 @@ const HALLAZGOS = [
     "descripcionCompleta": "Actualización de ISR en productos de inversión digital para todos los productos. \n1) Se identifica la necesidad por banca patrimonial de actualizar el ISR aplicable a todos los productos de inversión digital",
     "observaciones": "*04 de agosto el equipo de banca patrimonial confirma tasas de ISR mediante correo. \n*07 de agosto se confirma la actualización en el Core Bancario y el equipo de desarrollo de PUC realiza ajuste de cotizadores. Se sigue validando en ambiente de calidad derivado a que no se refleja en simuladores. \n*10 de agosto se tiene sesión con banca patrimonial para programar liberación a producción",
     "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
-    "estatus": "Desarrollo",
+    "estatus": "Liberado",
     "fechaReporte": "2026-08-04",
     "fechaSolucion": "2026-08-13"
   },
   {
-    "id": 29,
+    "id": 30,
     "medio": "Correo",
     "flujo": "Entrega TDD",
     "casos": 1,
@@ -477,7 +492,7 @@ const HALLAZGOS = [
     "fechaSolucion": "03/08/2026 al 21/08/2026"
   },
   {
-    "id": 30,
+    "id": 31,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -492,7 +507,7 @@ const HALLAZGOS = [
     "fechaSolucion": "24/08/2026 al 11/09/2026"
   },
   {
-    "id": 31,
+    "id": 32,
     "medio": "Reunión Líderes",
     "flujo": "Visualización productos",
     "casos": "N/A",
