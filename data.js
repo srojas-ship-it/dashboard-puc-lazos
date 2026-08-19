@@ -18,7 +18,7 @@
 
 // ---- Metadatos del encabezado / configuración del reporte ----
 const META = {
-  fechaActualizacion: "2026-08-18",   // se refleja en el encabezado ("Actualizado: ...")
+  fechaActualizacion: "2026-08-19",   // se refleja en el encabezado ("Actualizado: ...")
   version: "PUC v4.1.0",              // se refleja en el encabezado
   // Fecha de la Mesa Operativa anterior: cualquier hallazgo Liberado con
   // fechaSolucion posterior a esta fecha se marca automáticamente como
@@ -275,9 +275,9 @@ const HALLAZGOS = [
     "criticidad": "Bloqueante",
     "descripcion": "Al momento de realizar enrolamiento no logra registrarse el cliente (8DX0Q, C4FON, 5VXBU)",
     "descripcionCompleta": "Al momento de realizar enrolamiento no logra registrarse el cliente (8DX0Q, C4FON, 5VXBU)\nEstos casos derivan de que los clientes no tienen número de cliente.",
-    "observaciones": "*12 de agosto confirma Bertha Haydee Sanchez Aguilarse presentan por empleados que se convierten en clientes. se realizará ajuste masivo de clientes existentes y ajustes en el programa",
+    "observaciones": "*12 de agosto confirma Bertha Haydee Sanchez Aguilarse presentan por empleados que se convierten en clientes. se realizará ajuste masivo de clientes existentes y ajustes en el programa\n*19 de agosto se continuan presentando casos en producción de los códigos: C4FON, 5VXBU",
     "responsable": "Juan David Agudelo",
-    "estatus": "Pruebas",
+    "estatus": "Reincidencia",
     "fechaReporte": "2026-08-10",
     "fechaSolucion": "2026-08-14"
   },
@@ -305,11 +305,11 @@ const HALLAZGOS = [
     "criticidad": "Bloqueante",
     "descripcion": "Al momento de transferir muestra código de error (40KXP):",
     "descripcionCompleta": "Al momento de transferir muestra código de error (40KXP):\nSe identifica que es un tema relacionado a la generación de token de VU",
-    "observaciones": "*03 de agosto se confirma con Haydee que el equipo detecto mejoras y se atenderán dentro del sprint en curso (03 - 21 de agosto)\n*Se revisan mejoras para generar el token en el momento de la transacción y se encuentra en desarrollo.",
+    "observaciones": "*03 de agosto se confirma con Haydee que el equipo detecto mejoras y se atenderán dentro del sprint en curso (03 - 21 de agosto)\n*Se revisan mejoras para generar el token en el momento de la transacción y se encuentra en desarrollo. \n*19 de agosto: fecha objetivo de liberación 26 de agosto, pruebas beta 27 y 28 de agosto. Masificación a clientes 01 de septiembre",
     "responsable": "Juan David Agudelo",
-    "estatus": "Desarrollo",
+    "estatus": "Pruebas",
     "fechaReporte": "2026-07-30",
-    "fechaSolucion": "03/08/2026 al 21/08/2026"
+    "fechaSolucion": "2026-09-01"
   },
   {
     "id": 19,
@@ -320,11 +320,11 @@ const HALLAZGOS = [
     "criticidad": "Bloqueante",
     "descripcion": "Cliente que no se encuentran en directorio activo y no muestran modal para realizar nuevamente su proceso de enrolami...",
     "descripcionCompleta": "Cliente que no se encuentran en directorio activo y no muestran modal para realizar nuevamente su proceso de enrolamiento (S8SBS).",
-    "observaciones": "*12 de agosto\nS8SBS: Se presenta por clientes que están enrolandose despúes de mucho tiempo y no existen en el directorio activo. Se liberá próxima versión.",
+    "observaciones": "*12 de agosto\nS8SBS: Se presenta por clientes que están enrolandose despúes de mucho tiempo y no existen en el directorio activo. Se liberá próxima versión. \n*19 de agosto: fecha objetivo de liberación 26 de agosto, pruebas beta 27 y 28 de agosto. Masificación a clientes 01 de septiembre",
     "responsable": "Juan David Agudelo",
-    "estatus": "Desarrollo",
+    "estatus": "Pruebas",
     "fechaReporte": "2026-08-11",
-    "fechaSolucion": "03/08/2026 al 21/08/2026"
+    "fechaSolucion": "2026-09-01"
   },
   {
     "id": 20,
@@ -345,19 +345,64 @@ const HALLAZGOS = [
     "id": 21,
     "medio": "Slack",
     "flujo": "Enrolamiento",
+    "casos": 40,
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Al momento de ingresar a la aplicación se muestra el error (IFHLX)",
+    "descripcionCompleta": "Al momento de ingresar a la aplicación se muestra el error (IFHLX)",
+    "observaciones": "",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Análisis",
+    "fechaReporte": "2026-08-14",
+    "fechaSolucion": "03/08/2026 al 21/08/2026"
+  },
+  {
+    "id": 22,
+    "medio": "Slack",
+    "flujo": "Enrolamiento",
     "casos": 54,
     "clasificacion": "Incidencia",
     "criticidad": "Bloqueante",
     "descripcion": "Al momento de iniciar sesión la pantalla se quedaba en blanco y posteriormente mostraba error (HK456)",
     "descripcionCompleta": "Al momento de iniciar sesión la pantalla se quedaba en blanco y posteriormente mostraba error (HK456)",
+    "observaciones": "*13 de agosto se presenta una intermitencia en el servicio que consulta los datos del cliente de CRM Juan David Agudelo confirma por diversos grupos que se atendieron los casos correspondientes",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Liberado",
+    "fechaReporte": "2026-08-13",
+    "fechaSolucion": "2026-08-13"
+  },
+  {
+    "id": 23,
+    "medio": "Slack",
+    "flujo": "Enrolamiento",
+    "casos": 200,
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Se reportan nuevos códigos de error en flujos críticos de la aplicación (3DHI3,NO9VE,TXJ6K)",
+    "descripcionCompleta": "Se reportan nuevos códigos de error en flujos críticos de la aplicación (3DHI3,NO9VE,TXJ6K)",
     "observaciones": "",
     "responsable": "Juan David Agudelo",
     "estatus": "Análisis",
-    "fechaReporte": "2026-08-13",
+    "fechaReporte": "2026-08-18",
     "fechaSolucion": "03/08/2026 al 21/08/2026"
   },
   {
-    "id": 22,
+    "id": 24,
+    "medio": "Reunión Líderes",
+    "flujo": "Transferencias",
+    "casos": "N/A",
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Al momento de transferir clientes desde una cuenta BKY no permita realizar transferencia",
+    "descripcionCompleta": "Al momento de transferir clientes desde una cuenta BKY no permita realizar transferencia",
+    "observaciones": "*14 de agosto se revisa y se puede solventar de forma temporal asignando un MTU a todas las cuentas BKY. \n*15 de agosto se comparte HU al Core Bancario, están revisando para obtener el listado de cuentas BKY sin MTU y considerar una asignación masiva. \n*19 de agosto estamos pendientes de la confirmación de los tiempos por parte del Core Bancario",
+    "responsable": "Esperanza Hernandez Trejo Maria Fernanda Aguilera Vega",
+    "estatus": "Análisis",
+    "fechaReporte": "2026-08-06",
+    "fechaSolucion": "24/08/2026 al 28/08/2026"
+  },
+  {
+    "id": 25,
     "medio": "Reunión Líderes",
     "flujo": "Notificaciones",
     "casos": "N/A",
@@ -372,7 +417,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-07-21"
   },
   {
-    "id": 23,
+    "id": 26,
     "medio": "Correo",
     "flujo": "Inversión Digital",
     "casos": "N/A",
@@ -387,7 +432,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-03"
   },
   {
-    "id": 24,
+    "id": 27,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -402,7 +447,7 @@ const HALLAZGOS = [
     "fechaSolucion": "No aplica"
   },
   {
-    "id": 25,
+    "id": 28,
     "medio": "Correo",
     "flujo": "Inversiones",
     "casos": "N/A",
@@ -417,7 +462,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 26,
+    "id": 29,
     "medio": "Reunión Líderes",
     "flujo": "Inversiones",
     "casos": "N/A",
@@ -432,7 +477,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 27,
+    "id": 30,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "100+",
@@ -447,7 +492,22 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 28,
+    "id": 31,
+    "medio": "Reunión Líderes",
+    "flujo": "Transferencias",
+    "casos": "N/A",
+    "clasificacion": "Mejora",
+    "criticidad": "Bloqueante",
+    "descripcion": "Permitir asignar montros transaccionales desde PUC a cuentas BKY",
+    "descripcionCompleta": "Permitir asignar montros transaccionales desde PUC a cuentas BKY",
+    "observaciones": "*13 de agosto se integra historia de usuario con el equipo de desarrollo. \n*14 de agosto en la sesión de estabilidad de plataformas se confirma con los líderes que no se contempla en la próxima liberación y se implementará una medida de contención.",
+    "responsable": "Juan David Agudelo Cristian Antonio Rodriguez Hernandez",
+    "estatus": "Desarrollo",
+    "fechaReporte": "2026-08-06",
+    "fechaSolucion": "31/08/2026 al18/09/2026"
+  },
+  {
+    "id": 32,
     "medio": "Reunión Líderes",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -455,14 +515,14 @@ const HALLAZGOS = [
     "criticidad": "No Bloqueante",
     "descripcion": "Clientes con cuentas N4 BKY no visualizan la sección para aperturar cuenta CSB.",
     "descripcionCompleta": "Clientes con cuentas N4 BKY no visualizan la sección para aperturar cuenta CSB.\n1) Se notifica que existen clientes que no logran aperturar cuenta por que en la aplicación no se muestra opción de apertura al tener una cuenta BKY",
-    "observaciones": "*29 jul: Se integra mejora para evitar que los casos sucedan en producción",
+    "observaciones": "*29 jul: Se integra mejora para evitar que los casos sucedan en producción\n*19 de agosto: fecha objetivo de liberación 26 de agosto, pruebas beta 27 y 28 de agosto. Masificación a clientes 01 de septiembre",
     "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
-    "estatus": "Desarrollo",
+    "estatus": "Pruebas",
     "fechaReporte": "2026-07-22",
-    "fechaSolucion": "03/08/2026 al 21/08/2026"
+    "fechaSolucion": "2026-09-01"
   },
   {
-    "id": 29,
+    "id": 33,
     "medio": "Correo",
     "flujo": "Inversión Digital",
     "casos": "N/A",
@@ -477,7 +537,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-13"
   },
   {
-    "id": 30,
+    "id": 34,
     "medio": "Correo",
     "flujo": "Entrega TDD",
     "casos": 1,
@@ -485,14 +545,14 @@ const HALLAZGOS = [
     "criticidad": "No Bloqueante",
     "descripcion": "Realizar ajustes en cobros de reposición de entrega de tarjeta a domicilio a costo \"$0.00\"",
     "descripcionCompleta": "Realizar ajustes en cobros de reposición de entrega de tarjeta a domicilio a costo \"$0.00\"\n1) Se solicita a tráves de correo por parte de operaciones con el vobo de jurídico.",
-    "observaciones": "*06 de agosto se integra historia de usuario y validación por el equipo. \n*07 de agosto se solicita confirmación al Core Bancario de la fecha de atención en calidad.",
+    "observaciones": "*06 de agosto se integra historia de usuario y validación por el equipo. \n*07 de agosto solicita confirmación al Core Bancario de la fecha de atención en calidad.\n*13 de agosto Core bancario confirma que pueden iniciar pruebas.\n*17 de agosto se comienzan pruebas funcionales, sin embargo, existe error a nivel servicios donde no muestra movimientos. \n*18 de agosto Jorge Raul Uribe Sanchez se lleva el seguimiento con infraestructura",
     "responsable": "Jessica Isai Juarez Gomez\nCristian Antonio Rodriguez Hernandez",
     "estatus": "Desarrollo",
     "fechaReporte": "2026-08-06",
     "fechaSolucion": "03/08/2026 al 21/08/2026"
   },
   {
-    "id": 31,
+    "id": 35,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -507,7 +567,7 @@ const HALLAZGOS = [
     "fechaSolucion": "24/08/2026 al 11/09/2026"
   },
   {
-    "id": 32,
+    "id": 36,
     "medio": "Reunión Líderes",
     "flujo": "Visualización productos",
     "casos": "N/A",
