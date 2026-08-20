@@ -18,7 +18,7 @@
 
 // ---- Metadatos del encabezado / configuración del reporte ----
 const META = {
-  fechaActualizacion: "2026-08-19",   // se refleja en el encabezado ("Actualizado: ...")
+  fechaActualizacion: "2026-08-20",   // se refleja en el encabezado ("Actualizado: ...")
   version: "PUC v4.1.0",              // se refleja en el encabezado
   // Fecha de la Mesa Operativa anterior: cualquier hallazgo Liberado con
   // fechaSolucion posterior a esta fecha se marca automáticamente como
@@ -273,13 +273,13 @@ const HALLAZGOS = [
     "casos": 3,
     "clasificacion": "Incidencia",
     "criticidad": "Bloqueante",
-    "descripcion": "Al momento de realizar enrolamiento no logra registrarse el cliente (8DX0Q, C4FON, 5VXBU)",
-    "descripcionCompleta": "Al momento de realizar enrolamiento no logra registrarse el cliente (8DX0Q, C4FON, 5VXBU)\nEstos casos derivan de que los clientes no tienen número de cliente.",
-    "observaciones": "*12 de agosto confirma Bertha Haydee Sanchez Aguilarse presentan por empleados que se convierten en clientes. se realizará ajuste masivo de clientes existentes y ajustes en el programa\n*19 de agosto se continuan presentando casos en producción de los códigos: C4FON, 5VXBU",
+    "descripcion": "Al momento de realizar enrolamiento no logra registrarse el cliente (E12A8",
+    "descripcionCompleta": "Al momento de realizar enrolamiento no logra registrarse el cliente (E12A8\n, 8DX0Q, C4FON, 5VXBU)\nEstos casos derivan de que los clientes no tienen número de cliente.",
+    "observaciones": "*12 de agosto confirma Bertha Haydee Sanchez Aguilarse presentan por empleados que se convierten en clientes. se realizará ajuste masivo de clientes existentes y ajustes en el programa\n*19 de agosto se continuan presentando casos en producción de los códigos: C4FON, 5VXBU. Se esta revisando el ticket con Juan Ramon Becerra Diaz con el fin de obtener una solución de raíz",
     "responsable": "Juan David Agudelo",
-    "estatus": "Reincidencia",
+    "estatus": "Desarrollo",
     "fechaReporte": "2026-08-10",
-    "fechaSolucion": "2026-08-14"
+    "fechaSolucion": "Por definir"
   },
   {
     "id": 17,
@@ -335,11 +335,11 @@ const HALLAZGOS = [
     "criticidad": "Bloqueante",
     "descripcion": "Al momento de iniciar sesión se muestran los siguientes códigos de eror: PU5VO y OC6I6",
     "descripcionCompleta": "Al momento de iniciar sesión se muestran los siguientes códigos de eror: PU5VO y OC6I6",
-    "observaciones": "",
+    "observaciones": "*19 de agosto estos dos codigos de error se presentaron en dias pasados por los problemas de timeout en la consulta al interlocutor solo se presentaron el 12 de agosto en el lapso de tiempo que duro la afectacion //Resuelto",
     "responsable": "Juan David Agudelo",
-    "estatus": "Análisis",
+    "estatus": "Liberado",
     "fechaReporte": "2026-08-13",
-    "fechaSolucion": "03/08/2026 al 21/08/2026"
+    "fechaSolucion": "2026-08-12"
   },
   {
     "id": 21,
@@ -350,11 +350,11 @@ const HALLAZGOS = [
     "criticidad": "Bloqueante",
     "descripcion": "Al momento de ingresar a la aplicación se muestra el error (IFHLX)",
     "descripcionCompleta": "Al momento de ingresar a la aplicación se muestra el error (IFHLX)",
-    "observaciones": "",
+    "observaciones": "*19 de agosto estos dos codigos de error se presentaron en dias pasados por los problemas de timeout en la consulta al interlocutor solo se presentaron el 14 de agosto en el lapso de tiempo que duro la afectacion //Resuelto\n* Se tuvo sesión con el equipo de infraestructura para aumentar el punto de conexión con los servicios en la aplicación",
     "responsable": "Juan David Agudelo",
-    "estatus": "Análisis",
+    "estatus": "Liberado",
     "fechaReporte": "2026-08-14",
-    "fechaSolucion": "03/08/2026 al 21/08/2026"
+    "fechaSolucion": "2026-08-14"
   },
   {
     "id": 22,
@@ -365,7 +365,7 @@ const HALLAZGOS = [
     "criticidad": "Bloqueante",
     "descripcion": "Al momento de iniciar sesión la pantalla se quedaba en blanco y posteriormente mostraba error (HK456)",
     "descripcionCompleta": "Al momento de iniciar sesión la pantalla se quedaba en blanco y posteriormente mostraba error (HK456)",
-    "observaciones": "*13 de agosto se presenta una intermitencia en el servicio que consulta los datos del cliente de CRM Juan David Agudelo confirma por diversos grupos que se atendieron los casos correspondientes",
+    "observaciones": "*13 de agosto se presenta una intermitencia en el servicio que consulta los datos del cliente de CRM Juan David Agudelo confirma por diversos grupos que se atendieron los casos correspondientes //Resulto",
     "responsable": "Juan David Agudelo",
     "estatus": "Liberado",
     "fechaReporte": "2026-08-13",
@@ -380,11 +380,11 @@ const HALLAZGOS = [
     "criticidad": "Bloqueante",
     "descripcion": "Se reportan nuevos códigos de error en flujos críticos de la aplicación (3DHI3,NO9VE,TXJ6K)",
     "descripcionCompleta": "Se reportan nuevos códigos de error en flujos críticos de la aplicación (3DHI3,NO9VE,TXJ6K)",
-    "observaciones": "",
+    "observaciones": "*19 de agosto\n3DHI3 -- Movimientos duplicados en transfer se parametriza mensaje funcional.  NO9VE -- Error de dispositivo ya pertenece a otro cliente   --  TXJ6K Errores con time out  integracion ya solucionado \nSe realizará revisión próximo sprint para identificar códigos de error",
     "responsable": "Juan David Agudelo",
-    "estatus": "Análisis",
+    "estatus": "Liberado",
     "fechaReporte": "2026-08-18",
-    "fechaSolucion": "03/08/2026 al 21/08/2026"
+    "fechaSolucion": "2026-08-19"
   },
   {
     "id": 24,
@@ -399,7 +399,7 @@ const HALLAZGOS = [
     "responsable": "Esperanza Hernandez Trejo Maria Fernanda Aguilera Vega",
     "estatus": "Análisis",
     "fechaReporte": "2026-08-06",
-    "fechaSolucion": "24/08/2026 al 28/08/2026"
+    "fechaSolucion": "2026-08-28"
   },
   {
     "id": 25,
@@ -504,7 +504,7 @@ const HALLAZGOS = [
     "responsable": "Juan David Agudelo Cristian Antonio Rodriguez Hernandez",
     "estatus": "Desarrollo",
     "fechaReporte": "2026-08-06",
-    "fechaSolucion": "31/08/2026 al18/09/2026"
+    "fechaSolucion": "24/08/2026 al18/09/2026"
   },
   {
     "id": 32,
@@ -549,7 +549,7 @@ const HALLAZGOS = [
     "responsable": "Jessica Isai Juarez Gomez\nCristian Antonio Rodriguez Hernandez",
     "estatus": "Desarrollo",
     "fechaReporte": "2026-08-06",
-    "fechaSolucion": "03/08/2026 al 21/08/2026"
+    "fechaSolucion": "2026-08-26"
   },
   {
     "id": 35,
