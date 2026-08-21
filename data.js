@@ -18,7 +18,7 @@
 
 // ---- Metadatos del encabezado / configuración del reporte ----
 const META = {
-  fechaActualizacion: "2026-08-20",   // se refleja en el encabezado ("Actualizado: ...")
+  fechaActualizacion: "2026-08-21",   // se refleja en el encabezado ("Actualizado: ...")
   version: "PUC v4.1.0",              // se refleja en el encabezado
   // Fecha de la Mesa Operativa anterior: cualquier hallazgo Liberado con
   // fechaSolucion posterior a esta fecha se marca automáticamente como
@@ -274,12 +274,12 @@ const HALLAZGOS = [
     "clasificacion": "Incidencia",
     "criticidad": "Bloqueante",
     "descripcion": "Al momento de realizar enrolamiento no logra registrarse el cliente (E12A8",
-    "descripcionCompleta": "Al momento de realizar enrolamiento no logra registrarse el cliente (E12A8\n, 8DX0Q, C4FON, 5VXBU)\nEstos casos derivan de que los clientes no tienen número de cliente.",
-    "observaciones": "*12 de agosto confirma Bertha Haydee Sanchez Aguilarse presentan por empleados que se convierten en clientes. se realizará ajuste masivo de clientes existentes y ajustes en el programa\n*19 de agosto se continuan presentando casos en producción de los códigos: C4FON, 5VXBU. Se esta revisando el ticket con Juan Ramon Becerra Diaz con el fin de obtener una solución de raíz",
+    "descripcionCompleta": "Al momento de realizar enrolamiento no logra registrarse el cliente (E12A8\n, 8DX0Q, C4FON, 5VXBU, 9X567)\nEstos casos derivan de que los clientes no tienen número de cliente.",
+    "observaciones": "*12 de agosto confirma Bertha Haydee Sanchez Aguilarse presentan por empleados que se convierten en clientes. se realizará ajuste masivo de clientes existentes y ajustes en el programa\n*19 de agosto se continuan presentando casos en producción de los códigos: C4FON, 5VXBU. Se esta revisando el ticket con Juan Ramon Becerra Diaz con el fin de obtener una solución de raíz\n*20 de agosto se va a crear ID - Nucleo de cliente, a todos los usuarios que hoy existen que no tengan actualmente. \n*21 de agosto se hizo el reporte definitivo por la mañana y en la noche del 21 de agosto se generaría control de cambios urgente en la noche",
     "responsable": "Juan David Agudelo",
-    "estatus": "Desarrollo",
+    "estatus": "Pruebas",
     "fechaReporte": "2026-08-10",
-    "fechaSolucion": "Por definir"
+    "fechaSolucion": "2026-08-21"
   },
   {
     "id": 17,
@@ -397,12 +397,42 @@ const HALLAZGOS = [
     "descripcionCompleta": "Al momento de transferir clientes desde una cuenta BKY no permita realizar transferencia",
     "observaciones": "*14 de agosto se revisa y se puede solventar de forma temporal asignando un MTU a todas las cuentas BKY. \n*15 de agosto se comparte HU al Core Bancario, están revisando para obtener el listado de cuentas BKY sin MTU y considerar una asignación masiva. \n*19 de agosto estamos pendientes de la confirmación de los tiempos por parte del Core Bancario",
     "responsable": "Esperanza Hernandez Trejo Maria Fernanda Aguilera Vega",
-    "estatus": "Análisis",
+    "estatus": "Desarrollo",
     "fechaReporte": "2026-08-06",
     "fechaSolucion": "2026-08-28"
   },
   {
     "id": 25,
+    "medio": "Slack",
+    "flujo": "Enrolamiento",
+    "casos": 75,
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Al momento de ingresar a la aplicación se están presentando nuevos códigos de error (QXP10 · PRQDS · L4Z7I)",
+    "descripcionCompleta": "Al momento de ingresar a la aplicación se están presentando nuevos códigos de error (QXP10 · PRQDS · L4Z7I)",
+    "observaciones": "21 de agosto\n*L4Z7I: Esto se derivado a que el dispositivo ya se encuentra registrado para otro cliente. - Se parametriza modal \n*QXP10 · PRQDS: Es un tema en la validación de tokense libera la próxima versión 01 de septimebre",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Pruebas",
+    "fechaReporte": "2026-08-20",
+    "fechaSolucion": "2026-09-01"
+  },
+  {
+    "id": 26,
+    "medio": "Slack",
+    "flujo": "Iniciar Sesión",
+    "casos": 14,
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Al momento de iniciar sesión se le muestra es nuevo código de error a los clientes (BNSI5)",
+    "descripcionCompleta": "Al momento de iniciar sesión se le muestra es nuevo código de error a los clientes (BNSI5)",
+    "observaciones": "",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Análisis",
+    "fechaReporte": "2026-08-21",
+    "fechaSolucion": "Por definir"
+  },
+  {
+    "id": 27,
     "medio": "Reunión Líderes",
     "flujo": "Notificaciones",
     "casos": "N/A",
@@ -417,7 +447,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-07-21"
   },
   {
-    "id": 26,
+    "id": 28,
     "medio": "Correo",
     "flujo": "Inversión Digital",
     "casos": "N/A",
@@ -432,7 +462,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-03"
   },
   {
-    "id": 27,
+    "id": 29,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -447,7 +477,7 @@ const HALLAZGOS = [
     "fechaSolucion": "No aplica"
   },
   {
-    "id": 28,
+    "id": 30,
     "medio": "Correo",
     "flujo": "Inversiones",
     "casos": "N/A",
@@ -462,7 +492,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 29,
+    "id": 31,
     "medio": "Reunión Líderes",
     "flujo": "Inversiones",
     "casos": "N/A",
@@ -477,7 +507,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 30,
+    "id": 32,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "100+",
@@ -492,7 +522,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 31,
+    "id": 33,
     "medio": "Reunión Líderes",
     "flujo": "Transferencias",
     "casos": "N/A",
@@ -504,10 +534,10 @@ const HALLAZGOS = [
     "responsable": "Juan David Agudelo Cristian Antonio Rodriguez Hernandez",
     "estatus": "Desarrollo",
     "fechaReporte": "2026-08-06",
-    "fechaSolucion": "24/08/2026 al18/09/2026"
+    "fechaSolucion": "2026-09-18"
   },
   {
-    "id": 32,
+    "id": 34,
     "medio": "Reunión Líderes",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -522,7 +552,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-09-01"
   },
   {
-    "id": 33,
+    "id": 35,
     "medio": "Correo",
     "flujo": "Inversión Digital",
     "casos": "N/A",
@@ -537,7 +567,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-13"
   },
   {
-    "id": 34,
+    "id": 36,
     "medio": "Correo",
     "flujo": "Entrega TDD",
     "casos": 1,
@@ -552,7 +582,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-26"
   },
   {
-    "id": 35,
+    "id": 37,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -562,12 +592,12 @@ const HALLAZGOS = [
     "descripcionCompleta": "Dependencia de uso de red fija para realizar flujo de apertura de cuenta.\n1) Se identifico que existe una dependencia al momento de realizar el flujo de apertura de cuenta con el uso de una red wifi estable, con datos móviles, se notifica que no es posible concluir el proceso de forma exitosa.",
     "observaciones": "*06 de agosto se genera HU con el equipo técnico considerando las mejoras en latencia. Se atiende próximo sprint por la atención de incidencias prioritarias y temas de performance en la aplicación.",
     "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
-    "estatus": "Backlog",
+    "estatus": "Desarrollo",
     "fechaReporte": "2026-07-06",
-    "fechaSolucion": "24/08/2026 al 11/09/2026"
+    "fechaSolucion": "2026-09-18"
   },
   {
-    "id": 36,
+    "id": 38,
     "medio": "Reunión Líderes",
     "flujo": "Visualización productos",
     "casos": "N/A",
@@ -579,7 +609,7 @@ const HALLAZGOS = [
     "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
     "estatus": "Definición de Negocio",
     "fechaReporte": "2026-07-14",
-    "fechaSolucion": "03/08/2026 al 21/08/2026"
+    "fechaSolucion": "Por definir"
   }
 ];
 
