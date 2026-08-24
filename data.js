@@ -18,7 +18,7 @@
 
 // ---- Metadatos del encabezado / configuración del reporte ----
 const META = {
-  fechaActualizacion: "2026-08-21",   // se refleja en el encabezado ("Actualizado: ...")
+  fechaActualizacion: "2026-08-24",   // se refleja en el encabezado ("Actualizado: ...")
   version: "PUC v4.1.0",              // se refleja en el encabezado
   // Fecha de la Mesa Operativa anterior: cualquier hallazgo Liberado con
   // fechaSolucion posterior a esta fecha se marca automáticamente como
@@ -410,7 +410,7 @@ const HALLAZGOS = [
     "criticidad": "Bloqueante",
     "descripcion": "Al momento de ingresar a la aplicación se están presentando nuevos códigos de error (QXP10 · PRQDS · L4Z7I)",
     "descripcionCompleta": "Al momento de ingresar a la aplicación se están presentando nuevos códigos de error (QXP10 · PRQDS · L4Z7I)",
-    "observaciones": "21 de agosto\n*L4Z7I: Esto se derivado a que el dispositivo ya se encuentra registrado para otro cliente. - Se parametriza modal \n*QXP10 · PRQDS: Es un tema en la validación de tokense libera la próxima versión 01 de septimebre",
+    "observaciones": "21 de agosto\n*L4Z7I: Esto se derivado a que el dispositivo ya se encuentra registrado para otro cliente. - Se parametriza modal \n*QXP10 · PRQDS: Es un tema en la validación de token libera la próxima versión 01 de septimebre",
     "responsable": "Juan David Agudelo",
     "estatus": "Pruebas",
     "fechaReporte": "2026-08-20",
