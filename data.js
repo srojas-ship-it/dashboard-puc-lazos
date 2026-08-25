@@ -18,7 +18,7 @@
 
 // ---- Metadatos del encabezado / configuración del reporte ----
 const META = {
-  fechaActualizacion: "2026-08-24",   // se refleja en el encabezado ("Actualizado: ...")
+  fechaActualizacion: "2026-08-25",   // se refleja en el encabezado ("Actualizado: ...")
   version: "PUC v4.1.0",              // se refleja en el encabezado
   // Fecha de la Mesa Operativa anterior: cualquier hallazgo Liberado con
   // fechaSolucion posterior a esta fecha se marca automáticamente como
@@ -193,36 +193,6 @@ const HALLAZGOS = [
   },
   {
     "id": 11,
-    "medio": "Laboratorio BP",
-    "flujo": "Apertura de Cuenta",
-    "casos": 1,
-    "clasificacion": "Incidencia",
-    "criticidad": "No Bloqueante",
-    "descripcion": "Tipo de fuente grande (Biométricos y videograbación)",
-    "descripcionCompleta": "Tipo de fuente grande (Biométricos y videograbación)\nAl tener un tipo de fuente grande en el dispositivo no se visualiza la acción de \"continuar\" en los puntos de:\n- Videograbación\n- Caputura biométrico\n\nEl cliente puede reducir tamaño de fuente para \"avanzar\" desde su dispositivo. Pero se busca solución ráiz con el proveedor.",
-    "observaciones": "* 9/Jul se escala con el proveedor karalundi, sin embargo, ya se encuentra en pruebas la implementación con Incode y se les sugiere repetir ese escenario con letra grande en el dispositivo samsung\n* 14/Jul karalundi reporta que está en revisión y el proveedor esta trabajando en una solucion para solucionar el tamaño de la fuente.\n*  16/Jul Se tuvo una reunion con el proveedor, tiene la corrección lista el día 17/06/2026, En cuanto el proveedor lo comunique se realizan pruebas. \n* 17/Jul Se realizaron las pruebas, aparece el boton pero ahora el texto se superpone, se escalo de nuevo al proveedor.\n* 22/Jul El proveedor nos compartio una solucion para implementar desde la aplicacion, ya se realizo la implementacion y se tiene en ambiente de pruebas \n*Se libera con la nueva versión el 03 de agosto para no impactar proyecto en curso NPS\n*29/Jul: Se tendrá solución en BETA el día 03 de agosto pero estan pendientes pruebas de validadores funcionales en BETA producción y aprobación en tiendas.\n*07 Agosto: Continua versión 4.1.0 en revisión por parte de tiendas de IOS. \n*10 Agosto: Se confirma liberación y masificación en tiendas (PlayStore y AppStore).",
-    "responsable": "Juan David Agudelo",
-    "estatus": "Liberado",
-    "fechaReporte": "2026-07-08",
-    "fechaSolucion": "2026-08-10"
-  },
-  {
-    "id": 12,
-    "medio": "Reunión Líderes",
-    "flujo": "Entrega TDD",
-    "casos": 1,
-    "clasificacion": "Incidencia",
-    "criticidad": "No Bloqueante",
-    "descripcion": "Clientes no pueden modificar Colonia de entrega en reposición \"TDD\":",
-    "descripcionCompleta": "Clientes no pueden modificar Colonia de entrega en reposición \"TDD\":\nAl ingresar al formulario de entrega de tdd y tener mi dirección registrada. Al querer cambiarla y seleccionar otra colonia no permite a los clientes ajustarla.",
-    "observaciones": "*29/Jul: Se tendrá solución en BETA el día 03 de agosto pero estan pendientes pruebas de validadores funcionales en BETA producción y aprobación en tiendas.\n*07 Agosto: Continua versión 4.1.0 en revisión por parte de tiendas de IOS. \n*10 Agosto: Se confirma liberación y masificación en tiendas (PlayStore y AppStore).",
-    "responsable": "Cristian Rodríguez Hernández",
-    "estatus": "Liberado",
-    "fechaReporte": "2026-07-28",
-    "fechaSolucion": "2026-08-10"
-  },
-  {
-    "id": 13,
     "medio": "Slack",
     "flujo": "Enrolamiento",
     "casos": 8,
@@ -237,22 +207,37 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-06"
   },
   {
-    "id": 14,
-    "medio": "Slack",
-    "flujo": "Enrolamiento",
-    "casos": 107,
+    "id": 12,
+    "medio": "Laboratorio BP",
+    "flujo": "Apertura de Cuenta",
+    "casos": 1,
     "clasificacion": "Incidencia",
-    "criticidad": "Bloqueante",
-    "descripcion": "Se detectan nuevos códigos de error a partir de la liberación de la versión 4.1.0:",
-    "descripcionCompleta": "Se detectan nuevos códigos de error a partir de la liberación de la versión 4.1.0: \nNOOSP , 1BTBT, D7OLI",
-    "observaciones": "*12 de agosto: \nNOOSP y D7OLI: Se presentaron el día lunes 10 de agosto y se solventaron\n1BTBT: El cliente esta intentando enrolarse en un dispositivo que ya se encuentra registrado por otro usuario. Se parametrizo modal y quedo solventado 13 de agosto. Este es derivado",
+    "criticidad": "No Bloqueante",
+    "descripcion": "Tipo de fuente grande (Biométricos y videograbación)",
+    "descripcionCompleta": "Tipo de fuente grande (Biométricos y videograbación)\nAl tener un tipo de fuente grande en el dispositivo no se visualiza la acción de \"continuar\" en los puntos de:\n- Videograbación\n- Caputura biométrico\n\nEl cliente puede reducir tamaño de fuente para \"avanzar\" desde su dispositivo. Pero se busca solución ráiz con el proveedor.",
+    "observaciones": "* 9/Jul se escala con el proveedor karalundi, sin embargo, ya se encuentra en pruebas la implementación con Incode y se les sugiere repetir ese escenario con letra grande en el dispositivo samsung\n* 14/Jul karalundi reporta que está en revisión y el proveedor esta trabajando en una solucion para solucionar el tamaño de la fuente.\n*  16/Jul Se tuvo una reunion con el proveedor, tiene la corrección lista el día 17/06/2026, En cuanto el proveedor lo comunique se realizan pruebas. \n* 17/Jul Se realizaron las pruebas, aparece el boton pero ahora el texto se superpone, se escalo de nuevo al proveedor.\n* 22/Jul El proveedor nos compartio una solucion para implementar desde la aplicacion, ya se realizo la implementacion y se tiene en ambiente de pruebas \n*Se libera con la nueva versión el 03 de agosto para no impactar proyecto en curso NPS\n*29/Jul: Se tendrá solución en BETA el día 03 de agosto pero estan pendientes pruebas de validadores funcionales en BETA producción y aprobación en tiendas.\n*07 Agosto: Continua versión 4.1.0 en revisión por parte de tiendas de IOS. \n*10 Agosto: Se confirma liberación y masificación en tiendas (PlayStore y AppStore).",
     "responsable": "Juan David Agudelo",
     "estatus": "Liberado",
-    "fechaReporte": "2026-08-11",
-    "fechaSolucion": "2026-08-12"
+    "fechaReporte": "2026-07-08",
+    "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 15,
+    "id": 13,
+    "medio": "Reunión Líderes",
+    "flujo": "Entrega TDD",
+    "casos": 1,
+    "clasificacion": "Incidencia",
+    "criticidad": "No Bloqueante",
+    "descripcion": "Clientes no pueden modificar Colonia de entrega en reposición \"TDD\":",
+    "descripcionCompleta": "Clientes no pueden modificar Colonia de entrega en reposición \"TDD\":\nAl ingresar al formulario de entrega de tdd y tener mi dirección registrada. Al querer cambiarla y seleccionar otra colonia no permite a los clientes ajustarla.",
+    "observaciones": "*29/Jul: Se tendrá solución en BETA el día 03 de agosto pero estan pendientes pruebas de validadores funcionales en BETA producción y aprobación en tiendas.\n*07 Agosto: Continua versión 4.1.0 en revisión por parte de tiendas de IOS. \n*10 Agosto: Se confirma liberación y masificación en tiendas (PlayStore y AppStore).",
+    "responsable": "Cristian Rodríguez Hernández",
+    "estatus": "Liberado",
+    "fechaReporte": "2026-07-28",
+    "fechaSolucion": "2026-08-10"
+  },
+  {
+    "id": 14,
     "medio": "Slack",
     "flujo": "Apertura de Cuenta",
     "casos": 3,
@@ -267,19 +252,34 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-11"
   },
   {
-    "id": 16,
+    "id": 15,
     "medio": "Slack",
     "flujo": "Enrolamiento",
-    "casos": 3,
+    "casos": 107,
     "clasificacion": "Incidencia",
     "criticidad": "Bloqueante",
-    "descripcion": "Al momento de realizar enrolamiento no logra registrarse el cliente (E12A8",
-    "descripcionCompleta": "Al momento de realizar enrolamiento no logra registrarse el cliente (E12A8\n, 8DX0Q, C4FON, 5VXBU, 9X567)\nEstos casos derivan de que los clientes no tienen número de cliente.",
-    "observaciones": "*12 de agosto confirma Bertha Haydee Sanchez Aguilarse presentan por empleados que se convierten en clientes. se realizará ajuste masivo de clientes existentes y ajustes en el programa\n*19 de agosto se continuan presentando casos en producción de los códigos: C4FON, 5VXBU. Se esta revisando el ticket con Juan Ramon Becerra Diaz con el fin de obtener una solución de raíz\n*20 de agosto se va a crear ID - Nucleo de cliente, a todos los usuarios que hoy existen que no tengan actualmente. \n*21 de agosto se hizo el reporte definitivo por la mañana y en la noche del 21 de agosto se generaría control de cambios urgente en la noche",
+    "descripcion": "Se detectan nuevos códigos de error a partir de la liberación de la versión 4.1.0:",
+    "descripcionCompleta": "Se detectan nuevos códigos de error a partir de la liberación de la versión 4.1.0: \nNOOSP , 1BTBT, D7OLI",
+    "observaciones": "*12 de agosto: \nNOOSP y D7OLI: Se presentaron el día lunes 10 de agosto y se solventaron\n1BTBT: El cliente esta intentando enrolarse en un dispositivo que ya se encuentra registrado por otro usuario. Se parametrizo modal y quedo solventado 13 de agosto. Este es derivado",
     "responsable": "Juan David Agudelo",
-    "estatus": "Pruebas",
-    "fechaReporte": "2026-08-10",
-    "fechaSolucion": "2026-08-21"
+    "estatus": "Liberado",
+    "fechaReporte": "2026-08-11",
+    "fechaSolucion": "2026-08-12"
+  },
+  {
+    "id": 16,
+    "medio": "Reunión Líderes",
+    "flujo": "Enrolamiento",
+    "casos": 38,
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Al momento de iniciar sesión se muestran los siguientes códigos de eror: PU5VO y OC6I6",
+    "descripcionCompleta": "Al momento de iniciar sesión se muestran los siguientes códigos de eror: PU5VO y OC6I6",
+    "observaciones": "*19 de agosto estos dos codigos de error se presentaron en dias pasados por los problemas de timeout en la consulta al interlocutor solo se presentaron el 12 de agosto en el lapso de tiempo que duro la afectacion //Resuelto",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Liberado",
+    "fechaReporte": "2026-08-13",
+    "fechaSolucion": "2026-08-12"
   },
   {
     "id": 17,
@@ -299,50 +299,20 @@ const HALLAZGOS = [
   {
     "id": 18,
     "medio": "Slack",
-    "flujo": "Transferencias",
-    "casos": 2,
-    "clasificacion": "Incidencia",
-    "criticidad": "Bloqueante",
-    "descripcion": "Al momento de transferir muestra código de error (40KXP):",
-    "descripcionCompleta": "Al momento de transferir muestra código de error (40KXP):\nSe identifica que es un tema relacionado a la generación de token de VU",
-    "observaciones": "*03 de agosto se confirma con Haydee que el equipo detecto mejoras y se atenderán dentro del sprint en curso (03 - 21 de agosto)\n*Se revisan mejoras para generar el token en el momento de la transacción y se encuentra en desarrollo. \n*19 de agosto: fecha objetivo de liberación 26 de agosto, pruebas beta 27 y 28 de agosto. Masificación a clientes 01 de septiembre",
-    "responsable": "Juan David Agudelo",
-    "estatus": "Pruebas",
-    "fechaReporte": "2026-07-30",
-    "fechaSolucion": "2026-09-01"
-  },
-  {
-    "id": 19,
-    "medio": "Reunión Líderes",
     "flujo": "Enrolamiento",
-    "casos": 51,
+    "casos": 54,
     "clasificacion": "Incidencia",
     "criticidad": "Bloqueante",
-    "descripcion": "Cliente que no se encuentran en directorio activo y no muestran modal para realizar nuevamente su proceso de enrolami...",
-    "descripcionCompleta": "Cliente que no se encuentran en directorio activo y no muestran modal para realizar nuevamente su proceso de enrolamiento (S8SBS).",
-    "observaciones": "*12 de agosto\nS8SBS: Se presenta por clientes que están enrolandose despúes de mucho tiempo y no existen en el directorio activo. Se liberá próxima versión. \n*19 de agosto: fecha objetivo de liberación 26 de agosto, pruebas beta 27 y 28 de agosto. Masificación a clientes 01 de septiembre",
-    "responsable": "Juan David Agudelo",
-    "estatus": "Pruebas",
-    "fechaReporte": "2026-08-11",
-    "fechaSolucion": "2026-09-01"
-  },
-  {
-    "id": 20,
-    "medio": "Reunión Líderes",
-    "flujo": "Enrolamiento",
-    "casos": 38,
-    "clasificacion": "Incidencia",
-    "criticidad": "Bloqueante",
-    "descripcion": "Al momento de iniciar sesión se muestran los siguientes códigos de eror: PU5VO y OC6I6",
-    "descripcionCompleta": "Al momento de iniciar sesión se muestran los siguientes códigos de eror: PU5VO y OC6I6",
-    "observaciones": "*19 de agosto estos dos codigos de error se presentaron en dias pasados por los problemas de timeout en la consulta al interlocutor solo se presentaron el 12 de agosto en el lapso de tiempo que duro la afectacion //Resuelto",
+    "descripcion": "Al momento de iniciar sesión la pantalla se quedaba en blanco y posteriormente mostraba error (HK456)",
+    "descripcionCompleta": "Al momento de iniciar sesión la pantalla se quedaba en blanco y posteriormente mostraba error (HK456)",
+    "observaciones": "*13 de agosto se presenta una intermitencia en el servicio que consulta los datos del cliente de CRM Juan David Agudelo confirma por diversos grupos que se atendieron los casos correspondientes //Resulto",
     "responsable": "Juan David Agudelo",
     "estatus": "Liberado",
     "fechaReporte": "2026-08-13",
-    "fechaSolucion": "2026-08-12"
+    "fechaSolucion": "2026-08-13"
   },
   {
-    "id": 21,
+    "id": 19,
     "medio": "Slack",
     "flujo": "Enrolamiento",
     "casos": 40,
@@ -357,22 +327,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-14"
   },
   {
-    "id": 22,
-    "medio": "Slack",
-    "flujo": "Enrolamiento",
-    "casos": 54,
-    "clasificacion": "Incidencia",
-    "criticidad": "Bloqueante",
-    "descripcion": "Al momento de iniciar sesión la pantalla se quedaba en blanco y posteriormente mostraba error (HK456)",
-    "descripcionCompleta": "Al momento de iniciar sesión la pantalla se quedaba en blanco y posteriormente mostraba error (HK456)",
-    "observaciones": "*13 de agosto se presenta una intermitencia en el servicio que consulta los datos del cliente de CRM Juan David Agudelo confirma por diversos grupos que se atendieron los casos correspondientes //Resulto",
-    "responsable": "Juan David Agudelo",
-    "estatus": "Liberado",
-    "fechaReporte": "2026-08-13",
-    "fechaSolucion": "2026-08-13"
-  },
-  {
-    "id": 23,
+    "id": 20,
     "medio": "Slack",
     "flujo": "Enrolamiento",
     "casos": 200,
@@ -387,7 +342,67 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-19"
   },
   {
+    "id": 21,
+    "medio": "Slack",
+    "flujo": "Enrolamiento",
+    "casos": 3,
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Al momento de realizar enrolamiento no logra registrarse el cliente (E12A8",
+    "descripcionCompleta": "Al momento de realizar enrolamiento no logra registrarse el cliente (E12A8\n, 8DX0Q, C4FON, 5VXBU, 9X567)\nEstos casos derivan de que los clientes no tienen número de cliente.",
+    "observaciones": "*12 de agosto confirma Bertha Haydee Sanchez Aguilarse presentan por empleados que se convierten en clientes. se realizará ajuste masivo de clientes existentes y ajustes en el programa\n*19 de agosto se continuan presentando casos en producción de los códigos: C4FON, 5VXBU. Se esta revisando el ticket con Juan Ramon Becerra Diaz con el fin de obtener una solución de raíz\n*20 de agosto se va a crear ID - Nucleo de cliente, a todos los usuarios que hoy existen que no tengan actualmente. \n*21 de agosto se hizo el reporte definitivo por la mañana y en la noche del 21 de agosto se generaría control de cambios urgente en la noche.",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Liberado",
+    "fechaReporte": "2026-08-10",
+    "fechaSolucion": "2026-08-21"
+  },
+  {
+    "id": 22,
+    "medio": "Slack",
+    "flujo": "Transferencias",
+    "casos": 2,
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Al momento de transferir muestra código de error (40KXP):",
+    "descripcionCompleta": "Al momento de transferir muestra código de error (40KXP):\nSe identifica que es un tema relacionado a la generación de token de VU",
+    "observaciones": "*03 de agosto se confirma con Haydee que el equipo detecto mejoras y se atenderán dentro del sprint en curso (03 - 21 de agosto)\n*Se revisan mejoras para generar el token en el momento de la transacción y se encuentra en desarrollo. \n*19 de agosto: fecha objetivo de liberación 26 de agosto, pruebas beta 27 y 28 de agosto. Masificación a clientes 01 de septiembre",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Pruebas",
+    "fechaReporte": "2026-07-30",
+    "fechaSolucion": "2026-09-01"
+  },
+  {
+    "id": 23,
+    "medio": "Reunión Líderes",
+    "flujo": "Enrolamiento",
+    "casos": 51,
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Cliente que no se encuentran en directorio activo y no muestran modal para realizar nuevamente su proceso de enrolami...",
+    "descripcionCompleta": "Cliente que no se encuentran en directorio activo y no muestran modal para realizar nuevamente su proceso de enrolamiento (S8SBS).",
+    "observaciones": "*12 de agosto\nS8SBS: Se presenta por clientes que están enrolandose despúes de mucho tiempo y no existen en el directorio activo. Se liberá próxima versión. \n*19 de agosto: fecha objetivo de liberación 26 de agosto, pruebas beta 27 y 28 de agosto. Masificación a clientes 01 de septiembre",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Pruebas",
+    "fechaReporte": "2026-08-11",
+    "fechaSolucion": "2026-09-01"
+  },
+  {
     "id": 24,
+    "medio": "Slack",
+    "flujo": "Enrolamiento",
+    "casos": 75,
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Al momento de ingresar a la aplicación se están presentando nuevos códigos de error (QXP10 · PRQDS · L4Z7I)",
+    "descripcionCompleta": "Al momento de ingresar a la aplicación se están presentando nuevos códigos de error (QXP10 · PRQDS · L4Z7I)",
+    "observaciones": "21 de agosto\n*L4Z7I: Esto se derivado a que el dispositivo ya se encuentra registrado para otro cliente. - Se parametriza modal y se encuentra liberado 21 de agosto\n*QXP10 · PRQDS: Es un tema en la validación de token libera la próxima versión 01 de septimebre",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Pruebas",
+    "fechaReporte": "2026-08-20",
+    "fechaSolucion": "2026-09-01"
+  },
+  {
+    "id": 25,
     "medio": "Reunión Líderes",
     "flujo": "Transferencias",
     "casos": "N/A",
@@ -400,21 +415,6 @@ const HALLAZGOS = [
     "estatus": "Desarrollo",
     "fechaReporte": "2026-08-06",
     "fechaSolucion": "2026-08-28"
-  },
-  {
-    "id": 25,
-    "medio": "Slack",
-    "flujo": "Enrolamiento",
-    "casos": 75,
-    "clasificacion": "Incidencia",
-    "criticidad": "Bloqueante",
-    "descripcion": "Al momento de ingresar a la aplicación se están presentando nuevos códigos de error (QXP10 · PRQDS · L4Z7I)",
-    "descripcionCompleta": "Al momento de ingresar a la aplicación se están presentando nuevos códigos de error (QXP10 · PRQDS · L4Z7I)",
-    "observaciones": "21 de agosto\n*L4Z7I: Esto se derivado a que el dispositivo ya se encuentra registrado para otro cliente. - Se parametriza modal \n*QXP10 · PRQDS: Es un tema en la validación de token libera la próxima versión 01 de septimebre",
-    "responsable": "Juan David Agudelo",
-    "estatus": "Pruebas",
-    "fechaReporte": "2026-08-20",
-    "fechaSolucion": "2026-09-01"
   },
   {
     "id": 26,
@@ -464,21 +464,6 @@ const HALLAZGOS = [
   {
     "id": 29,
     "medio": "Correo",
-    "flujo": "Apertura de Cuenta",
-    "casos": "N/A",
-    "clasificacion": "Mejora",
-    "criticidad": "No Bloqueante",
-    "descripcion": "Al finalizar flujo de apertura de cuenta y seleccionar \"entendido\" te lleva al inicio de sesión.",
-    "descripcionCompleta": "Al finalizar flujo de apertura de cuenta y seleccionar \"entendido\" te lleva al inicio de sesión.\n1) Se identifico que al momento de concluir el flujo de apertura de cuenta, pantalla de felicidades y das clic en \"Entendido\" en la pantalla final no te manda al menú principal, siendo necesario ingresar nuevamente a la aplicación para visualizar tu cuenta creada.",
-    "observaciones": "Conforme el análisis realizado se identifica que realizar el ajuste solicitado no es el mas recomendable, derivado a que el usuario esta realizando su proceso en una web embebida en el APP (pwa). \n\nPor temas de seguridad esto implicaría mantener una sesión activa durante 10 - 50 minutos que es lo que se puede tardar el flujo de apertura dependiendo el caso del cliente. \n\nEsto adicional a las pruebas de laboratorio revisamos y no es un tema que impacte realmente la experiencia, ya que el usuario solo debe iniciar sesión de nuevo para ver sus producto aperturado.",
-    "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
-    "estatus": "Liberado",
-    "fechaReporte": "2026-07-06",
-    "fechaSolucion": "No aplica"
-  },
-  {
-    "id": 30,
-    "medio": "Correo",
     "flujo": "Inversiones",
     "casos": "N/A",
     "clasificacion": "Mejora",
@@ -492,7 +477,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 31,
+    "id": 30,
     "medio": "Reunión Líderes",
     "flujo": "Inversiones",
     "casos": "N/A",
@@ -507,7 +492,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 32,
+    "id": 31,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "100+",
@@ -520,6 +505,21 @@ const HALLAZGOS = [
     "estatus": "Liberado",
     "fechaReporte": "2026-07-06",
     "fechaSolucion": "2026-08-10"
+  },
+  {
+    "id": 32,
+    "medio": "Correo",
+    "flujo": "Inversión Digital",
+    "casos": "N/A",
+    "clasificacion": "Mejora",
+    "criticidad": "No Bloqueante",
+    "descripcion": "Actualización de ISR en productos de inversión digital para todos los productos.",
+    "descripcionCompleta": "Actualización de ISR en productos de inversión digital para todos los productos. \n1) Se identifica la necesidad por banca patrimonial de actualizar el ISR aplicable a todos los productos de inversión digital",
+    "observaciones": "*04 de agosto el equipo de banca patrimonial confirma tasas de ISR mediante correo. \n*07 de agosto se confirma la actualización en el Core Bancario y el equipo de desarrollo de PUC realiza ajuste de cotizadores. Se sigue validando en ambiente de calidad derivado a que no se refleja en simuladores. \n*10 de agosto se tiene sesión con banca patrimonial para programar liberación a producción",
+    "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
+    "estatus": "Liberado",
+    "fechaReporte": "2026-08-04",
+    "fechaSolucion": "2026-08-13"
   },
   {
     "id": 33,
@@ -554,21 +554,6 @@ const HALLAZGOS = [
   {
     "id": 35,
     "medio": "Correo",
-    "flujo": "Inversión Digital",
-    "casos": "N/A",
-    "clasificacion": "Mejora",
-    "criticidad": "No Bloqueante",
-    "descripcion": "Actualización de ISR en productos de inversión digital para todos los productos.",
-    "descripcionCompleta": "Actualización de ISR en productos de inversión digital para todos los productos. \n1) Se identifica la necesidad por banca patrimonial de actualizar el ISR aplicable a todos los productos de inversión digital",
-    "observaciones": "*04 de agosto el equipo de banca patrimonial confirma tasas de ISR mediante correo. \n*07 de agosto se confirma la actualización en el Core Bancario y el equipo de desarrollo de PUC realiza ajuste de cotizadores. Se sigue validando en ambiente de calidad derivado a que no se refleja en simuladores. \n*10 de agosto se tiene sesión con banca patrimonial para programar liberación a producción",
-    "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
-    "estatus": "Liberado",
-    "fechaReporte": "2026-08-04",
-    "fechaSolucion": "2026-08-13"
-  },
-  {
-    "id": 36,
-    "medio": "Correo",
     "flujo": "Entrega TDD",
     "casos": 1,
     "clasificacion": "Mejora",
@@ -582,7 +567,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-26"
   },
   {
-    "id": 37,
+    "id": 36,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -597,7 +582,37 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-09-18"
   },
   {
+    "id": 37,
+    "medio": "Reunión Líderes",
+    "flujo": "Entrega TDD",
+    "casos": "N/A",
+    "clasificacion": "Mejora",
+    "criticidad": "No Bloqueante",
+    "descripcion": "Integrar regla de máximo 2 reposiciones en 30 días naturales para realizar solicitud de entrega de tarjeta.",
+    "descripcionCompleta": "Integrar regla de máximo 2 reposiciones en 30 días naturales para realizar solicitud de entrega de tarjeta.\n1) Se implementará regla de realizar máximo 2 reposiciones en un período de 30 días naturales. Unicamente si el cliente culmina su proceso de entrega de tarjeta física. \n2) Previo a liberarse se tendrá revisión con atención a clientes para asegurar que conozcan el modal y como deben levantar el requerimiento de desbloqueo.",
+    "observaciones": "*24 de agosto se integra HU al sprint conforme lo acordado con los dueños del proceso Margarita Alejandra Munoz Mendez Jorge Javier Sandoval Garcia",
+    "responsable": "Martin Nieto Gomez",
+    "estatus": "Desarrollo",
+    "fechaReporte": "2026-08-14",
+    "fechaSolucion": "2026-09-18"
+  },
+  {
     "id": 38,
+    "medio": "Reunión Líderes",
+    "flujo": "Entrega TDD",
+    "casos": "N/A",
+    "clasificacion": "Mejora",
+    "criticidad": "No Bloqueante",
+    "descripcion": "Ajustar textos en proceso de entrega tdd \"Sucusal\" a \"Centro de atención\":",
+    "descripcionCompleta": "Ajustar textos en proceso de entrega tdd \"Sucusal\" a \"Centro de atención\":",
+    "observaciones": "*24 de agosto se integra HU al sprint conforme lo acordado con los dueños del proceso Margarita Alejandra Munoz Mendez Jorge Javier Sandoval Garcia",
+    "responsable": "Martin Nieto Gomez",
+    "estatus": "Desarrollo",
+    "fechaReporte": "2026-08-17",
+    "fechaSolucion": "2026-09-18"
+  },
+  {
+    "id": 39,
     "medio": "Reunión Líderes",
     "flujo": "Visualización productos",
     "casos": "N/A",
@@ -610,6 +625,21 @@ const HALLAZGOS = [
     "estatus": "Definición de Negocio",
     "fechaReporte": "2026-07-14",
     "fechaSolucion": "Por definir"
+  },
+  {
+    "id": 40,
+    "medio": "Correo",
+    "flujo": "Apertura de Cuenta",
+    "casos": "N/A",
+    "clasificacion": "Mejora",
+    "criticidad": "No Bloqueante",
+    "descripcion": "Al finalizar flujo de apertura de cuenta y seleccionar \"entendido\" te lleva al inicio de sesión.",
+    "descripcionCompleta": "Al finalizar flujo de apertura de cuenta y seleccionar \"entendido\" te lleva al inicio de sesión.\n1) Se identifico que al momento de concluir el flujo de apertura de cuenta, pantalla de felicidades y das clic en \"Entendido\" en la pantalla final no te manda al menú principal, siendo necesario ingresar nuevamente a la aplicación para visualizar tu cuenta creada.",
+    "observaciones": "Conforme el análisis realizado se identifica que realizar el ajuste solicitado no es el mas recomendable, derivado a que el usuario esta realizando su proceso en una web embebida en el APP (pwa). \n\nPor temas de seguridad esto implicaría mantener una sesión activa durante 10 - 50 minutos que es lo que se puede tardar el flujo de apertura dependiendo el caso del cliente. \n\nEsto adicional a las pruebas de laboratorio revisamos y no es un tema que impacte realmente la experiencia, ya que el usuario solo debe iniciar sesión de nuevo para ver sus producto aperturado.",
+    "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
+    "estatus": "Liberado",
+    "fechaReporte": "2026-07-06",
+    "fechaSolucion": "No aplica"
   }
 ];
 
