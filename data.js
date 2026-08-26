@@ -18,7 +18,7 @@
 
 // ---- Metadatos del encabezado / configuración del reporte ----
 const META = {
-  fechaActualizacion: "2026-08-25",   // se refleja en el encabezado ("Actualizado: ...")
+  fechaActualizacion: "2026-08-26",   // se refleja en el encabezado ("Actualizado: ...")
   version: "PUC v4.1.0",              // se refleja en el encabezado
   // Fecha de la Mesa Operativa anterior: cualquier hallazgo Liberado con
   // fechaSolucion posterior a esta fecha se marca automáticamente como
@@ -350,11 +350,11 @@ const HALLAZGOS = [
     "criticidad": "Bloqueante",
     "descripcion": "Al momento de realizar enrolamiento no logra registrarse el cliente (E12A8",
     "descripcionCompleta": "Al momento de realizar enrolamiento no logra registrarse el cliente (E12A8\n, 8DX0Q, C4FON, 5VXBU, 9X567)\nEstos casos derivan de que los clientes no tienen número de cliente.",
-    "observaciones": "*12 de agosto confirma Bertha Haydee Sanchez Aguilarse presentan por empleados que se convierten en clientes. se realizará ajuste masivo de clientes existentes y ajustes en el programa\n*19 de agosto se continuan presentando casos en producción de los códigos: C4FON, 5VXBU. Se esta revisando el ticket con Juan Ramon Becerra Diaz con el fin de obtener una solución de raíz\n*20 de agosto se va a crear ID - Nucleo de cliente, a todos los usuarios que hoy existen que no tengan actualmente. \n*21 de agosto se hizo el reporte definitivo por la mañana y en la noche del 21 de agosto se generaría control de cambios urgente en la noche.",
+    "observaciones": "*12 de agosto confirma Bertha Haydee Sanchez Aguilarse presentan por empleados que se convierten en clientes. se realizará ajuste masivo de clientes existentes y ajustes en el programa\n*19 de agosto se continuan presentando casos en producción de los códigos: C4FON, 5VXBU. Se esta revisando el ticket con Juan Ramon Becerra Diaz con el fin de obtener una solución de raíz\n*20 de agosto se va a crear ID - Nucleo de cliente, a todos los usuarios que hoy existen que no tengan actualmente. \n*21 de agosto se hizo el reporte definitivo por la mañana y en la noche del 21 de agosto se generaría control de cambios urgente en la noche.\n*26 de agosto: Se reabre códigos de error derivado a que se detectan 17 clientes con esta casuistica. \nNota: Son clientes que existen desde hace mucho tiempo en el banco que no tienen client id y esto conlleva al aumento de estos códigos de error por que en algún momento se hizo un intento de enrolamiento. Se hará una depuración en la PUC para que puedan comenzar de nuevo su proceso",
     "responsable": "Juan David Agudelo",
-    "estatus": "Liberado",
+    "estatus": "Desarrollo",
     "fechaReporte": "2026-08-10",
-    "fechaSolucion": "2026-08-21"
+    "fechaSolucion": "Por Definir"
   },
   {
     "id": 22,
@@ -403,18 +403,18 @@ const HALLAZGOS = [
   },
   {
     "id": 25,
-    "medio": "Reunión Líderes",
+    "medio": "Slack",
     "flujo": "Transferencias",
-    "casos": "N/A",
+    "casos": 32,
     "clasificacion": "Incidencia",
     "criticidad": "Bloqueante",
-    "descripcion": "Al momento de transferir clientes desde una cuenta BKY no permita realizar transferencia",
-    "descripcionCompleta": "Al momento de transferir clientes desde una cuenta BKY no permita realizar transferencia",
-    "observaciones": "*14 de agosto se revisa y se puede solventar de forma temporal asignando un MTU a todas las cuentas BKY. \n*15 de agosto se comparte HU al Core Bancario, están revisando para obtener el listado de cuentas BKY sin MTU y considerar una asignación masiva. \n*19 de agosto estamos pendientes de la confirmación de los tiempos por parte del Core Bancario",
-    "responsable": "Esperanza Hernandez Trejo Maria Fernanda Aguilera Vega",
-    "estatus": "Desarrollo",
-    "fechaReporte": "2026-08-06",
-    "fechaSolucion": "2026-08-28"
+    "descripcion": "Al momento de transferir se muestra código de error (T94W3)",
+    "descripcionCompleta": "Al momento de transferir se muestra código de error (T94W3)",
+    "observaciones": "",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Análisis",
+    "fechaReporte": "2026-08-26",
+    "fechaSolucion": "Por definir"
   },
   {
     "id": 26,
@@ -434,6 +434,21 @@ const HALLAZGOS = [
   {
     "id": 27,
     "medio": "Reunión Líderes",
+    "flujo": "Transferencias",
+    "casos": "N/A",
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Al momento de transferir clientes desde una cuenta BKY no permita realizar transferencia",
+    "descripcionCompleta": "Al momento de transferir clientes desde una cuenta BKY no permita realizar transferencia",
+    "observaciones": "*14 de agosto se revisa y se puede solventar de forma temporal asignando un MTU a todas las cuentas BKY. \n*15 de agosto se comparte HU al Core Bancario, están revisando para obtener el listado de cuentas BKY sin MTU y considerar una asignación masiva. \n*19 de agosto estamos pendientes de la confirmación de los tiempos por parte del Core Bancario",
+    "responsable": "Esperanza Hernandez Trejo Maria Fernanda Aguilera Vega",
+    "estatus": "Desarrollo",
+    "fechaReporte": "2026-08-06",
+    "fechaSolucion": "2026-08-28"
+  },
+  {
+    "id": 28,
+    "medio": "Reunión Líderes",
     "flujo": "Notificaciones",
     "casos": "N/A",
     "clasificacion": "Mejora",
@@ -447,7 +462,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-07-21"
   },
   {
-    "id": 28,
+    "id": 29,
     "medio": "Correo",
     "flujo": "Inversión Digital",
     "casos": "N/A",
@@ -462,7 +477,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-03"
   },
   {
-    "id": 29,
+    "id": 30,
     "medio": "Correo",
     "flujo": "Inversiones",
     "casos": "N/A",
@@ -477,7 +492,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 30,
+    "id": 31,
     "medio": "Reunión Líderes",
     "flujo": "Inversiones",
     "casos": "N/A",
@@ -492,7 +507,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 31,
+    "id": 32,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "100+",
@@ -507,7 +522,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-10"
   },
   {
-    "id": 32,
+    "id": 33,
     "medio": "Correo",
     "flujo": "Inversión Digital",
     "casos": "N/A",
@@ -522,7 +537,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-13"
   },
   {
-    "id": 33,
+    "id": 34,
     "medio": "Reunión Líderes",
     "flujo": "Transferencias",
     "casos": "N/A",
@@ -537,7 +552,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-09-18"
   },
   {
-    "id": 34,
+    "id": 35,
     "medio": "Reunión Líderes",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -552,7 +567,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-09-01"
   },
   {
-    "id": 35,
+    "id": 36,
     "medio": "Correo",
     "flujo": "Entrega TDD",
     "casos": 1,
@@ -567,7 +582,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-08-26"
   },
   {
-    "id": 36,
+    "id": 37,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -582,7 +597,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-09-18"
   },
   {
-    "id": 37,
+    "id": 38,
     "medio": "Reunión Líderes",
     "flujo": "Entrega TDD",
     "casos": "N/A",
@@ -597,7 +612,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-09-18"
   },
   {
-    "id": 38,
+    "id": 39,
     "medio": "Reunión Líderes",
     "flujo": "Entrega TDD",
     "casos": "N/A",
@@ -612,7 +627,7 @@ const HALLAZGOS = [
     "fechaSolucion": "2026-09-18"
   },
   {
-    "id": 39,
+    "id": 40,
     "medio": "Reunión Líderes",
     "flujo": "Visualización productos",
     "casos": "N/A",
@@ -627,7 +642,7 @@ const HALLAZGOS = [
     "fechaSolucion": "Por definir"
   },
   {
-    "id": 40,
+    "id": 41,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
