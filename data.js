@@ -18,7 +18,7 @@
 
 // ---- Metadatos del encabezado / configuración del reporte ----
 const META = {
-  fechaActualizacion: "2026-08-26",   // se refleja en el encabezado ("Actualizado: ...")
+  fechaActualizacion: "2026-08-27",   // se refleja en el encabezado ("Actualizado: ...")
   version: "PUC v4.1.0",              // se refleja en el encabezado
   // Fecha de la Mesa Operativa anterior: cualquier hallazgo Liberado con
   // fechaSolucion posterior a esta fecha se marca automáticamente como
@@ -43,7 +43,7 @@ const CATALOGOS = {
 const HALLAZGOS = [
   {
     "id": 1,
-    "medio": "Laboratorio BP",
+    "medio": "Laboratorio CH",
     "flujo": "Enrolamiento",
     "casos": 4,
     "clasificacion": "Incidencia",
@@ -352,9 +352,9 @@ const HALLAZGOS = [
     "descripcionCompleta": "Al momento de realizar enrolamiento no logra registrarse el cliente (E12A8\n, 8DX0Q, C4FON, 5VXBU, 9X567)\nEstos casos derivan de que los clientes no tienen número de cliente.",
     "observaciones": "*12 de agosto confirma Bertha Haydee Sanchez Aguilarse presentan por empleados que se convierten en clientes. se realizará ajuste masivo de clientes existentes y ajustes en el programa\n*19 de agosto se continuan presentando casos en producción de los códigos: C4FON, 5VXBU. Se esta revisando el ticket con Juan Ramon Becerra Diaz con el fin de obtener una solución de raíz\n*20 de agosto se va a crear ID - Nucleo de cliente, a todos los usuarios que hoy existen que no tengan actualmente. \n*21 de agosto se hizo el reporte definitivo por la mañana y en la noche del 21 de agosto se generaría control de cambios urgente en la noche.\n*26 de agosto: Se reabre códigos de error derivado a que se detectan 17 clientes con esta casuistica. \nNota: Son clientes que existen desde hace mucho tiempo en el banco que no tienen client id y esto conlleva al aumento de estos códigos de error por que en algún momento se hizo un intento de enrolamiento. Se hará una depuración en la PUC para que puedan comenzar de nuevo su proceso",
     "responsable": "Juan David Agudelo",
-    "estatus": "Desarrollo",
+    "estatus": "Pruebas",
     "fechaReporte": "2026-08-10",
-    "fechaSolucion": "Por Definir"
+    "fechaSolucion": "2026-08-26"
   },
   {
     "id": 22,
@@ -410,7 +410,7 @@ const HALLAZGOS = [
     "criticidad": "Bloqueante",
     "descripcion": "Al momento de transferir se muestra código de error (T94W3)",
     "descripcionCompleta": "Al momento de transferir se muestra código de error (T94W3)",
-    "observaciones": "",
+    "observaciones": "26 de agosto Este error se presento por un reinicio del servidor de vu se va a revisar con infraestructura el aprovisionamiento de recursos para esa instancia. Escalamiento con infraestructura.",
     "responsable": "Juan David Agudelo",
     "estatus": "Análisis",
     "fechaReporte": "2026-08-26",
@@ -425,11 +425,11 @@ const HALLAZGOS = [
     "criticidad": "Bloqueante",
     "descripcion": "Al momento de iniciar sesión se le muestra es nuevo código de error a los clientes (BNSI5)",
     "descripcionCompleta": "Al momento de iniciar sesión se le muestra es nuevo código de error a los clientes (BNSI5)",
-    "observaciones": "",
+    "observaciones": "26 de agosto Error  por validacion de token interna, por altos tiempos de respuesta en los servicios el token esta expirando en medio de la transaccion por lo que genera este error. Se realizará liberación el día de hoy 26 de agosto",
     "responsable": "Juan David Agudelo",
-    "estatus": "Análisis",
+    "estatus": "Pruebas",
     "fechaReporte": "2026-08-21",
-    "fechaSolucion": "Por definir"
+    "fechaSolucion": "2026-08-26"
   },
   {
     "id": 27,
@@ -545,7 +545,7 @@ const HALLAZGOS = [
     "criticidad": "Bloqueante",
     "descripcion": "Permitir asignar montros transaccionales desde PUC a cuentas BKY",
     "descripcionCompleta": "Permitir asignar montros transaccionales desde PUC a cuentas BKY",
-    "observaciones": "*13 de agosto se integra historia de usuario con el equipo de desarrollo. \n*14 de agosto en la sesión de estabilidad de plataformas se confirma con los líderes que no se contempla en la próxima liberación y se implementará una medida de contención.",
+    "observaciones": "*13 de agosto se integra historia de usuario con el equipo de desarrollo. \n*14 de agosto en la sesión de estabilidad de plataformas se confirma con los líderes que no se contempla en la próxima liberación y se implementará una medida de contención.\n*26 de agosto",
     "responsable": "Juan David Agudelo Cristian Antonio Rodriguez Hernandez",
     "estatus": "Desarrollo",
     "fechaReporte": "2026-08-06",
@@ -579,7 +579,7 @@ const HALLAZGOS = [
     "responsable": "Jessica Isai Juarez Gomez\nCristian Antonio Rodriguez Hernandez",
     "estatus": "Desarrollo",
     "fechaReporte": "2026-08-06",
-    "fechaSolucion": "2026-08-26"
+    "fechaSolucion": "2026-08-27"
   },
   {
     "id": 37,
@@ -655,6 +655,51 @@ const HALLAZGOS = [
     "estatus": "Liberado",
     "fechaReporte": "2026-07-06",
     "fechaSolucion": "No aplica"
+  },
+  {
+    "id": 41,
+    "medio": "Slack",
+    "flujo": "Enrolamiento",
+    "casos": 75,
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Errores en inicio de sesión (5 códigos: 3O6B0, C2W1X, MS442, 9347O, XAR19) 5 códigos de error nuevos detectados en el...",
+    "descripcionCompleta": "Errores en inicio de sesión (5 códigos: 3O6B0, C2W1X, MS442, 9347O, XAR19) 5 códigos de error nuevos detectados en el login, con tasas de abandono de entre 9% y 50% y un patrón recurrente antes de continuar o abandonar.",
+    "observaciones": "",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Análisis",
+    "fechaReporte": "2026-08-27",
+    "fechaSolucion": "Por definir"
+  },
+  {
+    "id": 42,
+    "medio": "Slack",
+    "flujo": "Transferencias",
+    "casos": 75,
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Errores en transferencias a terceros (2 códigos: KT61S, MQ9D1) Estan en el flujo de transferencia a cuenta de tercero...",
+    "descripcionCompleta": "Errores en transferencias a terceros (2 códigos: KT61S, MQ9D1) Estan en el flujo de transferencia a cuenta de terceros (lista de terceros y transferir a cuenta existente), un solo usuario por código, mismo CURP, mismo día.",
+    "observaciones": "",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Análisis",
+    "fechaReporte": "2026-08-27",
+    "fechaSolucion": "Por definir"
+  },
+  {
+    "id": 43,
+    "medio": "Slack",
+    "flujo": "Enrolamiento",
+    "casos": 75,
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Errores en enrolamiento/apertura de cuenta (3 códigos: 36TTZ, 4AX7M, U63TC) Están en distintos puntos del enrolamient...",
+    "descripcionCompleta": "Errores en enrolamiento/apertura de cuenta (3 códigos: 36TTZ, 4AX7M, U63TC) Están en distintos puntos del enrolamiento (envío de OTP, solicitud de TDD y onboarding), con el hallazgo clave de que el error se repite aun después de que el usuario reintenta el paso correspondiente (OTP, solicitud de tarjeta, incluso re-login).",
+    "observaciones": "",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Análisis",
+    "fechaReporte": "2026-08-27",
+    "fechaSolucion": "Por definir"
   }
 ];
 
