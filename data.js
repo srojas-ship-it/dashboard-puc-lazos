@@ -18,7 +18,7 @@
 
 // ---- Metadatos del encabezado / configuración del reporte ----
 const META = {
-  fechaActualizacion: "2026-08-27",   // se refleja en el encabezado ("Actualizado: ...")
+  fechaActualizacion: "2026-08-28",   // se refleja en el encabezado ("Actualizado: ...")
   version: "PUC v4.1.0",              // se refleja en el encabezado
   // Fecha de la Mesa Operativa anterior: cualquier hallazgo Liberado con
   // fechaSolucion posterior a esta fecha se marca automáticamente como
@@ -352,7 +352,7 @@ const HALLAZGOS = [
     "descripcionCompleta": "Al momento de realizar enrolamiento no logra registrarse el cliente (E12A8\n, 8DX0Q, C4FON, 5VXBU, 9X567)\nEstos casos derivan de que los clientes no tienen número de cliente.",
     "observaciones": "*12 de agosto confirma Bertha Haydee Sanchez Aguilarse presentan por empleados que se convierten en clientes. se realizará ajuste masivo de clientes existentes y ajustes en el programa\n*19 de agosto se continuan presentando casos en producción de los códigos: C4FON, 5VXBU. Se esta revisando el ticket con Juan Ramon Becerra Diaz con el fin de obtener una solución de raíz\n*20 de agosto se va a crear ID - Nucleo de cliente, a todos los usuarios que hoy existen que no tengan actualmente. \n*21 de agosto se hizo el reporte definitivo por la mañana y en la noche del 21 de agosto se generaría control de cambios urgente en la noche.\n*26 de agosto: Se reabre códigos de error derivado a que se detectan 17 clientes con esta casuistica. \nNota: Son clientes que existen desde hace mucho tiempo en el banco que no tienen client id y esto conlleva al aumento de estos códigos de error por que en algún momento se hizo un intento de enrolamiento. Se hará una depuración en la PUC para que puedan comenzar de nuevo su proceso",
     "responsable": "Juan David Agudelo",
-    "estatus": "Pruebas",
+    "estatus": "Liberado",
     "fechaReporte": "2026-08-10",
     "fechaSolucion": "2026-08-26"
   },
@@ -382,7 +382,7 @@ const HALLAZGOS = [
     "descripcionCompleta": "Cliente que no se encuentran en directorio activo y no muestran modal para realizar nuevamente su proceso de enrolamiento (S8SBS).",
     "observaciones": "*12 de agosto\nS8SBS: Se presenta por clientes que están enrolandose despúes de mucho tiempo y no existen en el directorio activo. Se liberá próxima versión. \n*19 de agosto: fecha objetivo de liberación 26 de agosto, pruebas beta 27 y 28 de agosto. Masificación a clientes 01 de septiembre",
     "responsable": "Juan David Agudelo",
-    "estatus": "Pruebas",
+    "estatus": "Liberado",
     "fechaReporte": "2026-08-11",
     "fechaSolucion": "2026-09-01"
   },
@@ -412,7 +412,7 @@ const HALLAZGOS = [
     "descripcionCompleta": "Al momento de transferir se muestra código de error (T94W3)",
     "observaciones": "26 de agosto Este error se presento por un reinicio del servidor de vu se va a revisar con infraestructura el aprovisionamiento de recursos para esa instancia. Escalamiento con infraestructura.",
     "responsable": "Juan David Agudelo",
-    "estatus": "Análisis",
+    "estatus": "Desarrollo",
     "fechaReporte": "2026-08-26",
     "fechaSolucion": "Por definir"
   },
@@ -444,7 +444,7 @@ const HALLAZGOS = [
     "responsable": "Esperanza Hernandez Trejo Maria Fernanda Aguilera Vega",
     "estatus": "Desarrollo",
     "fechaReporte": "2026-08-06",
-    "fechaSolucion": "2026-08-28"
+    "fechaSolucion": "2026-09-04"
   },
   {
     "id": 28,
@@ -628,21 +628,6 @@ const HALLAZGOS = [
   },
   {
     "id": 40,
-    "medio": "Reunión Líderes",
-    "flujo": "Visualización productos",
-    "casos": "N/A",
-    "clasificacion": "Mejora",
-    "criticidad": "No Bloqueante",
-    "descripcion": "Clientes no visualizan sus cuentas que tienen un estatus \"Bloqueada\"",
-    "descripcionCompleta": "Clientes no visualizan sus cuentas que tienen un estatus \"Bloqueada\"\n1) Se levanto un ticket en slack derivado a que el cliente no visualizaba su cuenta: SOPOR_CAV25_717",
-    "observaciones": "* Sesión de revisión con Aura (20/07/2026)\n*Pendiente información Banca Patrimonial, para crear mejora. \n*29 Jul: Banca patrimonial comparte estatus para poder a comenzar a revisar la mejora a implementar\nLeslie Chavez Santana Se lleva el seguimiento con los clientes que actualmente presentan este escenario",
-    "responsable": "Cristian Rodríguez Hernández / Juan David Agudelo",
-    "estatus": "Definición de Negocio",
-    "fechaReporte": "2026-07-14",
-    "fechaSolucion": "Por definir"
-  },
-  {
-    "id": 41,
     "medio": "Correo",
     "flujo": "Apertura de Cuenta",
     "casos": "N/A",
@@ -663,13 +648,13 @@ const HALLAZGOS = [
     "casos": 75,
     "clasificacion": "Incidencia",
     "criticidad": "Bloqueante",
-    "descripcion": "Errores en inicio de sesión (5 códigos: 3O6B0, C2W1X, MS442, 9347O, XAR19) 5 códigos de error nuevos detectados en el...",
-    "descripcionCompleta": "Errores en inicio de sesión (5 códigos: 3O6B0, C2W1X, MS442, 9347O, XAR19) 5 códigos de error nuevos detectados en el login, con tasas de abandono de entre 9% y 50% y un patrón recurrente antes de continuar o abandonar.",
-    "observaciones": "",
+    "descripcion": "Errores en inicio de sesión (5 códigos: 3O6B0, C2W1X, MS442, 9347O, XAR19)",
+    "descripcionCompleta": "Errores en inicio de sesión (5 códigos: 3O6B0, C2W1X, MS442, 9347O, XAR19) \n5 códigos de error nuevos detectados en el login, con tasas de abandono de entre 9% y 50% y un patrón recurrente antes de continuar o abandonar.",
+    "observaciones": "*28 de agosto:\n- 3O6B0: El error se presenta porque el tiempo entre la validación del OTP para el cambio de contraseña y la actualización de la contraseña es mayor a 10 minutos\n- C2W1X, MS442, 9347O, XAR19: El código de error está relacionado con la expiración anticipada del token para auntenticarte (Iniciar sesión) en la aplicación. \n- Sera liberado en la versión del 01 de septiembre. // Liberado",
     "responsable": "Juan David Agudelo",
-    "estatus": "Análisis",
+    "estatus": "Pruebas",
     "fechaReporte": "2026-08-27",
-    "fechaSolucion": "Por definir"
+    "fechaSolucion": "2026-09-01"
   },
   {
     "id": 42,
@@ -678,13 +663,13 @@ const HALLAZGOS = [
     "casos": 75,
     "clasificacion": "Incidencia",
     "criticidad": "Bloqueante",
-    "descripcion": "Errores en transferencias a terceros (2 códigos: KT61S, MQ9D1) Estan en el flujo de transferencia a cuenta de tercero...",
-    "descripcionCompleta": "Errores en transferencias a terceros (2 códigos: KT61S, MQ9D1) Estan en el flujo de transferencia a cuenta de terceros (lista de terceros y transferir a cuenta existente), un solo usuario por código, mismo CURP, mismo día.",
-    "observaciones": "",
+    "descripcion": "Errores al iniciar sesión (2 códigos: KT61S, MQ9D1).",
+    "descripcionCompleta": "Errores al iniciar sesión (2 códigos: KT61S, MQ9D1).\nAl iniciar sesión los usuarios ya no pueden avanzar.",
+    "observaciones": "*28 de agosto: \n- MQ9D1, KT61S: Se deriva de la misma forma a temas relacionados con el token de autenticación para \"Iniciar sesión\". \n- Se libera 26 de agosto //Liberado",
     "responsable": "Juan David Agudelo",
-    "estatus": "Análisis",
+    "estatus": "Liberado",
     "fechaReporte": "2026-08-27",
-    "fechaSolucion": "Por definir"
+    "fechaSolucion": "2026-08-26"
   },
   {
     "id": 43,
@@ -693,9 +678,54 @@ const HALLAZGOS = [
     "casos": 75,
     "clasificacion": "Incidencia",
     "criticidad": "Bloqueante",
-    "descripcion": "Errores en enrolamiento/apertura de cuenta (3 códigos: 36TTZ, 4AX7M, U63TC) Están en distintos puntos del enrolamient...",
-    "descripcionCompleta": "Errores en enrolamiento/apertura de cuenta (3 códigos: 36TTZ, 4AX7M, U63TC) Están en distintos puntos del enrolamiento (envío de OTP, solicitud de TDD y onboarding), con el hallazgo clave de que el error se repite aun después de que el usuario reintenta el paso correspondiente (OTP, solicitud de tarjeta, incluso re-login).",
-    "observaciones": "",
+    "descripcion": "Errores en enrolamiento/apertura de cuenta (3 códigos: 36TTZ, 4AX7M, U63TC)",
+    "descripcionCompleta": "Errores en enrolamiento/apertura de cuenta (3 códigos: 36TTZ, 4AX7M, U63TC)\nEstán en distintos puntos del enrolamiento (envío de OTP, solicitud de TDD y onboarding), con el hallazgo clave de que el error se repite aun después de que el usuario reintenta el paso correspondiente (OTP, solicitud de tarjeta, incluso re-login).",
+    "observaciones": "36TTZ --  No se encuentra el telefono al hacer el cambio de contraseña  16 casos en la ultima semana En Revision  // 4AX7M Estan intentando solicitar tarjeta consubanco con una cuenta N2  20 Casos   En Revision   // U63TC Hay una Excepcion cuando el cliente no tiene direccion guardada en el sistema solo se tiene 1 caso al parecer es por que el usuario no se creo por los procesos definidos",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Análisis",
+    "fechaReporte": "2026-08-27",
+    "fechaSolucion": "Por definir"
+  },
+  {
+    "id": 44,
+    "medio": "Slack",
+    "flujo": "Enrolamiento",
+    "casos": 75,
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Errores en inicio de sesión (7EIQF, 948J1) Dos códigos en el login:",
+    "descripcionCompleta": "Errores en inicio de sesión (7EIQF, 948J1) Dos códigos en el login:\n7EIQF parece más ligado al registro de usuario que al login puro; 948J1 muestra reintento de login antes del error.",
+    "observaciones": "7EIQF -- Se presento un error con el servicio de integracion al consultar los creditos fueron 7 casos del 26 de agosto de las 11:31 a 11:43 // 948J1 Ya quedo Liberado  apartir del 27",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Análisis",
+    "fechaReporte": "2026-08-27",
+    "fechaSolucion": "Por definir"
+  },
+  {
+    "id": 45,
+    "medio": "Slack",
+    "flujo": "Entrega TDD",
+    "casos": 75,
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Cuenta de débito / cierre por inactividad (XMJ9O, B0XAL):",
+    "descripcionCompleta": "Cuenta de débito / cierre por inactividad (XMJ9O, B0XAL):\nAmbos códigos comparten el mismo patrón (consulta de cuenta de débito → cierre por inactividad), incluso con un usuario que presentó los dos errores esa fecha — probablemente el mismo bug reportado con dos códigos distintos.",
+    "observaciones": "XMJ9O --- Ya quedi Liberado apartir del 27 // B0XAL Ya quedo Liberado a partir del 27",
+    "responsable": "Juan David Agudelo",
+    "estatus": "Análisis",
+    "fechaReporte": "2026-08-27",
+    "fechaSolucion": "Por definir"
+  },
+  {
+    "id": 46,
+    "medio": "Slack",
+    "flujo": "Enrolamiento",
+    "casos": 75,
+    "clasificacion": "Incidencia",
+    "criticidad": "Bloqueante",
+    "descripcion": "Registro de usuario / onboarding (H269U):",
+    "descripcionCompleta": "Registro de usuario / onboarding (H269U): \n50% de los usuarios abandona el onboarding tras el error",
+    "observaciones": "H269U -- ya quedo liberado apartir del 27",
     "responsable": "Juan David Agudelo",
     "estatus": "Análisis",
     "fechaReporte": "2026-08-27",
