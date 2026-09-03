@@ -18,7 +18,7 @@
 
 // ---- Metadatos del encabezado / configuración del reporte ----
 const META = {
-  fechaActualizacion: "2026-09-02",   // se refleja en el encabezado ("Actualizado: ...")
+  fechaActualizacion: "2026-09-03",   // se refleja en el encabezado ("Actualizado: ...")
   version: "PUC v4.1.0",              // se refleja en el encabezado
   // Fecha de la Mesa Operativa anterior: cualquier hallazgo Liberado con
   // fechaSolucion posterior a esta fecha se marca automáticamente como
@@ -680,11 +680,11 @@ const HALLAZGOS = [
     "criticidad": "Bloqueante",
     "descripcion": "Errores en enrolamiento/apertura de cuenta (3 códigos: 36TTZ, 4AX7M, U63TC)",
     "descripcionCompleta": "Errores en enrolamiento/apertura de cuenta (3 códigos: 36TTZ, 4AX7M, U63TC)\nEstán en distintos puntos del enrolamiento (envío de OTP, solicitud de TDD y onboarding), con el hallazgo clave de que el error se repite aun después de que el usuario reintenta el paso correspondiente (OTP, solicitud de tarjeta, incluso re-login).",
-    "observaciones": "36TTZ --  No se encuentra el telefono al hacer el cambio de contraseña  16 casos en la ultima semana En Revision  // 4AX7M Estan intentando solicitar tarjeta consubanco con una cuenta N2  20 Casos   En Revision   // U63TC Hay una Excepcion cuando el cliente no tiene direccion guardada en el sistema solo se tiene 1 caso al parecer es por que el usuario no se creo por los procesos definidos",
+    "observaciones": "36TTZ --  No se encuentra el telefono al hacer el cambio de contraseña  16 casos en la ultima semana En Revision  \n4AX7M -- Estan intentando solicitar tarjeta consubanco con una cuenta N2  20 Casos   En Revision   \nU63TC Hay una Excepcion cuando el cliente no tiene direccion guardada en el sistema solo se tiene 1 caso al parecer es por que el usuario no se creo por los procesos definidos\n\n\n36TTZ -- Liberado \n4AX7M -- Se realizo un ajuste pero se debe monitorear por que el caso no se replico en QA \nU63TC -- No se ha Replicado el caso",
     "responsable": "Juan David Agudelo",
-    "estatus": "Análisis",
+    "estatus": "Liberado",
     "fechaReporte": "2026-08-27",
-    "fechaSolucion": "Por definir"
+    "fechaSolucion": "2026-09-01"
   },
   {
     "id": 44,
@@ -697,9 +697,9 @@ const HALLAZGOS = [
     "descripcionCompleta": "Errores en inicio de sesión (7EIQF, 948J1) Dos códigos en el login:\n7EIQF parece más ligado al registro de usuario que al login puro; 948J1 muestra reintento de login antes del error.",
     "observaciones": "7EIQF -- Se presento un error con el servicio de integracion al consultar los creditos fueron 7 casos del 26 de agosto de las 11:31 a 11:43 // 948J1 Ya quedo Liberado  apartir del 27",
     "responsable": "Juan David Agudelo",
-    "estatus": "Análisis",
+    "estatus": "Liberado",
     "fechaReporte": "2026-08-27",
-    "fechaSolucion": "Por definir"
+    "fechaSolucion": "2026-09-01"
   },
   {
     "id": 45,
@@ -712,7 +712,7 @@ const HALLAZGOS = [
     "descripcionCompleta": "Cuenta de débito / cierre por inactividad (XMJ9O, B0XAL):\nAmbos códigos comparten el mismo patrón (consulta de cuenta de débito → cierre por inactividad), incluso con un usuario que presentó los dos errores esa fecha — probablemente el mismo bug reportado con dos códigos distintos.",
     "observaciones": "XMJ9O --- Ya quedi Liberado apartir del 27 // B0XAL Ya quedo Liberado a partir del 27",
     "responsable": "Juan David Agudelo",
-    "estatus": "Análisis",
+    "estatus": "Liberado",
     "fechaReporte": "2026-08-27",
     "fechaSolucion": "Por definir"
   },
